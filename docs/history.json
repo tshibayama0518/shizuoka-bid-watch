@@ -1,0 +1,1104 @@
+{
+    "updatedAt":  "2026-11-26T12:17:07+09:00",
+    "forecast":  [
+                     {
+                         "key":  "富士市|ICT活用乗降調査",
+                         "expected":  "2026-12-06",
+                         "title":  "令和7年度 ICT活用乗降調査業務 公募型プロポーザルの実施結果について",
+                         "org":  "富士市",
+                         "source":  "富士市HP",
+                         "url":  "https://www.city.fuji.shizuoka.jp/1040050000/p007745.html",
+                         "tags":  [
+                                      "Web・IT"
+                                  ],
+                         "lastDate":  "2025-12-06",
+                         "years":  1,
+                         "lastWinner":  "株式会社アプリズム",
+                         "lastAmount":  "",
+                         "lastBudget":  0
+                     },
+                     {
+                         "key":  "静岡市|木材の情報共有システム構築業務静岡市オクシズ材プラットフォーム活用推進協議会",
+                         "expected":  "2026-12-24",
+                         "title":  "公募型プロポーザル「木材の情報共有システム構築業務」(静岡市オクシズ材プラットフォーム活用推進協議会事業)",
+                         "org":  "静岡市",
+                         "source":  "静岡市HP",
+                         "url":  "https://www.city.shizuoka.lg.jp/s5732/s012578.html",
+                         "tags":  [
+                                      "Web・IT"
+                                  ],
+                         "lastDate":  "2025-12-24",
+                         "years":  1,
+                         "lastWinner":  "有限会社アーク",
+                         "lastAmount":  "",
+                         "lastBudget":  0
+                     },
+                     {
+                         "key":  "富士市|富士市くらし応援デジタル商品券配布",
+                         "expected":  "2026-12-31",
+                         "title":  "富士市くらし応援デジタル商品券配布事業業務に係るプロポーザル参加者募集について",
+                         "org":  "富士市",
+                         "source":  "富士市HP",
+                         "url":  "https://www.city.fuji.shizuoka.jp/1035100000/p006870.html",
+                         "tags":  [
+                                      "Web・IT"
+                                  ],
+                         "lastDate":  "2025-12-31",
+                         "years":  1,
+                         "lastWinner":  "TOPPANクロレ株式会社",
+                         "lastAmount":  "",
+                         "lastBudget":  0
+                     }
+                 ],
+    "entries":  {
+                    "湖西市|湖西市立小中学校ICT支援員配置":  [
+                                                 {
+                                                     "date":  "2026-11-16",
+                                                     "est":  "2026-11-16",
+                                                     "kind":  "notice",
+                                                     "title":  "湖西市立小中学校ICT支援員配置業務委託に係る公募型プロポーザルの実施について",
+                                                     "org":  "湖西市",
+                                                     "source":  "湖西市HP",
+                                                     "url":  "https://www.city.kosai.shizuoka.jp/sangyo_shigoto/nyusatsu_keiyaku/nyusatsu_koubo/9874.html",
+                                                     "tags":  [
+                                                                  "Web・IT"
+                                                              ],
+                                                     "winner":  "",
+                                                     "amount":  "",
+                                                     "budget":  0
+                                                 }
+                                             ],
+                    "湖西市|閉域網LGWAN系ローカル生成AI基盤機器調達設置及び実証支援業務10月28日":  [
+                                                                        {
+                                                                            "date":  "2026-10-28",
+                                                                            "est":  "2026-10-28",
+                                                                            "kind":  "notice",
+                                                                            "title":  "閉域網(LGWAN系)ローカル生成AI基盤機器調達・設置及び実証支援業務プロポーザル(令和8年10月28日)",
+                                                                            "org":  "湖西市",
+                                                                            "source":  "湖西市HP",
+                                                                            "url":  "https://www.city.kosai.shizuoka.jp/soshikiichiran/joho/gyomuannai/4/request_for_proposal/20150.html",
+                                                                            "tags":  [
+                                                                                         "Web・IT"
+                                                                                     ],
+                                                                            "winner":  "",
+                                                                            "amount":  "",
+                                                                            "budget":  0
+                                                                        }
+                                                                    ],
+                    "国土交通省|静岡国道開通式典業務その2":  [
+                                                {
+                                                    "date":  "2026-10-14",
+                                                    "est":  "2026-10-14",
+                                                    "kind":  "notice",
+                                                    "title":  "令和8年度 静岡国道開通式典業務(その2)",
+                                                    "org":  "国土交通省",
+                                                    "source":  "官公需ポータル",
+                                                    "url":  "https://www.p-portal.go.jp/pps-web-biz/UAA01/OAA0101",
+                                                    "tags":  [
+                                                                 "イベント"
+                                                             ],
+                                                    "winner":  "",
+                                                    "amount":  "",
+                                                    "budget":  0
+                                                }
+                                            ],
+                    "沼津市|沼津市BPRによる業務改善支援":  [
+                                                {
+                                                    "date":  "2026-04-28",
+                                                    "est":  "2026-03-19",
+                                                    "kind":  "result",
+                                                    "title":  "令和8年度沼津市BPRによる業務改善支援業務委託に係る公募型プロポーザル",
+                                                    "org":  "沼津市",
+                                                    "source":  "沼津市HP",
+                                                    "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/bpr/index.htm",
+                                                    "tags":  [
+                                                                 "Web・IT"
+                                                             ],
+                                                    "winner":  "NTTドコモビジネス株式会社",
+                                                    "amount":  "8,800,000円",
+                                                    "budget":  0
+                                                }
+                                            ],
+                    "沼津市|沼津市CIO補佐官":  [
+                                          {
+                                              "date":  "2026-04-10",
+                                              "est":  "2026-03-01",
+                                              "kind":  "result",
+                                              "title":  "令和8年度沼津市CIO補佐官業務委託に係る公募型プロポーザル",
+                                              "org":  "沼津市",
+                                              "source":  "沼津市HP",
+                                              "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/cio/index.htm",
+                                              "tags":  [
+                                                           "Web・IT"
+                                                       ],
+                                              "winner":  "ソフトバンク株式会社",
+                                              "amount":  "8,030,000円",
+                                              "budget":  0
+                                          }
+                                      ],
+                    "沼津市|沼津市ビジネススタートセミナー開催":  [
+                                                  {
+                                                      "date":  "2026-07-14",
+                                                      "est":  "2026-06-04",
+                                                      "kind":  "result",
+                                                      "title":  "令和8年度 沼津市ビジネススタートセミナー開催業務委託に係る公募型プロポーザル",
+                                                      "org":  "沼津市",
+                                                      "source":  "沼津市HP",
+                                                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/business_start/index.htm",
+                                                      "tags":  [
+                                                                   "イベント"
+                                                               ],
+                                                      "winner":  "Entertainment合同会社",
+                                                      "amount":  "550,000円",
+                                                      "budget":  0
+                                                  }
+                                              ],
+                    "沼津市|沼津市リブランディング企画塾開催":  [
+                                                 {
+                                                     "date":  "2026-07-14",
+                                                     "est":  "2026-06-04",
+                                                     "kind":  "result",
+                                                     "title":  "令和8年度 沼津市リブランディング企画塾開催業務委託に係る公募型プロポーザル",
+                                                     "org":  "沼津市",
+                                                     "source":  "沼津市HP",
+                                                     "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/rebranding/index.htm",
+                                                     "tags":  [
+                                                                  "イベント",
+                                                                  "デザイン・広報・映像"
+                                                              ],
+                                                     "winner":  "有限会社サンディオス",
+                                                     "amount":  "4,950,000円",
+                                                     "budget":  0
+                                                 }
+                                             ],
+                    "沼津市|沼津市就職定着促進":  [
+                                          {
+                                              "date":  "2026-06-05",
+                                              "est":  "2026-04-26",
+                                              "kind":  "result",
+                                              "title":  "令和8年度沼津市就職定着促進事業業務委託に係る公募型プロポーザル",
+                                              "org":  "沼津市",
+                                              "source":  "沼津市HP",
+                                              "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/shushoku/index.htm",
+                                              "tags":  [
+                                                           "イベント"
+                                                       ],
+                                              "winner":  "株式会社就職情報センター",
+                                              "amount":  "957,000円",
+                                              "budget":  0
+                                          }
+                                      ],
+                    "沼津市|沼津市新公共施設予約システム導入":  [
+                                                 {
+                                                     "date":  "2026-09-02",
+                                                     "est":  "2026-07-24",
+                                                     "kind":  "result",
+                                                     "title":  "「沼津市新公共施設予約システム導入業務」契約候補者選定に係るプロポーザル",
+                                                     "org":  "沼津市",
+                                                     "source":  "沼津市HP",
+                                                     "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/shisetsuyoyaku/index.htm",
+                                                     "tags":  [
+                                                                  "Web・IT"
+                                                              ],
+                                                     "winner":  "合同会社DMM.com",
+                                                     "amount":  "5,130,400円",
+                                                     "budget":  0
+                                                 }
+                                             ],
+                    "沼津市|沼津市創業フォローアップセミナー開催":  [
+                                                   {
+                                                       "date":  "2026-10-06",
+                                                       "est":  "2026-08-27",
+                                                       "kind":  "result",
+                                                       "title":  "令和8年度 沼津市創業フォローアップセミナー開催業務委託に係る公募型プロポーザル",
+                                                       "org":  "沼津市",
+                                                       "source":  "沼津市HP",
+                                                       "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/followup/index.htm",
+                                                       "tags":  [
+                                                                    "イベント"
+                                                                ],
+                                                       "winner":  "Entertainment合同会社",
+                                                       "amount":  "407,000円",
+                                                       "budget":  0
+                                                   },
+                                                   {
+                                                       "date":  "2025-11-26",
+                                                       "est":  "2025-10-17",
+                                                       "kind":  "result",
+                                                       "title":  "令和7年度 沼津市創業フォローアップセミナー開催業務委託に係る公募型プロポーザル",
+                                                       "org":  "沼津市",
+                                                       "source":  "沼津市HP",
+                                                       "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/followup/index.htm",
+                                                       "tags":  [
+                                                                    "イベント"
+                                                                ],
+                                                       "winner":  "株式会社みらいワークス",
+                                                       "amount":  "407,000円",
+                                                       "budget":  0
+                                                   }
+                                               ],
+                    "沼津市|沼津市窓口サービス改善":  [
+                                            {
+                                                "date":  "2026-04-24",
+                                                "est":  "2026-03-15",
+                                                "kind":  "result",
+                                                "title":  "令和8年度沼津市窓口サービス改善事業業務委託に係る公募型プロポーザル",
+                                                "org":  "沼津市",
+                                                "source":  "沼津市HP",
+                                                "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/madoguchi/index.htm",
+                                                "tags":  [
+                                                             "Web・IT",
+                                                             "デザイン・広報・映像"
+                                                         ],
+                                                "winner":  "株式会社ガバメイツ",
+                                                "amount":  "8,987,000円",
+                                                "budget":  0
+                                            }
+                                        ],
+                    "沼津市|沼津市地域資源を活用した出会いイベント開催":  [
+                                                      {
+                                                          "date":  "2026-06-15",
+                                                          "est":  "2026-05-06",
+                                                          "kind":  "result",
+                                                          "title":  "「沼津市地域資源を活用した出会いイベント開催業務委託」に係る公募型プロポーザル",
+                                                          "org":  "沼津市",
+                                                          "source":  "沼津市HP",
+                                                          "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/deai/index.htm",
+                                                          "tags":  [
+                                                                       "イベント"
+                                                                   ],
+                                                          "winner":  "株式会社アイリスツーリスト",
+                                                          "amount":  "3,080,000円",
+                                                          "budget":  0
+                                                      }
+                                                  ],
+                    "沼津市|沼津市中高校生向け起業マインド創出事業開催":  [
+                                                      {
+                                                          "date":  "2026-08-06",
+                                                          "est":  "2026-06-27",
+                                                          "kind":  "result",
+                                                          "title":  "令和8年度 沼津市中高校生向け起業マインド創出事業開催業務委託に係る公募型プロポーザル",
+                                                          "org":  "沼津市",
+                                                          "source":  "沼津市HP",
+                                                          "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/kigyomind/index.htm",
+                                                          "tags":  [
+                                                                       "イベント"
+                                                                   ],
+                                                          "winner":  "株式会社LearnMore",
+                                                          "amount":  "875,776円",
+                                                          "budget":  0
+                                                      }
+                                                  ],
+                    "沼津市|沼津市内部情報システム運用支援":  [
+                                                {
+                                                    "date":  "2026-05-08",
+                                                    "est":  "2026-03-29",
+                                                    "kind":  "result",
+                                                    "title":  "「令和8年度沼津市内部情報システム運用支援業務委託」契約候補者選定に係るプロポーザル",
+                                                    "org":  "沼津市",
+                                                    "source":  "沼津市HP",
+                                                    "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/naibusystem/index.htm",
+                                                    "tags":  [
+                                                                 "Web・IT"
+                                                             ],
+                                                    "winner":  "東京コンピュータサービス株式会社",
+                                                    "amount":  "41,478,800円",
+                                                    "budget":  0
+                                                }
+                                            ],
+                    "沼津市|労働福祉関連セミナー":  [
+                                           {
+                                               "date":  "2026-05-25",
+                                               "est":  "2026-04-15",
+                                               "kind":  "result",
+                                               "title":  "令和8年度労働福祉関連セミナー業務委託に係る公募型プロポーザル",
+                                               "org":  "沼津市",
+                                               "source":  "沼津市HP",
+                                               "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/roudoufukushi/index.htm",
+                                               "tags":  [
+                                                            "イベント"
+                                                        ],
+                                               "winner":  "株式会社東海道シグマ",
+                                               "amount":  "673,200円",
+                                               "budget":  0
+                                           }
+                                       ],
+                    "焼津市|OutofKidZaniainやいづ開催":  [
+                                                     {
+                                                         "date":  "2026-07-24",
+                                                         "est":  "2026-06-14",
+                                                         "kind":  "result",
+                                                         "title":  "「Out of KidZania in やいづ 2026」開催業務委託に関する公募型プロポーザルの実施",
+                                                         "org":  "焼津市",
+                                                         "source":  "焼津市HP",
+                                                         "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/p-80085.html",
+                                                         "tags":  [
+                                                                      "イベント"
+                                                                  ],
+                                                         "winner":  "一般社団法人トリナス",
+                                                         "amount":  "",
+                                                         "budget":  0
+                                                     },
+                                                     {
+                                                         "date":  "2025-06-02",
+                                                         "est":  "2025-04-23",
+                                                         "kind":  "result",
+                                                         "title":  "「Out of KidZania in やいづ 2025」開催業務委託に関する公募型プロポーザルの実施",
+                                                         "org":  "焼津市",
+                                                         "source":  "焼津市HP",
+                                                         "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/p-80083.html",
+                                                         "tags":  [
+                                                                      "イベント"
+                                                                  ],
+                                                         "winner":  "一般社団法人トリナス",
+                                                         "amount":  "",
+                                                         "budget":  0
+                                                     }
+                                                 ],
+                    "焼津市|デジタルを活用した地域見守りサービス包括連携協定":  [
+                                                         {
+                                                             "date":  "2026-03-19",
+                                                             "est":  "2026-02-07",
+                                                             "kind":  "result",
+                                                             "title":  "デジタルを活用した地域見守りサービス包括連携協定事業者募集",
+                                                             "org":  "焼津市",
+                                                             "source":  "焼津市HP",
+                                                             "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/info-00041.html",
+                                                             "tags":  [
+                                                                          "Web・IT"
+                                                                      ],
+                                                             "winner":  "株式会社otta",
+                                                             "amount":  "",
+                                                             "budget":  0
+                                                         }
+                                                     ],
+                    "焼津市|魚ととフェス開催":  [
+                                         {
+                                             "date":  "2026-06-09",
+                                             "est":  "2026-04-30",
+                                             "kind":  "result",
+                                             "title":  "令和8年度魚(とと)フェス開催事業業務委託プロポーザル",
+                                             "org":  "焼津市",
+                                             "source":  "焼津市HP",
+                                             "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/totofes2026.html",
+                                             "tags":  [
+                                                          "イベント"
+                                                      ],
+                                             "winner":  "株式会社JR東海エージェンシー静岡支社",
+                                             "amount":  "",
+                                             "budget":  0
+                                         }
+                                     ],
+                    "焼津市|子育て世帯等定住促進住宅取得支援事業プロモーション":  [
+                                                          {
+                                                              "date":  "2025-07-11",
+                                                              "est":  "2025-06-01",
+                                                              "kind":  "result",
+                                                              "title":  "令和7年度子育て世帯等定住促進住宅取得支援事業プロモーション業務委託に関する公募型プロポーザル",
+                                                              "org":  "焼津市",
+                                                              "source":  "焼津市HP",
+                                                              "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/info-00007.html",
+                                                              "tags":  [
+                                                                           "デザイン・広報・映像"
+                                                                       ],
+                                                              "winner":  "株式会社SBSプロモーション",
+                                                              "amount":  "",
+                                                              "budget":  0
+                                                          }
+                                                      ],
+                    "焼津市|市制75周年記念パレード開催":  [
+                                               {
+                                                   "date":  "2026-04-01",
+                                                   "est":  "2026-02-20",
+                                                   "kind":  "result",
+                                                   "title":  "市制75周年記念パレード開催事業業務委託プロポーザル",
+                                                   "org":  "焼津市",
+                                                   "source":  "焼津市HP",
+                                                   "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/parade.html",
+                                                   "tags":  [
+                                                                "イベント"
+                                                            ],
+                                                   "winner":  "静岡新聞社・SBSプロモーション特定業務委託共同企業体",
+                                                   "amount":  "",
+                                                   "budget":  0
+                                               }
+                                           ],
+                    "焼津市|焼津市デジタル相談窓口運営":  [
+                                              {
+                                                  "date":  "2025-08-01",
+                                                  "est":  "2025-06-22",
+                                                  "kind":  "result",
+                                                  "title":  "令和7年度焼津市デジタル相談窓口運営業務委託に関する公募型プロポーザル",
+                                                  "org":  "焼津市",
+                                                  "source":  "焼津市HP",
+                                                  "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/p-80084.html",
+                                                  "tags":  [
+                                                               "Web・IT"
+                                                           ],
+                                                  "winner":  "株式会社エス・ティー・シー",
+                                                  "amount":  "",
+                                                  "budget":  0
+                                              }
+                                          ],
+                    "焼津市|焼津市移住体験事業等":  [
+                                           {
+                                               "date":  "2025-07-03",
+                                               "est":  "2025-05-24",
+                                               "kind":  "result",
+                                               "title":  "令和7年度焼津市移住体験事業等業務委託に関する公募型プロポーザルの実施について",
+                                               "org":  "焼津市",
+                                               "source":  "焼津市HP",
+                                               "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/info-00016.html",
+                                               "tags":  [
+                                                            "イベント"
+                                                        ],
+                                               "winner":  "株式会社第一プログレス",
+                                               "amount":  "",
+                                               "budget":  0
+                                           }
+                                       ],
+                    "焼津市|焼津市公共施設等予約システムスマートロック導入":  [
+                                                        {
+                                                            "date":  "2026-07-22",
+                                                            "est":  "2026-06-12",
+                                                            "kind":  "result",
+                                                            "title":  "令和8年度焼津市公共施設等予約システム・スマートロック導入業務に関する公募型プロポーザル",
+                                                            "org":  "焼津市",
+                                                            "source":  "焼津市HP",
+                                                            "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/info-00045shisetsuyoyaku.html",
+                                                            "tags":  [
+                                                                         "Web・IT"
+                                                                     ],
+                                                            "winner":  "株式会社パストラーレ・株式会社構造計画研究所",
+                                                            "amount":  "",
+                                                            "budget":  0
+                                                        }
+                                                    ],
+                    "焼津市|焼津市子育て支援プロモーション事業しずおか中部連携":  [
+                                                          {
+                                                              "date":  "2026-08-06",
+                                                              "est":  "2026-06-27",
+                                                              "kind":  "result",
+                                                              "title":  "令和8年度焼津市子育て支援プロモーション事業(しずおか中部連携事業)業務委託に関する公募型プロポーザル",
+                                                              "org":  "焼津市",
+                                                              "source":  "焼津市HP",
+                                                              "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/2026.html",
+                                                              "tags":  [
+                                                                           "デザイン・広報・映像"
+                                                                       ],
+                                                              "winner":  "良い広告株式会社",
+                                                              "amount":  "",
+                                                              "budget":  0
+                                                          }
+                                                      ],
+                    "焼津市|焼津市地域事業者デジタル活用支援":  [
+                                                 {
+                                                     "date":  "2026-06-25",
+                                                     "est":  "2026-05-16",
+                                                     "kind":  "result",
+                                                     "title":  "令和8年度焼津市地域事業者デジタル活用支援業務委託に関する公募型プロポーザル",
+                                                     "org":  "焼津市",
+                                                     "source":  "焼津市HP",
+                                                     "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/info-00047.html",
+                                                     "tags":  [
+                                                                  "Web・IT"
+                                                              ],
+                                                     "winner":  "株式会社サンロフト",
+                                                     "amount":  "",
+                                                     "budget":  0
+                                                 }
+                                             ],
+                    "焼津市|焼津市内企業雇用促進セミナー開催":  [
+                                                 {
+                                                     "date":  "2026-07-30",
+                                                     "est":  "2026-06-20",
+                                                     "kind":  "result",
+                                                     "title":  "令和8年度焼津市内企業雇用促進セミナー開催業務委託に関する公募型プロポーザル",
+                                                     "org":  "焼津市",
+                                                     "source":  "焼津市HP",
+                                                     "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/koyou-seminar2026.html",
+                                                     "tags":  [
+                                                                  "イベント"
+                                                              ],
+                                                     "winner":  "株式会社東海道シグマ",
+                                                     "amount":  "",
+                                                     "budget":  0
+                                                 },
+                                                 {
+                                                     "date":  "2025-07-18",
+                                                     "est":  "2025-06-08",
+                                                     "kind":  "result",
+                                                     "title":  "焼津市内企業雇用促進セミナー開催業務委託に関する公募型プロポーザルについて",
+                                                     "org":  "焼津市",
+                                                     "source":  "焼津市HP",
+                                                     "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/koyou-seminar2024.html",
+                                                     "tags":  [
+                                                                  "イベント"
+                                                              ],
+                                                     "winner":  "株式会社東海道シグマ",
+                                                     "amount":  "",
+                                                     "budget":  0
+                                                 }
+                                             ],
+                    "焼津市|焼津市内部情報系システム更新に係る情報提供依頼RFI":  [
+                                                           {
+                                                               "date":  "2026-11-11",
+                                                               "est":  "2026-11-11",
+                                                               "kind":  "notice",
+                                                               "title":  "焼津市内部情報系システム更新に係る情報提供依頼(RFI)",
+                                                               "org":  "焼津市",
+                                                               "source":  "焼津市HP",
+                                                               "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/info-00049.html",
+                                                               "tags":  [
+                                                                            "Web・IT"
+                                                                        ],
+                                                               "winner":  "",
+                                                               "amount":  "",
+                                                               "budget":  0
+                                                           }
+                                                       ],
+                    "焼津市|焼津市本庁舎広告付き窓口番号案内システム設置":  [
+                                                       {
+                                                           "date":  "2026-09-08",
+                                                           "est":  "2026-07-30",
+                                                           "kind":  "result",
+                                                           "title":  "焼津市本庁舎広告付き窓口番号案内システム設置業務委託に係る公募型プロポーザルの実施",
+                                                           "org":  "焼津市",
+                                                           "source":  "焼津市HP",
+                                                           "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/koyuhakkenki-00048.html",
+                                                           "tags":  [
+                                                                        "Web・IT",
+                                                                        "デザイン・広報・映像"
+                                                                    ],
+                                                           "winner":  "長田広告株式会社",
+                                                           "amount":  "",
+                                                           "budget":  0
+                                                       }
+                                                   ],
+                    "焼津市|職員採用PR動画パンフレット作成":  [
+                                                 {
+                                                     "date":  "2025-12-05",
+                                                     "est":  "2025-10-26",
+                                                     "kind":  "result",
+                                                     "title":  "令和7年度職員採用PR動画・パンフレット作成業務委託に関する公募型プロポーザルについて",
+                                                     "org":  "焼津市",
+                                                     "source":  "焼津市HP",
+                                                     "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/2025_saiyo_pr.html",
+                                                     "tags":  [
+                                                                  "デザイン・広報・映像"
+                                                              ],
+                                                     "winner":  "株式会社マイナビ",
+                                                     "amount":  "",
+                                                     "budget":  0
+                                                 }
+                                             ],
+                    "焼津市|地域で取り組む健幸デジタル生活推進事業企画運営":  [
+                                                        {
+                                                            "date":  "2025-05-26",
+                                                            "est":  "2025-04-16",
+                                                            "kind":  "result",
+                                                            "title":  "令和7年度地域で取り組む健幸・デジタル生活推進事業企画運営業務委託に係る公募型プロポーザル",
+                                                            "org":  "焼津市",
+                                                            "source":  "焼津市HP",
+                                                            "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/info-00030.html",
+                                                            "tags":  [
+                                                                         "Web・IT"
+                                                                     ],
+                                                            "winner":  "株式会社Wellmira",
+                                                            "amount":  "",
+                                                            "budget":  0
+                                                        }
+                                                    ],
+                    "焼津市|例規システム関連業務及びアナログ規制点検見直し業務を受託する候補者の選定":  [
+                                                                     {
+                                                                         "date":  "2025-10-23",
+                                                                         "est":  "2025-09-13",
+                                                                         "kind":  "result",
+                                                                         "title":  "例規システム関連業務及びアナログ規制点検・見直し業務を受託する候補者の選定に係る公募型プロポーザルの実施について",
+                                                                         "org":  "焼津市",
+                                                                         "source":  "焼津市HP",
+                                                                         "url":  "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/info-00035.html",
+                                                                         "tags":  [
+                                                                                      "Web・IT"
+                                                                                  ],
+                                                                         "winner":  "株式会社ぎょうせい東京支社",
+                                                                         "amount":  "",
+                                                                         "budget":  0
+                                                                     }
+                                                                 ],
+                    "静岡県|価格転嫁に係る動画冊子制作":  [
+                                              {
+                                                  "date":  "2026-09-18",
+                                                  "est":  "2026-08-09",
+                                                  "kind":  "result",
+                                                  "title":  "令和8年度価格転嫁に係る動画・冊子制作業務委託の企画提案募集について",
+                                                  "org":  "静岡県",
+                                                  "source":  "静岡県HP",
+                                                  "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1085349.html",
+                                                  "tags":  [
+                                                               "デザイン・広報・映像"
+                                                           ],
+                                                  "winner":  "一般社団法人静岡県中小企業診断士協会",
+                                                  "amount":  "",
+                                                  "budget":  0
+                                              }
+                                          ],
+                    "静岡県|静岡県食肉センター完成式典実施業務の入札公告":  [
+                                                       {
+                                                           "date":  "2026-11-25",
+                                                           "est":  "2026-11-25",
+                                                           "kind":  "notice",
+                                                           "title":  "令和8年度静岡県食肉センター完成式典実施業務の入札公告について",
+                                                           "org":  "静岡県",
+                                                           "source":  "静岡県HP",
+                                                           "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1086871.html",
+                                                           "tags":  [
+                                                                        "イベント"
+                                                                    ],
+                                                           "winner":  "",
+                                                           "amount":  "",
+                                                           "budget":  0
+                                                       }
+                                                   ],
+                    "静岡県観光協会|高付加価値旅行者誘客に向けたコンテンツ等高度化のための伴走支援事業における伴走支援":  [
+                                                                              {
+                                                                                  "date":  "2026-10-23",
+                                                                                  "est":  "2026-10-23",
+                                                                                  "kind":  "notice",
+                                                                                  "title":  "令和8年度 高付加価値旅行者誘客に向けたコンテンツ等高度化のための 伴走支援事業における伴走支援事業者募集について",
+                                                                                  "org":  "静岡県観光協会",
+                                                                                  "source":  "静岡県観光協会HP",
+                                                                                  "url":  "https://hellonavi.jp/business/news/402",
+                                                                                  "tags":  [
+                                                                                               "デザイン・広報・映像"
+                                                                                           ],
+                                                                                  "winner":  "",
+                                                                                  "amount":  "",
+                                                                                  "budget":  0
+                                                                              }
+                                                                          ],
+                    "静岡県函南町|函南ブランドパンフレット等作成":  [
+                                                   {
+                                                       "date":  "2026-11-05",
+                                                       "est":  "2026-11-05",
+                                                       "kind":  "notice",
+                                                       "title":  "函南ブランドパンフレット等作成業務委託(PDFファイル:83.3KB)",
+                                                       "org":  "静岡県函南町",
+                                                       "source":  "官公需ポータル",
+                                                       "url":  "https://www.town.kannami.shizuoka.jp/material/files/group/4/081120164.pdf",
+                                                       "tags":  [
+                                                                    "デザイン・広報・映像"
+                                                                ],
+                                                       "winner":  "",
+                                                       "amount":  "",
+                                                       "budget":  0
+                                                   }
+                                               ],
+                    "静岡県磐田市|磐田市課税原票管理システムサーバ関連機器賃貸借制限付一般競争入札":  [
+                                                                    {
+                                                                        "date":  "2026-10-26",
+                                                                        "est":  "2026-10-26",
+                                                                        "kind":  "notice",
+                                                                        "title":  "令和8年度 磐田市課税原票管理システムサーバ関連機器賃貸借 制限付一般競争入札",
+                                                                        "org":  "静岡県磐田市",
+                                                                        "source":  "官公需ポータル",
+                                                                        "url":  "https://www.city.iwata.shizuoka.jp/_res/projects/default_project/_page_/001/017/101/20261014Tomas/20261026Tomas/R8kokoku.pdf",
+                                                                        "tags":  [
+                                                                                     "Web・IT"
+                                                                                 ],
+                                                                        "winner":  "",
+                                                                        "amount":  "",
+                                                                        "budget":  0
+                                                                    }
+                                                                ],
+                    "静岡市|SDGs推進イベント事業会場設営及び運営":  [
+                                                     {
+                                                         "date":  "2026-06-24",
+                                                         "est":  "2026-05-15",
+                                                         "kind":  "result",
+                                                         "title":  "公募型プロポーザル「SDGs推進イベント事業会場設営及び運営業務」",
+                                                         "org":  "静岡市",
+                                                         "source":  "静岡市HP",
+                                                         "url":  "https://www.city.shizuoka.lg.jp/s2934/s013132.html",
+                                                         "tags":  [
+                                                                      "イベント"
+                                                                  ],
+                                                         "winner":  "株式会社静鉄アド・パートナーズ",
+                                                         "amount":  "",
+                                                         "budget":  0
+                                                     }
+                                                 ],
+                    "静岡市|しずおか地域クラブ活動支援基盤構築及び運営":  [
+                                                      {
+                                                          "date":  "2026-11-24",
+                                                          "est":  "2026-11-24",
+                                                          "kind":  "notice",
+                                                          "title":  "【質問に対する回答の公表】公募型プロポーザル「しずおか地域クラブ活動支援基盤構築及び運営業務」",
+                                                          "org":  "静岡市",
+                                                          "source":  "静岡市HP",
+                                                          "url":  "https://www.city.shizuoka.lg.jp/s2934/s013145.html",
+                                                          "tags":  [
+                                                                       "Web・IT"
+                                                                   ],
+                                                          "winner":  "",
+                                                          "amount":  "",
+                                                          "budget":  0
+                                                      }
+                                                  ],
+                    "静岡市|医療福祉AIオンデマンド地域交通実証":  [
+                                                   {
+                                                       "date":  "2025-11-28",
+                                                       "est":  "2025-10-19",
+                                                       "kind":  "result",
+                                                       "title":  "公募型プロポーザル「医療福祉AIオンデマンド地域交通実証業務」",
+                                                       "org":  "静岡市",
+                                                       "source":  "静岡市HP",
+                                                       "url":  "https://www.city.shizuoka.lg.jp/s3792/s012596.html",
+                                                       "tags":  [
+                                                                    "Web・IT"
+                                                                ],
+                                                       "winner":  "しずてつジャストライン株式会社",
+                                                       "amount":  "",
+                                                       "budget":  0
+                                                   }
+                                               ],
+                    "静岡市|蒲原屋内遊び場整備事業に係る現地見学会の開催案内":  [
+                                                         {
+                                                             "date":  "2026-10-15",
+                                                             "est":  "2026-10-15",
+                                                             "kind":  "notice",
+                                                             "title":  "【事業者募集】蒲原屋内遊び場整備事業に係る現地見学会の開催案内",
+                                                             "org":  "静岡市",
+                                                             "source":  "静岡市HP",
+                                                             "url":  "https://www.city.shizuoka.lg.jp/s5783/s013084.html",
+                                                             "tags":  [
+                                                                          "イベント"
+                                                                      ],
+                                                             "winner":  "",
+                                                             "amount":  "",
+                                                             "budget":  0
+                                                         }
+                                                     ],
+                    "静岡市|静岡市Web口座振替受付サービス導入運用":  [
+                                                     {
+                                                         "date":  "2024-04-22",
+                                                         "est":  "2024-03-13",
+                                                         "kind":  "result",
+                                                         "title":  "静岡市Web口座振替受付サービス導入・運用業務の公募型プロポーザルの実施",
+                                                         "org":  "静岡市",
+                                                         "source":  "静岡市HP",
+                                                         "url":  "https://www.city.shizuoka.lg.jp/s5947/s012573.html",
+                                                         "tags":  [
+                                                                      "Web・IT"
+                                                                  ],
+                                                         "winner":  "ヤマトシステム開発株式会社",
+                                                         "amount":  "",
+                                                         "budget":  0
+                                                     }
+                                                 ],
+                    "静岡市|静岡市こんにちは赤ちゃん訪問用冊子作成事業者":  [
+                                                       {
+                                                           "date":  "2026-10-14",
+                                                           "est":  "2026-10-14",
+                                                           "kind":  "notice",
+                                                           "title":  "静岡市こんにちは赤ちゃん訪問用冊子作成事業者の募集",
+                                                           "org":  "静岡市",
+                                                           "source":  "静岡市HP",
+                                                           "url":  "https://www.city.shizuoka.lg.jp/s2873/s003672.html",
+                                                           "tags":  [
+                                                                        "デザイン・広報・映像"
+                                                                    ],
+                                                           "winner":  "",
+                                                           "amount":  "",
+                                                           "budget":  0
+                                                       }
+                                                   ],
+                    "静岡市|静岡市授産製品販売促進":  [
+                                            {
+                                                "date":  "2026-05-25",
+                                                "est":  "2026-04-15",
+                                                "kind":  "result",
+                                                "title":  "公募型プロポーザル「静岡市授産製品販売促進業務」",
+                                                "org":  "静岡市",
+                                                "source":  "静岡市HP",
+                                                "url":  "https://www.city.shizuoka.lg.jp/s3278/s012600.html",
+                                                "tags":  [
+                                                             "デザイン・広報・映像"
+                                                         ],
+                                                "winner":  "一般社団法人コネクトラボ",
+                                                "amount":  "",
+                                                "budget":  0
+                                            }
+                                        ],
+                    "静岡市|静岡市立中学校標準服デザイン作成":  [
+                                                 {
+                                                     "date":  "2026-09-16",
+                                                     "est":  "2026-08-07",
+                                                     "kind":  "result",
+                                                     "title":  "企画提案募集「静岡市立中学校標準服デザイン作成業務」",
+                                                     "org":  "静岡市",
+                                                     "source":  "静岡市HP",
+                                                     "url":  "https://www.city.shizuoka.lg.jp/s4573/s012524.html",
+                                                     "tags":  [
+                                                                  "デザイン・広報・映像"
+                                                              ],
+                                                     "winner":  "静岡菅公学生服株式会社",
+                                                     "amount":  "",
+                                                     "budget":  0
+                                                 }
+                                             ],
+                    "静岡市|文化施設貸館システム構築":  [
+                                             {
+                                                 "date":  "2026-06-03",
+                                                 "est":  "2026-04-24",
+                                                 "kind":  "result",
+                                                 "title":  "公募型プロポーザル「文化施設貸館システム構築業務」",
+                                                 "org":  "静岡市",
+                                                 "source":  "静岡市HP",
+                                                 "url":  "https://www.city.shizuoka.lg.jp/s9635/s013769.html",
+                                                 "tags":  [
+                                                              "Web・IT"
+                                                          ],
+                                                 "winner":  "株式会社メディア・ミックス静岡",
+                                                 "amount":  "",
+                                                 "budget":  0
+                                             }
+                                         ],
+                    "静岡市|木材の情報共有システム構築業務静岡市オクシズ材プラットフォーム活用推進協議会":  [
+                                                                       {
+                                                                           "date":  "2026-02-02",
+                                                                           "est":  "2025-12-24",
+                                                                           "kind":  "result",
+                                                                           "title":  "公募型プロポーザル「木材の情報共有システム構築業務」(静岡市オクシズ材プラットフォーム活用推進協議会事業)",
+                                                                           "org":  "静岡市",
+                                                                           "source":  "静岡市HP",
+                                                                           "url":  "https://www.city.shizuoka.lg.jp/s5732/s012578.html",
+                                                                           "tags":  [
+                                                                                        "Web・IT"
+                                                                                    ],
+                                                                           "winner":  "有限会社アーク",
+                                                                           "amount":  "",
+                                                                           "budget":  0
+                                                                       }
+                                                                   ],
+                    "島田市|物価高騰対応宿泊等促進キャンペーン":  [
+                                                  {
+                                                      "date":  "2026-06-17",
+                                                      "est":  "2026-05-08",
+                                                      "kind":  "result",
+                                                      "title":  "物価高騰対応宿泊等促進キャンペーン事業業務委託に係る公募型プロポーザル",
+                                                      "org":  "島田市",
+                                                      "source":  "島田市HP",
+                                                      "url":  "https://www.city.shimada.shizuoka.jp/gyosei-docs/899635268.html",
+                                                      "tags":  [
+                                                                   "デザイン・広報・映像"
+                                                               ],
+                                                      "winner":  "株式会社東海道シグマ",
+                                                      "amount":  "27,000千円",
+                                                      "budget":  0
+                                                  }
+                                              ],
+                    "独立行政法人労働者健康安全機構浜松労災病院|Webイントラネット型グループウェア構築":  [
+                                                                       {
+                                                                           "date":  "2026-10-27",
+                                                                           "est":  "2026-10-27",
+                                                                           "kind":  "notice",
+                                                                           "title":  "Web(イントラネット)型グループウェア構築業務",
+                                                                           "org":  "独立行政法人労働者健康安全機構浜松労災病院",
+                                                                           "source":  "官公需ポータル",
+                                                                           "url":  "https://hamamatsuh.johas.go.jp/data/media/tyoutatu/2610/development_of_web-based_groupware.pdf",
+                                                                           "tags":  [
+                                                                                        "Web・IT"
+                                                                                    ],
+                                                                           "winner":  "",
+                                                                           "amount":  "",
+                                                                           "budget":  0
+                                                                       }
+                                                                   ],
+                    "浜松市|市議会用タブレット端末レンタルサービス":  [
+                                                    {
+                                                        "date":  "2026-11-05",
+                                                        "est":  "2026-11-05",
+                                                        "kind":  "notice",
+                                                        "title":  "市議会用タブレット端末レンタルサービス",
+                                                        "org":  "浜松市",
+                                                        "source":  "浜松市HP",
+                                                        "url":  "https://www.city.hamamatsu.shizuoka.jp/giji/bid/koukoku.html",
+                                                        "tags":  [
+                                                                     "Web・IT"
+                                                                 ],
+                                                        "winner":  "",
+                                                        "amount":  "",
+                                                        "budget":  0
+                                                    }
+                                                ],
+                    "富士宮市|富士宮市電子決裁文書管理システム構築及び導入支援":  [
+                                                          {
+                                                              "date":  "2026-07-31",
+                                                              "est":  "2026-06-21",
+                                                              "kind":  "result",
+                                                              "title":  "富士宮市電子決裁・文書管理システム構築及び導入支援業務に関する公募型プロポーザル",
+                                                              "org":  "富士宮市",
+                                                              "source":  "富士宮市HP",
+                                                              "url":  "https://www.city.fujinomiya.lg.jp/1010100000/p004124.html",
+                                                              "tags":  [
+                                                                           "Web・IT"
+                                                                       ],
+                                                              "winner":  "富士フイルムビジネスイノベーションジャパン株式会社",
+                                                              "amount":  "",
+                                                              "budget":  0
+                                                          }
+                                                      ],
+                    "富士市|ICT活用乗降調査":  [
+                                          {
+                                              "date":  "2026-01-15",
+                                              "est":  "2025-12-06",
+                                              "kind":  "result",
+                                              "title":  "令和7年度 ICT活用乗降調査業務 公募型プロポーザルの実施結果について",
+                                              "org":  "富士市",
+                                              "source":  "富士市HP",
+                                              "url":  "https://www.city.fuji.shizuoka.jp/1040050000/p007745.html",
+                                              "tags":  [
+                                                           "Web・IT"
+                                                       ],
+                                              "winner":  "株式会社アプリズム",
+                                              "amount":  "",
+                                              "budget":  0
+                                          }
+                                      ],
+                    "富士市|女性のデジタルスキル習得講座":  [
+                                               {
+                                                   "date":  "2026-06-08",
+                                                   "est":  "2026-04-29",
+                                                   "kind":  "result",
+                                                   "title":  "令和8年度 女性のデジタルスキル習得講座業務委託 公募型プロポーザル実施結果について",
+                                                   "org":  "富士市",
+                                                   "source":  "富士市HP",
+                                                   "url":  "https://www.city.fuji.shizuoka.jp/1015130000/p007724.html",
+                                                   "tags":  [
+                                                                "Web・IT"
+                                                            ],
+                                                   "winner":  "富士テクノロジー株式会社",
+                                                   "amount":  "",
+                                                   "budget":  0
+                                               }
+                                           ],
+                    "富士市|第六次富士市総合計画後期基本計画冊子デザインに係る":  [
+                                                          {
+                                                              "date":  "2026-10-13",
+                                                              "est":  "2026-10-13",
+                                                              "kind":  "notice",
+                                                              "title":  "第六次富士市総合計画後期基本計画冊子デザインに係る業務公募型プロポーザルの実施について",
+                                                              "org":  "富士市",
+                                                              "source":  "富士市HP",
+                                                              "url":  "https://www.city.fuji.shizuoka.jp/1005050000/p007736.html",
+                                                              "tags":  [
+                                                                           "デザイン・広報・映像"
+                                                                       ],
+                                                              "winner":  "",
+                                                              "amount":  "",
+                                                              "budget":  4847260
+                                                          },
+                                                          {
+                                                              "date":  "2026-11-13",
+                                                              "est":  "2026-10-04",
+                                                              "kind":  "result",
+                                                              "title":  "第六次富士市総合計画後期基本計画冊子デザインに係る業務公募型プロポーザルの実施結果について",
+                                                              "org":  "富士市",
+                                                              "source":  "富士市HP",
+                                                              "url":  "https://www.city.fuji.shizuoka.jp/1005050000/p007738.html",
+                                                              "tags":  [
+                                                                           "デザイン・広報・映像"
+                                                                       ],
+                                                              "winner":  "株式会社SBSプロモーション",
+                                                              "amount":  "",
+                                                              "budget":  0
+                                                          }
+                                                      ],
+                    "富士市|富士市くらし応援デジタル商品券配布":  [
+                                                  {
+                                                      "date":  "2026-02-09",
+                                                      "est":  "2025-12-31",
+                                                      "kind":  "result",
+                                                      "title":  "富士市くらし応援デジタル商品券配布事業業務に係るプロポーザル参加者募集について",
+                                                      "org":  "富士市",
+                                                      "source":  "富士市HP",
+                                                      "url":  "https://www.city.fuji.shizuoka.jp/1035100000/p006870.html",
+                                                      "tags":  [
+                                                                   "Web・IT"
+                                                               ],
+                                                      "winner":  "TOPPANクロレ株式会社",
+                                                      "amount":  "",
+                                                      "budget":  0
+                                                  }
+                                              ],
+                    "富士市|富士市ふるさと納税制度特産品配布等業務委託参加者":  [
+                                                         {
+                                                             "date":  "2026-10-20",
+                                                             "est":  "2026-10-20",
+                                                             "kind":  "notice",
+                                                             "title":  "富士市ふるさと納税制度特産品配布等業務委託 公募型プロポーザル参加者の募集について",
+                                                             "org":  "富士市",
+                                                             "source":  "富士市HP",
+                                                             "url":  "https://www.city.fuji.shizuoka.jp/1035050000/p007767.html",
+                                                             "tags":  [
+                                                                          "デザイン・広報・映像"
+                                                                      ],
+                                                             "winner":  "",
+                                                             "amount":  "",
+                                                             "budget":  0
+                                                         }
+                                                     ],
+                    "富士市|富士市番号発券機システム更新":  [
+                                               {
+                                                   "date":  "2026-09-10",
+                                                   "est":  "2026-08-01",
+                                                   "kind":  "result",
+                                                   "title":  "富士市番号発券機システム更新事業業務委託公募型プロポーザルの実施結果について",
+                                                   "org":  "富士市",
+                                                   "source":  "富士市HP",
+                                                   "url":  "https://www.city.fuji.shizuoka.jp/1015200000/p008179.html",
+                                                   "tags":  [
+                                                                "Web・IT"
+                                                            ],
+                                                   "winner":  "表示灯株式会社",
+                                                   "amount":  "",
+                                                   "budget":  0
+                                               }
+                                           ],
+                    "富士市|富士川楽座体験館どんぶらリニューアル基本設計":  [
+                                                       {
+                                                           "date":  "2026-09-01",
+                                                           "est":  "2026-07-23",
+                                                           "kind":  "result",
+                                                           "title":  "富士川楽座「体験館どんぶら」リニューアル基本設計業務委託公募型プロポーザルの実施結果について",
+                                                           "org":  "富士市",
+                                                           "source":  "富士市HP",
+                                                           "url":  "https://www.city.fuji.shizuoka.jp/1035170000/p007770.html",
+                                                           "tags":  [
+                                                                        "イベント"
+                                                                    ],
+                                                           "winner":  "株式会社乃村工藝社",
+                                                           "amount":  "",
+                                                           "budget":  0
+                                                       }
+                                                   ],
+                    "法務省|静岡刑務所多元放映システム更新整備一式":  [
+                                                    {
+                                                        "date":  "2026-10-21",
+                                                        "est":  "2026-10-21",
+                                                        "kind":  "notice",
+                                                        "title":  "令和8年度静岡刑務所多元放映システム更新整備一式",
+                                                        "org":  "法務省",
+                                                        "source":  "官公需ポータル",
+                                                        "url":  "https://www.p-portal.go.jp/pps-web-biz/UAA01/OAA0101",
+                                                        "tags":  [
+                                                                     "Web・IT"
+                                                                 ],
+                                                        "winner":  "",
+                                                        "amount":  "",
+                                                        "budget":  0
+                                                    }
+                                                ]
+                }
+}

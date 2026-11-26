@@ -4,6 +4,7 @@
   "noDeadlineDays": 45,
   "resultWatchDays": 150,
   "resultKeepDays": 1100,
+  "forecastDays": 120,
   "cities": [
     {
       "name": "静岡市",
@@ -48,7 +49,10 @@
     },
     {
       "name": "沼津市",
-      "lists": ["https://www.city.numazu.shizuoka.jp/business/proposal/index.htm"],
+      "lists": [
+        "https://www.city.numazu.shizuoka.jp/business/proposal/index.htm",
+        "https://www.city.numazu.shizuoka.jp/business/proposal/r7.htm"
+      ],
       "linkPattern": "^https://www\\.city\\.numazu\\.shizuoka\\.jp/business/proposal/\\d{4}/[^/]+/index\\.htm$"
     },
     {

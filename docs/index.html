@@ -72,6 +72,10 @@ footer{margin-top:32px;color:var(--muted);font-size:12px}
 .rank ol{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .rank button{border:1px solid var(--line);background:var(--chip);color:var(--text);border-radius:999px;padding:4px 10px;font:inherit;font-size:13px;cursor:pointer}
 .rank button b{color:var(--accent);margin-left:4px}
+.b-budget{background:var(--t3s);color:var(--t3)}
+.b-region{background:var(--new-soft);color:var(--warn)}
+.b-qual{background:var(--chip);color:var(--muted)}
+.b-fc{background:var(--accent-soft);color:var(--accent)}
 .win{font-size:14px;margin:4px 0 0}
 .win b{font-size:15px}
 .win .sc{color:var(--muted);font-size:13px;margin-left:8px}
@@ -88,6 +92,7 @@ footer{margin-top:32px;color:var(--muted);font-size:12px}
   <div class="tabs" role="tablist">
     <button class="tab" id="tabOpen" role="tab" aria-selected="true">募集中の案件</button>
     <button class="tab" id="tabRes" role="tab" aria-selected="false">落札・選定結果</button>
+    <button class="tab" id="tabFc" role="tab" aria-selected="false">予告（例年の案件）</button>
   </div>
   <div class="stats" id="openStats">
     <div class="stat"><b id="sNew">-</b><span>新着（直近<span id="nd">7</span>日）</span></div>
@@ -101,6 +106,11 @@ footer{margin-top:32px;color:var(--muted);font-size:12px}
     <div class="stat"><b id="rWin">-</b><span>選ばれた事業者の数</span></div>
     <div class="stat"><b id="rWatch">-</b><span>結果待ちの案件</span></div>
   </div>
+  <div class="stats hidden" id="fcStats">
+    <div class="stat"><b id="fAll">-</b><span>今後120日の予告</span></div>
+    <div class="stat"><b id="f30">-</b><span>うち30日以内</span></div>
+    <div class="stat"><b id="fHist">-</b><span>履歴のある案件</span></div>
+  </div>
   <div class="filters">
     <div class="row"><input type="search" id="q" placeholder="キーワードで絞り込み（例: 動画、浜松市、観光）"></div>
     <div class="row" id="tagRow"><label class="t">分野</label></div>
@@ -108,8 +118,9 @@ footer{margin-top:32px;color:var(--muted);font-size:12px}
       <label class="t">条件</label>
       <label class="toggle"><input type="checkbox" id="fNew"> 新着のみ</label>
       <label class="toggle"><input type="checkbox" id="fProp"> プロポーザル・企画提案のみ</label>
+      <label class="toggle"><input type="checkbox" id="fRegion"> 地域要件ありを除く</label>
       <select id="src"><option value="">すべての情報源</option></select>
-      <select id="sort"><option value="pub">掲載日が新しい順</option><option value="dl">締切が近い順</option></select>
+      <select id="sort"><option value="pub">掲載日が新しい順</option><option value="dl">締切が近い順</option><option value="budget">予算が大きい順</option></select>
     </div>
   </div>
   <div class="count" id="count"></div>
@@ -119,6 +130,8 @@ footer{margin-top:32px;color:var(--muted);font-size:12px}
     情報源: <a href="https://www.kkj.go.jp/">官公需情報ポータルサイト</a>（中小企業庁）、<a href="https://www.pref.shizuoka.jp/kensei/nyusatsukobai/index.html">静岡県 入札・公募・公売</a>、静岡市・浜松市・沼津市・富士市・富士宮市・三島市・島田市・焼津市・藤枝市・袋井市・伊東市・湖西市の公式サイト、静岡県観光協会（ハローナビしずおか 事業者向けお知らせ）、静岡県立病院機構。<br>
     「締切目安」は公告文から自動推定した日付です。応募前に必ず原文で日程・参加資格をご確認ください。<br>
     締切を過ぎた案件・募集終了の案件は自動で削除されます（締切が読み取れない案件は掲載から45日で削除）。<br>
+    「上限」「地域要件」「資格登録要」は公告文・実施要領PDFから自動で読み取った目安です。<br>
+    「予告」は、過去に記録した案件・結果のうち、昨年の同じ時期に公募があり今年度はまだ出ていないものを、案件名の類似から推定して並べたものです。毎年実施されるとは限りません。<br>
     「落札・選定結果」は、対象分野の案件について各サイトの結果公表ページ・PDFから選定事業者／落札者を自動で読み取ったものです。読み取り誤りがあり得るため、必ずリンク先の原文をご確認ください。
   </footer>
 </div>
@@ -160,34 +173,81 @@ fetch('data.json?t=' + Date.now(), {cache:'no-store'}).then(r => r.json()).then(
   $('#rWin').textContent = new Set(rs.map(r => r.winner)).size;
   $('#rWatch').textContent = (RES.watch || []).length;
   [...new Set([...DATA.items.map(it => it.source), ...rs.map(r => r.source)])].forEach(s => $('#src').insertAdjacentHTML('beforeend', `<option>${esc(s)}</option>`));
+  return fetch('history.json?t=' + Date.now(), {cache:'no-store'}).then(r => r.ok ? r.json() : null).catch(() => null);
+}).then(hd => {
+  HIST = hd || { forecast: [], entries: {} };
+  const fc = HIST.forecast || [];
+  $('#fAll').textContent = fc.length;
+  $('#f30').textContent = fc.filter(f => daysFrom(f.expected) <= 30).length;
+  $('#fHist').textContent = Object.keys(HIST.entries || {}).length;
   load(); setView(state.view);
 }).catch(e => { $('#list').innerHTML = '<div class="empty">データを読み込めませんでした。</div>'; });
 
-let RES = null;
+let RES = null, HIST = null;
 state.view = 'open';
 function setView(v){
   state.view = v;
   $('#tabOpen').setAttribute('aria-selected', v === 'open');
   $('#tabRes').setAttribute('aria-selected', v === 'res');
+  $('#tabFc').setAttribute('aria-selected', v === 'fc');
   $('#openStats').classList.toggle('hidden', v !== 'open');
   $('#resStats').classList.toggle('hidden', v !== 'res');
+  $('#fcStats').classList.toggle('hidden', v !== 'fc');
   $('#condRow').classList.toggle('hidden', v !== 'open');
   $('#rank').classList.toggle('hidden', v !== 'res');
-  $('#q').placeholder = v === 'open' ? 'キーワードで絞り込み（例: 動画、浜松市、観光）' : '事業者名・案件名で絞り込み（例: 株式会社、動画、焼津市）';
+  $('#q').placeholder = v === 'res' ? '事業者名・案件名で絞り込み（例: 株式会社、動画、焼津市）' : 'キーワードで絞り込み（例: 動画、浜松市、観光）';
   save(); render();
 }
 $('#tabOpen').onclick = () => setView('open');
 $('#tabRes').onclick = () => setView('res');
+$('#tabFc').onclick = () => setView('fc');
 
-function save(){ store.set('sbw', JSON.stringify({ tags:[...state.tags], fNew:$('#fNew').checked, fProp:$('#fProp').checked, sort:$('#sort').value, view: state.view })); }
+function save(){ store.set('sbw', JSON.stringify({ tags:[...state.tags], fNew:$('#fNew').checked, fProp:$('#fProp').checked, fRegion:$('#fRegion').checked, sort:$('#sort').value, view: state.view })); }
 function load(){
   try { const s = JSON.parse(store.get('sbw') || '{}');
     (s.tags||[]).forEach(t => { state.tags.add(t); const b = document.querySelector(`.chip[data-tag="${t}"]`); if (b) b.setAttribute('aria-pressed','true'); });
-    $('#fNew').checked = !!s.fNew; $('#fProp').checked = !!s.fProp; if (s.sort) $('#sort').value = s.sort;
-    if (s.view === 'res') state.view = 'res';
+    $('#fNew').checked = !!s.fNew; $('#fProp').checked = !!s.fProp; $('#fRegion').checked = !!s.fRegion; if (s.sort) $('#sort').value = s.sort;
+    if (s.view === 'res' || s.view === 'fc') state.view = s.view;
   } catch(e){}
 }
-['#q','#fNew','#fProp','#src','#sort'].forEach(id => $(id).addEventListener('input', () => { save(); render(); }));
+['#q','#fNew','#fProp','#fRegion','#src','#sort'].forEach(id => $(id).addEventListener('input', () => { save(); render(); }));
+
+function yen(n){
+  if (!n) return '';
+  if (n >= 1e8) return (Math.round(n / 1e7) / 10) + '億円';
+  if (n >= 1e4) return Math.round(n / 1e4).toLocaleString() + '万円';
+  return n.toLocaleString() + '円';
+}
+function extraBadges(it){
+  return [
+    it.budget ? `<span class="badge b-budget" title="${esc(it.budgetLabel || '上限額')}">上限 ${yen(it.budget)}</span>` : '',
+    it.region ? `<span class="badge b-region" title="参加資格に地域要件があります">地域要件: ${esc(it.region)}</span>` : '',
+    it.qual ? '<span class="badge b-qual" title="入札参加資格の登録などが必要な可能性">資格登録要</span>' : ''
+  ].join('');
+}
+
+function renderForecast(){
+  const q = $('#q').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const fs = (HIST.forecast || []).filter(f => {
+    if (state.tags.size && !(f.tags || []).some(t => state.tags.has(t))) return false;
+    const hay = (f.title + ' ' + f.org + ' ' + f.source + ' ' + (f.lastWinner || '')).toLowerCase();
+    return q.every(w => hay.includes(w));
+  });
+  $('#count').textContent = `${fs.length} 件`;
+  $('#list').innerHTML = fs.length ? fs.map(f => {
+    const [y, m] = f.expected.split('-');
+    const n = daysFrom(f.expected);
+    const when = n < 0 ? `${+m}月ごろ（そろそろ公募の時期）` : `${+m}月ごろ（あと約${Math.max(1, Math.round(n / 7))}週）`;
+    const tags = (f.tags || []).map(t => `<span class="tag tag${DATA.tags.indexOf(t)}">${esc(t)}</span>`).join('');
+    const last = [f.lastWinner && `前回の受託: <b>${esc(f.lastWinner)}</b>`, f.lastAmount && `金額 ${esc(f.lastAmount)}`, f.lastBudget && `上限 ${yen(f.lastBudget)}`].filter(Boolean).join(' ／ ');
+    return `<article class="card">
+      <div class="meta"><span class="badge b-fc">例年 ${when}</span>${tags}<span>前回 ${f.lastDate.replace(/-/g,'/')}ごろ公募</span><span>・${esc(f.source)}</span>${f.years > 1 ? `<span>・${f.years}年分の記録</span>` : ''}</div>
+      <h2><a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.title)}</a></h2>
+      ${last ? `<p class="win">${last}</p>` : ''}
+      <div class="org">発注: ${esc(f.org)}</div>
+    </article>`;
+  }).join('') : '<div class="empty">今後120日以内に予想される案件はまだありません。履歴がたまるほど増えていきます。</div>';
+}
 
 function renderResults(){
   const q = $('#q').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -223,16 +283,19 @@ function resCard(r){
 
 function render(){
   if (state.view === 'res') return renderResults();
+  if (state.view === 'fc') return renderForecast();
   const q = $('#q').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
   let items = DATA.items.filter(it => {
     if (isClosed(it)) return false;
     if ($('#fNew').checked && !isNew(it)) return false;
     if ($('#fProp').checked && !it.proposal) return false;
+    if ($('#fRegion').checked && it.region) return false;
     if ($('#src').value && it.source !== $('#src').value) return false;
     if (state.tags.size && !it.tags.some(t => state.tags.has(t))) return false;
     const hay = (it.title + ' ' + it.org + ' ' + it.city + ' ' + it.summary).toLowerCase();
     return q.every(w => hay.includes(w));
   });
+  if ($('#sort').value === 'budget') items.sort((a,b) => (b.budget || 0) - (a.budget || 0) || (a.published < b.published ? 1 : -1));
   if ($('#sort').value === 'dl') items.sort((a,b) => (a.deadline||'9999') < (b.deadline||'9999') ? -1 : (a.deadline||'9999') > (b.deadline||'9999') ? 1 : (a.published < b.published ? 1 : -1));
   $('#count').textContent = `${items.length} 件`;
   $('#list').innerHTML = items.length ? items.map(card).join('') : '<div class="empty">条件に合う案件はありません。</div>';
@@ -253,6 +316,7 @@ function card(it){
       ${isNew(it) && !closed ? '<span class="badge b-new">NEW</span>' : ''}
       ${it.proposal ? '<span class="badge b-prop">プロポーザル</span>' : ''}
       ${closed ? '<span class="badge b-closed">終了</span>' : ''}
+      ${extraBadges(it)}
       ${tags}
       <span>掲載 ${it.published.replace(/-/g,'/')}</span><span>・${esc(it.source)}</span>${it.kind ? `<span>・${esc(it.kind)}</span>` : ''}
     </div>

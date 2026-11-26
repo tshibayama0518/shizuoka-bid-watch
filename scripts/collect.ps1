@@ -134,8 +134,69 @@ function Add-Item($obj) {
     if ($script:items.ContainsKey($obj.id)) {
         $prev = $script:items[$obj.id]
         $obj.firstSeen = $prev.firstSeen
+        # PDFなどから読み取り済みの情報は引き継ぐ
+        if ($prev.PSObject.Properties['enriched'] -and $prev.enriched) {
+            foreach ($n in 'budget', 'budgetLabel', 'region', 'qual', 'enriched') { Set-Prop $obj $n $prev.$n }
+            if (-not $obj.deadline -and $prev.deadline) { $obj.deadline = $prev.deadline }
+            if ($prev.summary -and $prev.summary.Length -gt $obj.summary.Length) { $obj.summary = $prev.summary }
+        }
     }
     $script:items[$obj.id] = $obj
+}
+
+function Set-Prop($o, [string]$n, $v) {
+    if ($o.PSObject.Properties[$n]) { $o.$n = $v } else { $o | Add-Member -NotePropertyName $n -NotePropertyValue $v }
+}
+
+# 予算上限額・地域要件・参加資格の読み取り
+function Get-Extra([string]$text) {
+    $t = [regex]::Replace((ConvertTo-Norm $text), '\s+', ' ')
+    $budget = [int64]0; $blabel = ''
+    $bm = [regex]::Match($t, '(委託限度額|委託上限額|提案上限額|提案限度額|上限提案金額|提案上限金額|契約上限額|上限金額|上限額|限度額|上限価格|予定価格|委託料の上限|事業費の上限|費用の上限|予算額|見積上限額)[^0-9。]{0,30}?([0-9][0-9,]*(?:\.[0-9]+)?)\s*(千円|万円|円)')
+    if ($bm.Success) {
+        $n = [double]($bm.Groups[2].Value -replace ',', '')
+        switch ($bm.Groups[3].Value) { '千円' { $n *= 1000 } '万円' { $n *= 10000 } }
+        if ($n -ge 10000 -and $n -lt 1e11) { $budget = [int64]$n; $blabel = $bm.Groups[1].Value }
+    }
+    $region = ''
+    $rm = [regex]::Match($t, '((静岡)?県内|[^\s、。,()「」]{1,6}市内|[^\s、。,()「」]{1,6}町内|市内|町内)に(本店|本社|主たる営業所|主たる事務所|本店又は支店|本店又は営業所|本店若しくは支店|支店|営業所|事業所|事務所)')
+    if ($rm.Success) { $region = $rm.Value }
+    $qual = [bool]($t -match '入札参加資格[^。]{0,30}(名簿に登録|登録され|認定を受け|を有する|を受けて)')
+    return [pscustomobject]@{ budget = $budget; budgetLabel = $blabel; region = $region; qual = $qual }
+}
+
+function Get-PdfLinks([string]$html, [string]$base, [string]$pat) {
+    $out = @()
+    foreach ($m in [regex]::Matches($html, '<a[^>]+href="([^"]+\.pdf)"[^>]*>(.*?)</a>')) {
+        $lt = ConvertTo-Norm ([regex]::Replace($m.Groups[2].Value, '<[^>]+>', ''))
+        if ($lt -match $pat) {
+            try { $out += ([Uri]::new([Uri]$base, [System.Net.WebUtility]::HtmlDecode($m.Groups[1].Value))).AbsoluteUri } catch {}
+        }
+    }
+    return @($out | Select-Object -Unique)
+}
+$noticePdfRe = '実施要領|募集要領|要領|要項|公告|仕様書|説明書|募集'
+
+# 案件ページの本文と公告PDF(GitHub上でのみ)から、締切・予算・要件を補う
+function Update-ItemDetail($it, [string]$text, [string]$html) {
+    $pdfText = ''
+    if ($script:pdftotext) {
+        if ($it.url -match '\.pdf($|\?)') { $pdfText = Get-PdfText $it.url }
+        elseif ($html) {
+            foreach ($pu in (Get-PdfLinks $html $it.url $noticePdfRe | Select-Object -First 2)) { $pdfText += "`n" + (Get-PdfText $pu) }
+        }
+    }
+    $ex = Get-Extra "$text`n$pdfText"
+    Set-Prop $it 'budget' $ex.budget
+    Set-Prop $it 'budgetLabel' $ex.budgetLabel
+    Set-Prop $it 'region' $ex.region
+    Set-Prop $it 'qual' $ex.qual
+    if ($pdfText.Trim()) {
+        if (-not $it.deadline) { $dl = Get-Deadline $pdfText $it.published; if ($dl) { $it.deadline = $dl } }
+        if (-not $it.summary -or $it.summary.Length -lt 60) { $it.summary = Get-Summary $pdfText }
+        if (-not $it.proposal) { $it.proposal = (Test-Proposal $pdfText.Substring(0, [Math]::Min(1500, $pdfText.Length))) }
+    }
+    Set-Prop $it 'enriched' ([bool]$script:pdftotext)
 }
 
 # ---------- 結果(落札者・選定事業者)の記録用 ----------
@@ -217,6 +278,7 @@ try {
         if ($pub -lt $cutoff) { continue }
         $org = Get-Node 'OrganizationName'
         $city = Get-Node 'CityName'
+        $ex = Get-Extra $desc
         Add-Item ([pscustomobject][ordered]@{
             id        = 'kkj:' + (Get-Node 'Key')
             source    = '官公需ポータル'
@@ -232,6 +294,11 @@ try {
             summary   = Get-Summary $desc
             closed    = $false
             firstSeen = $Today
+            budget    = $ex.budget
+            budgetLabel = $ex.budgetLabel
+            region    = $ex.region
+            qual      = $ex.qual
+            enriched  = $false
         })
     }
 } catch {
@@ -320,6 +387,7 @@ try {
             closed    = $false
             firstSeen = $Today
         }
+        if (@($tags).Count -gt 0) { Update-ItemDetail $obj $text $h }
         # 分野に該当しない県案件も一度取得したら再取得しないよう、tags 空で保持(表示はしない)
         $items[$id] = $obj
     }
@@ -349,7 +417,7 @@ function Read-DetailPage([string]$url, [string]$start = '<h1') {
     if ($e -lt 0) { $e = $h.Length }
     $text = ConvertFrom-Html $h.Substring($s, $e - $s)
     $text = [regex]::Replace($text, 'いいね[!！]|ページID\s*[:：]?\s*\d+|(?:最終)?更新日\s*[:：]?\s*\S+日|大きな文字で印刷|印刷する|印刷', ' ').Trim()
-    return [pscustomobject]@{ pub = $pub; text = $text }
+    return [pscustomobject]@{ pub = $pub; text = $text; html = $h }
 }
 
 foreach ($c in $config.cities) {
@@ -441,6 +509,7 @@ foreach ($c in $config.cities) {
                 closed    = $pageClosed
                 firstSeen = $Today
             }
+            if (-not $pageClosed -and @($items[$id].tags).Count -gt 0) { Update-ItemDetail $items[$id] $text $pg.html }
             $cnt++
         }
         Write-Host "$($c.name): 候補 $($uniq.Count) 件 / 新規取得 $cnt 件"
@@ -449,6 +518,26 @@ foreach ($c in $config.cities) {
         Write-Warning $errors[-1]
     }
 }
+
+# ---------- 既存案件の補完(予算・要件が未読み取り、またはPDF未読の案件) ----------
+$enrichNow = 0
+foreach ($it in @($items.Values)) {
+    if ($enrichNow -ge 40) { break }
+    if (@($it.tags).Count -eq 0 -or $it.closed) { continue }
+    $hasBudget = [bool]$it.PSObject.Properties['budget']
+    $done = $it.PSObject.Properties['enriched'] -and $it.enriched
+    if ($done -or ($hasBudget -and -not $pdftotext)) { continue }
+    $enrichNow++
+    try {
+        if ($it.url -match '\.pdf($|\?)') { Update-ItemDetail $it $it.summary '' }
+        else {
+            $h = Get-Html $it.url; Start-Sleep -Milliseconds 300
+            $hs = [regex]::Replace($h, '(?is)<(script|style|header|nav|footer)[^>]*>.*?</\1>', ' ')
+            Update-ItemDetail $it (ConvertFrom-Html $hs) $h
+        }
+    } catch { Set-Prop $it 'enriched' ([bool]$pdftotext) }
+}
+Write-Host "案件の補完(予算・要件・PDF): $enrichNow 件$(if (-not $pdftotext) { '（PDF読み取りなし）' })"
 
 # ---------- 整理・期限切れ削除・重複除去 ----------
 foreach ($k in $items.Keys) { if (-not $seenIds.ContainsKey($k)) { $seenIds[$k] = $Today } }
@@ -523,6 +612,77 @@ $resOut = [ordered]@{
 }
 New-Item -ItemType Directory -Force (Join-Path $Root 'docs') | Out-Null
 [IO.File]::WriteAllText($resultsPath, (ConvertTo-Json -InputObject $resOut -Depth 5), $Utf8NoBom)
+
+# ---------- 履歴の蓄積と「例年の案件」の予告 ----------
+# 年度や「公募型プロポーザル」などの言い回しを除いた“案件の芯”で、毎年同じ案件を同一視する
+function Get-RecurKey([string]$org, [string]$title) {
+    $t = ConvertTo-Norm $title
+    $t = [regex]::Replace($t, '【[^】]*(結果|公表|決定|終了|選定|募集|回答|質問)[^】]*】|\([^)]*(結果|決定|終了|PDF)[^)]*\)', '')
+    $t = [regex]::Replace($t, '令和\s*\d+\s*(・\s*\d+\s*)?(年度|年)?|R\s*\d+\s*(年度|年)?|平成\s*\d+\s*(年度|年)?|20\d{2}\s*(年度|年)?|第\s*\d+\s*(回|期|次)', '')
+    $t = [regex]::Replace($t, '(に係る|に関する|にかかる|における|の)?(公募型|簡易|企画競争型)?(プロポーザル|企画提案(書)?(の)?(募集|公募)?|コンペ(ティション)?)(方式)?', '')
+    $t = [regex]::Replace($t, '(の)?(実施|募集|参加者|参加事業者|受託者|事業者|審査|選定|特定|契約候補者選定)*(の)?(結果)?(について|のお知らせ|の公表|のご案内|を募集します|を実施します)?$', '')
+    $t = [regex]::Replace($t, '[\s「」『』【】()（）・,、。:：\-~〜]', '')
+    $t = [regex]::Replace($t, '(業務委託|委託業務|業務|事業)+$', '')
+    if ($t.Length -lt 6) { return '' }
+    return "$org|$t"
+}
+$historyPath = Join-Path $Root 'docs/history.json'
+$hist = @{}   # key -> list of occurrences
+if (Test-Path $historyPath) {
+    $ho = Get-Content -Raw -Encoding UTF8 $historyPath | ConvertFrom-Json
+    if ($ho.entries) { foreach ($p in $ho.entries.PSObject.Properties) { $hist[$p.Name] = [System.Collections.ArrayList]@($p.Value) } }
+}
+function Add-History($key, [string]$date, [string]$kind, $src) {
+    if (-not $key -or -not $date) { return }
+    if (-not $script:hist.ContainsKey($key)) { $script:hist[$key] = [System.Collections.ArrayList]@() }
+    $list = $script:hist[$key]
+    # 公告日の推定(結果は公告の約40日後とみなす)
+    $est = $(if ($kind -eq 'notice') { $date } else { ([datetime]::ParseExact($date, 'yyyy-MM-dd', $null)).AddDays(-40).ToString('yyyy-MM-dd') })
+    $same = @($list | Where-Object { $_.url -eq $src.url -and $_.kind -eq $kind })
+    if ($same.Count -gt 0) {
+        foreach ($s in $same) { foreach ($n in 'winner', 'amount', 'budget') { if ($src.$n -and -not $s.$n) { Set-Prop $s $n $src.$n } } }
+        return
+    }
+    [void]$list.Add([pscustomobject][ordered]@{
+            date = $date; est = $est; kind = $kind; title = $src.title; org = $src.org; source = $src.source; url = $src.url
+            tags = @($src.tags); winner = "$($src.winner)"; amount = "$($src.amount)"; budget = [int64]$(if ($src.budget) { $src.budget } else { 0 })
+        })
+}
+foreach ($it in $all) {
+    if (@($it.tags).Count -eq 0) { continue }
+    Add-History (Get-RecurKey $it.org $it.title) $it.published 'notice' ([pscustomobject]@{ title = $it.title; org = $it.org; source = $it.source; url = $it.url; tags = $it.tags; budget = $(if ($it.PSObject.Properties['budget']) { $it.budget } else { 0 }) })
+}
+foreach ($r in $resultMap.Values) {
+    Add-History (Get-RecurKey $r.org $r.title) $r.resultDate 'result' $r
+}
+$histKeep = $Now.AddDays(-1100).ToString('yyyy-MM-dd')
+$forecast = @()
+$fromD = $Now.AddDays(-30).ToString('yyyy-MM-dd'); $toD = $Now.AddDays([int]$config.forecastDays).ToString('yyyy-MM-dd')
+$thisRound = $Now.AddDays(-300).ToString('yyyy-MM-dd')
+foreach ($k in @($hist.Keys)) {
+    $occ = @($hist[$k] | Where-Object { $_.date -ge $histKeep } | Sort-Object est -Descending)
+    if ($occ.Count -eq 0) { $hist.Remove($k); continue }
+    $hist[$k] = [System.Collections.ArrayList]@($occ | Select-Object -First 6)
+    $latest = $occ[0]
+    if ($latest.est -ge $thisRound) { continue }   # 今年度分はすでに出ている
+    $next = [datetime]::ParseExact($latest.est, 'yyyy-MM-dd', $null)
+    while ($next.ToString('yyyy-MM-dd') -lt $fromD) { $next = $next.AddYears(1) }
+    $nd = $next.ToString('yyyy-MM-dd')
+    if ($nd -gt $toD -or $next -gt [datetime]::ParseExact($latest.est, 'yyyy-MM-dd', $null).AddYears(2)) { continue }
+    $res = @($occ | Where-Object { $_.winner } | Select-Object -First 1)
+    $bud = @($occ | Where-Object { $_.budget -gt 0 } | Select-Object -First 1)
+    $forecast += [pscustomobject][ordered]@{
+        key = $k; expected = $nd; title = $latest.title; org = $latest.org; source = $latest.source; url = $latest.url
+        tags = @($latest.tags); lastDate = $latest.est; years = @($occ | ForEach-Object { $_.est.Substring(0, 4) } | Select-Object -Unique).Count
+        lastWinner = $(if ($res) { $res[0].winner } else { '' }); lastAmount = $(if ($res) { $res[0].amount } else { '' })
+        lastBudget = [int64]$(if ($bud) { $bud[0].budget } else { 0 })
+    }
+}
+$forecast = @($forecast | Sort-Object expected)
+Write-Host "履歴: $($hist.Count) 案件 / 予告: $($forecast.Count) 件"
+$histOut = [ordered]@{}
+foreach ($k in ($hist.Keys | Sort-Object)) { $histOut[$k] = @($hist[$k]) }
+[IO.File]::WriteAllText($historyPath, (ConvertTo-Json -InputObject ([ordered]@{ updatedAt = $Now.ToString('yyyy-MM-ddTHH:mm:sszzz'); forecast = $forecast; entries = $histOut }) -Depth 6), $Utf8NoBom)
 # 設定(キーワード)変更を過去分にも反映
 foreach ($it in $all) { if ($it.source -eq '官公需ポータル') { $it.tags = @(Get-Tags $it.title) } }
 # 県・市のサイトと官公需ポータルで重複する案件は、県・市のサイト側を残す

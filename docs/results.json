@@ -1,5 +1,5 @@
 {
-    "updatedAt":  "2026-11-26T11:51:14+09:00",
+    "updatedAt":  "2026-11-26T12:17:07+09:00",
     "results":  [
                     {
                         "id":  "city:city.fuji.shizuoka.jp/1005050000/p007738.html",
@@ -241,23 +241,6 @@
                         "recordedAt":  "2026-11-26"
                     },
                     {
-                        "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/business_start/index.htm",
-                        "title":  "令和8年度 沼津市ビジネススタートセミナー開催業務委託に係る公募型プロポーザル",
-                        "org":  "沼津市",
-                        "source":  "沼津市HP",
-                        "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/business_start/index.htm",
-                        "tags":  [
-                                     "イベント"
-                                 ],
-                        "proposal":  true,
-                        "winner":  "Entertainment合同会社",
-                        "score":  "",
-                        "amount":  "550,000円",
-                        "resultDate":  "2026-07-14",
-                        "foundIn":  "ページ",
-                        "recordedAt":  "2026-11-26"
-                    },
-                    {
                         "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/rebranding/index.htm",
                         "title":  "令和8年度 沼津市リブランディング企画塾開催業務委託に係る公募型プロポーザル",
                         "org":  "沼津市",
@@ -271,6 +254,23 @@
                         "winner":  "有限会社サンディオス",
                         "score":  "",
                         "amount":  "4,950,000円",
+                        "resultDate":  "2026-07-14",
+                        "foundIn":  "ページ",
+                        "recordedAt":  "2026-11-26"
+                    },
+                    {
+                        "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/business_start/index.htm",
+                        "title":  "令和8年度 沼津市ビジネススタートセミナー開催業務委託に係る公募型プロポーザル",
+                        "org":  "沼津市",
+                        "source":  "沼津市HP",
+                        "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/business_start/index.htm",
+                        "tags":  [
+                                     "イベント"
+                                 ],
+                        "proposal":  true,
+                        "winner":  "Entertainment合同会社",
+                        "score":  "",
+                        "amount":  "550,000円",
                         "resultDate":  "2026-07-14",
                         "foundIn":  "ページ",
                         "recordedAt":  "2026-11-26"
@@ -378,6 +378,23 @@
                         "recordedAt":  "2026-11-26"
                     },
                     {
+                        "id":  "city:city.numazu.shizuoka.jp/business/proposal/2025/shushoku/index.htm",
+                        "title":  "令和8年度沼津市就職定着促進事業業務委託に係る公募型プロポーザル",
+                        "org":  "沼津市",
+                        "source":  "沼津市HP",
+                        "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/shushoku/index.htm",
+                        "tags":  [
+                                     "イベント"
+                                 ],
+                        "proposal":  true,
+                        "winner":  "株式会社就職情報センター",
+                        "score":  "",
+                        "amount":  "957,000円",
+                        "resultDate":  "2026-06-05",
+                        "foundIn":  "ページ",
+                        "recordedAt":  "2026-11-26"
+                    },
+                    {
                         "id":  "city:city.shizuoka.lg.jp/s9635/s013769.html",
                         "title":  "公募型プロポーザル「文化施設貸館システム構築業務」",
                         "org":  "静岡市",
@@ -395,6 +412,23 @@
                         "recordedAt":  "2026-11-26"
                     },
                     {
+                        "id":  "city:city.numazu.shizuoka.jp/business/proposal/2025/roudoufukushi/index.htm",
+                        "title":  "令和8年度労働福祉関連セミナー業務委託に係る公募型プロポーザル",
+                        "org":  "沼津市",
+                        "source":  "沼津市HP",
+                        "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/roudoufukushi/index.htm",
+                        "tags":  [
+                                     "イベント"
+                                 ],
+                        "proposal":  true,
+                        "winner":  "株式会社東海道シグマ",
+                        "score":  "",
+                        "amount":  "673,200円",
+                        "resultDate":  "2026-05-25",
+                        "foundIn":  "ページ",
+                        "recordedAt":  "2026-11-26"
+                    },
+                    {
                         "id":  "city:city.shizuoka.lg.jp/s3278/s012600.html",
                         "title":  "公募型プロポーザル「静岡市授産製品販売促進業務」",
                         "org":  "静岡市",
@@ -408,6 +442,75 @@
                         "score":  "409/500点",
                         "amount":  "",
                         "resultDate":  "2026-05-25",
+                        "foundIn":  "ページ",
+                        "recordedAt":  "2026-11-26"
+                    },
+                    {
+                        "id":  "city:city.numazu.shizuoka.jp/business/proposal/2025/naibusystem/index.htm",
+                        "title":  "「令和8年度沼津市内部情報システム運用支援業務委託」契約候補者選定に係るプロポーザル",
+                        "org":  "沼津市",
+                        "source":  "沼津市HP",
+                        "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/naibusystem/index.htm",
+                        "tags":  [
+                                     "Web・IT"
+                                 ],
+                        "proposal":  true,
+                        "winner":  "東京コンピュータサービス株式会社",
+                        "score":  "",
+                        "amount":  "41,478,800円",
+                        "resultDate":  "2026-05-08",
+                        "foundIn":  "ページ",
+                        "recordedAt":  "2026-11-26"
+                    },
+                    {
+                        "id":  "city:city.numazu.shizuoka.jp/business/proposal/2025/bpr/index.htm",
+                        "title":  "令和8年度沼津市BPRによる業務改善支援業務委託に係る公募型プロポーザル",
+                        "org":  "沼津市",
+                        "source":  "沼津市HP",
+                        "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/bpr/index.htm",
+                        "tags":  [
+                                     "Web・IT"
+                                 ],
+                        "proposal":  true,
+                        "winner":  "NTTドコモビジネス株式会社",
+                        "score":  "",
+                        "amount":  "8,800,000円",
+                        "resultDate":  "2026-04-28",
+                        "foundIn":  "ページ",
+                        "recordedAt":  "2026-11-26"
+                    },
+                    {
+                        "id":  "city:city.numazu.shizuoka.jp/business/proposal/2025/madoguchi/index.htm",
+                        "title":  "令和8年度沼津市窓口サービス改善事業業務委託に係る公募型プロポーザル",
+                        "org":  "沼津市",
+                        "source":  "沼津市HP",
+                        "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/madoguchi/index.htm",
+                        "tags":  [
+                                     "Web・IT",
+                                     "デザイン・広報・映像"
+                                 ],
+                        "proposal":  true,
+                        "winner":  "株式会社ガバメイツ",
+                        "score":  "",
+                        "amount":  "8,987,000円",
+                        "resultDate":  "2026-04-24",
+                        "foundIn":  "ページ",
+                        "recordedAt":  "2026-11-26"
+                    },
+                    {
+                        "id":  "city:city.numazu.shizuoka.jp/business/proposal/2025/cio/index.htm",
+                        "title":  "令和8年度沼津市CIO補佐官業務委託に係る公募型プロポーザル",
+                        "org":  "沼津市",
+                        "source":  "沼津市HP",
+                        "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/cio/index.htm",
+                        "tags":  [
+                                     "Web・IT"
+                                 ],
+                        "proposal":  true,
+                        "winner":  "ソフトバンク株式会社",
+                        "score":  "",
+                        "amount":  "8,030,000円",
+                        "resultDate":  "2026-04-10",
                         "foundIn":  "ページ",
                         "recordedAt":  "2026-11-26"
                     },
@@ -527,6 +630,23 @@
                         "score":  "397/500点",
                         "amount":  "",
                         "resultDate":  "2025-11-28",
+                        "foundIn":  "ページ",
+                        "recordedAt":  "2026-11-26"
+                    },
+                    {
+                        "id":  "city:city.numazu.shizuoka.jp/business/proposal/2025/followup/index.htm",
+                        "title":  "令和7年度 沼津市創業フォローアップセミナー開催業務委託に係る公募型プロポーザル",
+                        "org":  "沼津市",
+                        "source":  "沼津市HP",
+                        "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/followup/index.htm",
+                        "tags":  [
+                                     "イベント"
+                                 ],
+                        "proposal":  true,
+                        "winner":  "株式会社みらいワークス",
+                        "score":  "",
+                        "amount":  "407,000円",
+                        "resultDate":  "2025-11-26",
                         "foundIn":  "ページ",
                         "recordedAt":  "2026-11-26"
                     },
@@ -669,18 +789,160 @@
                 ],
     "watch":  [
                   {
-                      "id":  "city:city.fuji.shizuoka.jp/1035050000/p007736.html",
-                      "url":  "https://www.city.fuji.shizuoka.jp/1035050000/p007736.html",
-                      "title":  "富士市CNFプラットフォーム活動プロモーション推進事業業務委託公募型プロポーザル参加者募集について",
-                      "org":  "富士市",
-                      "source":  "富士市HP",
+                      "id":  "pref:1023732",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukenkou/1023732.html",
+                      "title":  "【募集終了しました】令和2年度静岡県遠隔手話システム環境整備等委託業務について、企画提案を募集します。",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
                       "tags":  [
-                                   "Web・IT",
-                                   "デザイン・広報・映像"
+                                   "Web・IT"
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.shizuoka.lg.jp/s2746/s013086.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s2746/s013086.html",
+                      "title":  "【選定結果の公表】公募型プロポーザル「中小企業等DX支援業務(社内蓄積データ活用支援)」",
+                      "org":  "静岡市",
+                      "source":  "静岡市HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.shizuoka.lg.jp/s9328/danjo/s012300.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s9328/danjo/s012300.html",
+                      "title":  "【選定結果の公表】公募型プロポーザル「静岡市女性デジタル人材育成事業」",
+                      "org":  "静岡市",
+                      "source":  "静岡市HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1082882",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1082882.html",
+                      "title":  "令和8年度DX推進リーダー育成業務委託に係る企画提案の募集",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2025/kodomonoibasho/index.htm",
+                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/kodomonoibasho/index.htm",
+                      "title":  "「令和8年度沼津市子どもの居場所づくりコーディネート事業業務委託」契約候補者選定に係るプロポーザル",
+                      "org":  "沼津市",
+                      "source":  "沼津市HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.shizuoka.lg.jp/s9342/s012365.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s9342/s012365.html",
+                      "title":  "【選定結果の公表】公募型プロポーザル「消耗品調達システム導入及び運用・保守業務」",
+                      "org":  "静岡市",
+                      "source":  "静岡市HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/kaigo_event/index.htm",
+                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/kaigo_event/index.htm",
+                      "title":  "令和8年度沼津市在宅医療・介護連携推進事業普及啓発イベント開催業務委託契約候補者選定に係るプロポーザル",
+                      "org":  "沼津市",
+                      "source":  "沼津市HP",
+                      "tags":  [
+                                   "イベント"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/zaitakuiryo/index.htm",
+                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/zaitakuiryo/index.htm",
+                      "title":  "令和8年度 沼津市在宅医療・介護連携推進事業普及啓発講演会開催業務委託契約候補者選定に係るプロポーザル",
+                      "org":  "沼津市",
+                      "source":  "沼津市HP",
+                      "tags":  [
+                                   "イベント"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1083821",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/1083821.html",
+                      "title":  "令和8年度静岡県高級宿泊施設誘致推進業務委託に係る企画提案募集",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "イベント"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.fuji.shizuoka.jp/1030050000/p007723.html",
+                      "url":  "https://www.city.fuji.shizuoka.jp/1030050000/p007723.html",
+                      "title":  "富士市森林墓園管理システム導入業務委託に関する制限付き一般競争入札について",
+                      "org":  "富士市",
+                      "source":  "富士市HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  false,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1082630",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1082630.html",
+                      "title":  "静岡県統合宛名システム再構築及び運用保守業務委託に係る企画提案の募集",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1083005",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1083005.html",
+                      "title":  "令和8年度AI活用推進支援業務委託に係るプロポーザルの御案内",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
                   },
                   {
                       "id":  "city:city.shizuoka.lg.jp/s2859/s013141.html",
@@ -694,7 +956,20 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/wakuwaku/index.htm",
+                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/wakuwaku/index.htm",
+                      "title":  "令和8年度 市民文化センターわくわくプロジェクト開催業務委託に係る公募型プロポーザル",
+                      "org":  "沼津市",
+                      "source":  "沼津市HP",
+                      "tags":  [
+                                   "イベント"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
                   },
                   {
                       "id":  "city:city.shizuoka.lg.jp/s7259/s013074.html",
@@ -707,72 +982,72 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "city:city.shizuoka.lg.jp/s9342/s012365.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s9342/s012365.html",
-                      "title":  "【選定結果の公表】公募型プロポーザル「消耗品調達システム導入及び運用・保守業務」",
-                      "org":  "静岡市",
-                      "source":  "静岡市HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1023739",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukenkou/1023739.html",
-                      "title":  "【募集終了しました】令和3年度「新しい生活様式」における障害のある人への理解促進に係る動画制作業務委託について",
+                      "id":  "pref:1077990",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/1077988/1077990.html",
+                      "title":  "(募集終了)令和7年度静岡県職員募集総合案内等制作業務委託 企画提案の募集",
                       "org":  "静岡県",
                       "source":  "静岡県HP",
                       "tags":  [
                                    "デザイン・広報・映像"
                                ],
-                      "proposal":  false,
+                      "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "city:city.shizuoka.lg.jp/s5947/s012575.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s5947/s012575.html",
-                      "title":  "【選定結果の公表】公募型プロポーザル「静岡市振込通知オンライン化業務」",
-                      "org":  "静岡市",
-                      "source":  "静岡市HP",
+                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/kankoportal/index.htm",
+                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/kankoportal/index.htm",
+                      "title":  "「沼津市公式観光ポータルサイト リニューアル業務委託」に係る公募型プロポーザル",
+                      "org":  "沼津市",
+                      "source":  "沼津市HP",
                       "tags":  [
                                    "Web・IT"
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "city:city.shizuoka.lg.jp/s2746/s013101.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s2746/s013101.html",
-                      "title":  "フランスのアンテナショップ「GOEN」への出展者募集",
-                      "org":  "静岡市",
-                      "source":  "静岡市HP",
+                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2025/cyclestation/index.htm",
+                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/cyclestation/index.htm",
+                      "title":  "「令和8年度NUMAZUサイクルステーション静浦東管理運営業務委託」に係る公募型プロポーザル",
+                      "org":  "沼津市",
+                      "source":  "沼津市HP",
+                      "tags":  [
+                                   "デザイン・広報・映像"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.fukuroi.shizuoka.jp/soshiki/29/1/15073.html",
+                      "url":  "https://www.city.fukuroi.shizuoka.jp/soshiki/29/1/15073.html",
+                      "title":  "袋井市森町広域行政組合例規データベース等更新業務委託プロポーザルについて",
+                      "org":  "袋井市",
+                      "source":  "袋井市HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1083241",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1083241.html",
+                      "title":  "令和8年度静岡県セルロース循環経済国際展示会運営業務の入札公告について",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
                       "tags":  [
                                    "イベント"
                                ],
                       "proposal":  false,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1082882",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1082882.html",
-                      "title":  "令和8年度DX推進リーダー育成業務委託に係る企画提案の募集",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
                       "id":  "city:city.yaizu.lg.jp/business/bid-contract/info/proposal/start-up-r7.html",
@@ -785,12 +1060,51 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "city:city.shizuoka.lg.jp/s2746/s013086.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s2746/s013086.html",
-                      "title":  "【選定結果の公表】公募型プロポーザル「中小企業等DX支援業務(社内蓄積データ活用支援)」",
+                      "id":  "pref:1082980",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsusports/1082980.html",
+                      "title":  "令和8年度トークン×文化資源による地域の好循環創出事業提案募集について",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  false,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.shizuoka.lg.jp/s5436/s013055.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s5436/s013055.html",
+                      "title":  "【選定結果の公表】公募型プロポーザル「『静岡市のお茶』ブランド力向上に向けたマーケティング戦略構築等業務」",
+                      "org":  "静岡市",
+                      "source":  "静岡市HP",
+                      "tags":  [
+                                   "デザイン・広報・映像"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.shizuoka.lg.jp/s4852/s013878.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s4852/s013878.html",
+                      "title":  "【質問の回答を掲載しました】インバウンド観光客調査システムの導入に係る情報提供依頼(RFI)の実施",
+                      "org":  "静岡市",
+                      "source":  "静岡市HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  false,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.shizuoka.lg.jp/s7463/s012331.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s7463/s012331.html",
+                      "title":  "【選定結果の公表】公募型プロポーザル「静岡市デジタルデバイスを活用した保健指導サービス導入業務」",
                       "org":  "静岡市",
                       "source":  "静岡市HP",
                       "tags":  [
@@ -798,33 +1112,33 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "pref:1082241",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1082241.html",
-                      "title":  "浜名湖花博2024開催記念庭園の撤去に関する業務委託の入札公告について",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "イベント"
-                               ],
-                      "proposal":  false,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1081546",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukurashi/1081546.html",
-                      "title":  "令和8年度静岡まるごと移住フェア運営補助業務の企画提案を募集します!",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
+                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/syushokumensetsu/index.htm",
+                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/syushokumensetsu/index.htm",
+                      "title":  "令和8年度 沼津市・清水町合同就職面接会開催事業業務委託に係る公募型プロポーザル",
+                      "org":  "沼津市",
+                      "source":  "沼津市HP",
                       "tags":  [
                                    "イベント"
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.shizuoka.lg.jp/s5947/s012575.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s5947/s012575.html",
+                      "title":  "【選定結果の公表】公募型プロポーザル「静岡市振込通知オンライン化業務」",
+                      "org":  "静岡市",
+                      "source":  "静岡市HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
                   },
                   {
                       "id":  "pref:1084822",
@@ -838,137 +1152,7 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1082236",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1082236.html",
-                      "title":  "浜名湖花博2014開催記念庭園の撤去に関する業務委託の入札公告について",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "イベント"
-                               ],
-                      "proposal":  false,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "city:city.shizuoka.lg.jp/s2746/s003884.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s2746/s003884.html",
-                      "title":  "【選定結果の公表】公募型プロポーザル「中小企業等DX支援業務(デジタル実装による業務プロセス改善支援)」",
-                      "org":  "静岡市",
-                      "source":  "静岡市HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1082564",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1082564.html",
-                      "title":  "令和8年度行政手続のDX計画策定支援業務委託に係る企画提案の募集",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1082980",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsusports/1082980.html",
-                      "title":  "令和8年度トークン×文化資源による地域の好循環創出事業提案募集について",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  false,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1085061",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1085061.html",
-                      "title":  "令和8年度県職員課題解決型DX実践研修(PBL)業務委託に係る企画提案の募集",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/zaitakuiryo/index.htm",
-                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/zaitakuiryo/index.htm",
-                      "title":  "令和8年度 沼津市在宅医療・介護連携推進事業普及啓発講演会開催業務委託契約候補者選定に係るプロポーザル",
-                      "org":  "沼津市",
-                      "source":  "沼津市HP",
-                      "tags":  [
-                                   "イベント"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1086565",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1086565.html",
-                      "title":  "H2\u0026FC EXPOブース設営業務委託公募型企画提案募集について",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "イベント"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "city:city.fukuroi.shizuoka.jp/soshiki/29/1/15073.html",
-                      "url":  "https://www.city.fukuroi.shizuoka.jp/soshiki/29/1/15073.html",
-                      "title":  "袋井市森町広域行政組合例規データベース等更新業務委託プロポーザルについて",
-                      "org":  "袋井市",
-                      "source":  "袋井市HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "city:city.fuji.shizuoka.jp/1015130000/p007723.html",
-                      "url":  "https://www.city.fuji.shizuoka.jp/1015130000/p007723.html",
-                      "title":  "令和8年度 女性のデジタルスキル習得講座業務委託 公募型プロポーザル参加者募集について",
-                      "org":  "富士市",
-                      "source":  "富士市HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/workshop/index.htm",
-                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/workshop/index.htm",
-                      "title":  "令和8年度 文化芸術まるっと沼津ワークショップ開催業務委託に係る公募型プロポーザル",
-                      "org":  "沼津市",
-                      "source":  "沼津市HP",
-                      "tags":  [
-                                   "イベント"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
                       "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/koseki_system/index.htm",
@@ -981,25 +1165,12 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "pref:1082709",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1082709.html",
-                      "title":  "令和8年度次世代産業関連プロジェクトと首都圏等スタートアップとのマッチング業務委託企画提案募集のお知らせ",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "イベント"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1082630",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1082630.html",
-                      "title":  "静岡県統合宛名システム再構築及び運用保守業務委託に係る企画提案の募集",
+                      "id":  "pref:1085061",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1085061.html",
+                      "title":  "令和8年度県職員課題解決型DX実践研修(PBL)業務委託に係る企画提案の募集",
                       "org":  "静岡県",
                       "source":  "静岡県HP",
                       "tags":  [
@@ -1007,7 +1178,46 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1082215",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1082215.html",
+                      "title":  "令和8年度静岡県外部デジタル人材確保に向けた市町伴走支援業務委託に係る企画提案の募集",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/kodomobunka/index.htm",
+                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/kodomobunka/index.htm",
+                      "title":  "令和8年度 子供文化芸術体験事業開催業務委託に係る公募型プロポーザル",
+                      "org":  "沼津市",
+                      "source":  "沼津市HP",
+                      "tags":  [
+                                   "イベント"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/workshop/index.htm",
+                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/workshop/index.htm",
+                      "title":  "令和8年度 文化芸術まるっと沼津ワークショップ開催業務委託に係る公募型プロポーザル",
+                      "org":  "沼津市",
+                      "source":  "沼津市HP",
+                      "tags":  [
+                                   "イベント"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
                   },
                   {
                       "id":  "pref:1082171",
@@ -1020,64 +1230,52 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "city:city.shizuoka.lg.jp/s2934/s013104.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s2934/s013104.html",
-                      "title":  "【選定結果の公表】公募型プロポーザル「静岡市移住プロモーション業務」",
+                      "id":  "pref:1083540",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1083540.html",
+                      "title":  "令和8年度静岡県企業立地セミナー等開催業務委託公募型企画提案募集について",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "イベント"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.shizuoka.lg.jp/s2746/s013162.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s2746/s013162.html",
+                      "title":  "【選定結果の公表】公募型プロポーザル「AI活用促進に向けた法人研修業務」",
                       "org":  "静岡市",
                       "source":  "静岡市HP",
                       "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.fuji.shizuoka.jp/1035050000/p007736.html",
+                      "url":  "https://www.city.fuji.shizuoka.jp/1035050000/p007736.html",
+                      "title":  "富士市CNFプラットフォーム活動プロモーション推進事業業務委託公募型プロポーザル参加者募集について",
+                      "org":  "富士市",
+                      "source":  "富士市HP",
+                      "tags":  [
+                                   "Web・IT",
                                    "デザイン・広報・映像"
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "city:city.fuji.shizuoka.jp/1030050000/p007723.html",
-                      "url":  "https://www.city.fuji.shizuoka.jp/1030050000/p007723.html",
-                      "title":  "富士市森林墓園管理システム導入業務委託に関する制限付き一般競争入札について",
-                      "org":  "富士市",
-                      "source":  "富士市HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  false,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1083821",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/1083821.html",
-                      "title":  "令和8年度静岡県高級宿泊施設誘致推進業務委託に係る企画提案募集",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "イベント"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "city:city.shizuoka.lg.jp/s7463/s012331.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s7463/s012331.html",
-                      "title":  "【選定結果の公表】公募型プロポーザル「静岡市デジタルデバイスを活用した保健指導サービス導入業務」",
-                      "org":  "静岡市",
-                      "source":  "静岡市HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1083241",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1083241.html",
-                      "title":  "令和8年度静岡県セルロース循環経済国際展示会運営業務の入札公告について",
+                      "id":  "pref:1082241",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1082241.html",
+                      "title":  "浜名湖花博2024開催記念庭園の撤去に関する業務委託の入札公告について",
                       "org":  "静岡県",
                       "source":  "静岡県HP",
                       "tags":  [
@@ -1085,7 +1283,59 @@
                                ],
                       "proposal":  false,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2025/bukkakoutou/index.htm",
+                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/bukkakoutou/index.htm",
+                      "title":  "令和7年度 沼津市物価高騰支援金支給事業業務委託契約候補者選定に係るプロポーザル",
+                      "org":  "沼津市",
+                      "source":  "沼津市HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1082709",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1082709.html",
+                      "title":  "令和8年度次世代産業関連プロジェクトと首都圏等スタートアップとのマッチング業務委託企画提案募集のお知らせ",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "イベント"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1054305",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/1047032/1054305.html",
+                      "title":  "令和5年度ふじのくに国際高校一日体験入学支援業務委託企画提案募集について",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "イベント"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1023739",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukenkou/1023739.html",
+                      "title":  "【募集終了しました】令和3年度「新しい生活様式」における障害のある人への理解促進に係る動画制作業務委託について",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "デザイン・広報・映像"
+                               ],
+                      "proposal":  false,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
                   },
                   {
                       "id":  "city:city.shizuoka.lg.jp/s7594/s012366.html",
@@ -1098,26 +1348,51 @@
                                ],
                       "proposal":  false,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "city:city.shizuoka.lg.jp/s9276/s000003.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s9276/s000003.html",
-                      "title":  "【審査結果】公募型プロポーザル「静岡市駿河区広告付窓口番号案内表示システム等導入業務」",
-                      "org":  "静岡市",
-                      "source":  "静岡市HP",
+                      "id":  "city:city.mishima.shizuoka.jp/page/32302.html",
+                      "url":  "https://www.city.mishima.shizuoka.jp/page/32302.html",
+                      "title":  "【三島市女性デジタル人材育成業務委託】公募型プロポーザルの実施",
+                      "org":  "三島市",
+                      "source":  "三島市HP",
                       "tags":  [
-                                   "Web・IT",
-                                   "デザイン・広報・映像"
+                                   "Web・IT"
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "pref:1023732",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukenkou/1023732.html",
-                      "title":  "【募集終了しました】令和2年度静岡県遠隔手話システム環境整備等委託業務について、企画提案を募集します。",
+                      "id":  "city:city.fuji.shizuoka.jp/1015130000/p007723.html",
+                      "url":  "https://www.city.fuji.shizuoka.jp/1015130000/p007723.html",
+                      "title":  "令和8年度 女性のデジタルスキル習得講座業務委託 公募型プロポーザル参加者募集について",
+                      "org":  "富士市",
+                      "source":  "富士市HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.fuji.shizuoka.jp/1015200000/p008177.html",
+                      "url":  "https://www.city.fuji.shizuoka.jp/1015200000/p008177.html",
+                      "title":  "富士市ワンストップ総合窓口システム更新事業業務委託公募型プロポーザルの実施結果について",
+                      "org":  "富士市",
+                      "source":  "富士市HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1082795",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukenkou/1082795.html",
+                      "title":  "令和8年度 静岡県子育てポータルサイト開発等業務企画提案の募集",
                       "org":  "静岡県",
                       "source":  "静岡県HP",
                       "tags":  [
@@ -1125,33 +1400,7 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/wakuwaku/index.htm",
-                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/wakuwaku/index.htm",
-                      "title":  "令和8年度 市民文化センターわくわくプロジェクト開催業務委託に係る公募型プロポーザル",
-                      "org":  "沼津市",
-                      "source":  "沼津市HP",
-                      "tags":  [
-                                   "イベント"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "city:city.shizuoka.lg.jp/s9328/danjo/s012300.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s9328/danjo/s012300.html",
-                      "title":  "【選定結果の公表】公募型プロポーザル「静岡市女性デジタル人材育成事業」",
-                      "org":  "静岡市",
-                      "source":  "静岡市HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
                       "id":  "pref:1085337",
@@ -1165,90 +1414,26 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "pref:1082795",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukenkou/1082795.html",
-                      "title":  "令和8年度 静岡県子育てポータルサイト開発等業務企画提案の募集",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1083005",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1083005.html",
-                      "title":  "令和8年度AI活用推進支援業務委託に係るプロポーザルの御案内",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "city:city.shizuoka.lg.jp/s2746/s013162.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s2746/s013162.html",
-                      "title":  "【選定結果の公表】公募型プロポーザル「AI活用促進に向けた法人研修業務」",
+                      "id":  "city:city.shizuoka.lg.jp/s9276/s000003.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s9276/s000003.html",
+                      "title":  "【審査結果】公募型プロポーザル「静岡市駿河区広告付窓口番号案内表示システム等導入業務」",
                       "org":  "静岡市",
                       "source":  "静岡市HP",
                       "tags":  [
-                                   "Web・IT"
+                                   "Web・IT",
+                                   "デザイン・広報・映像"
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "city:city.shizuoka.lg.jp/s4523/s013153.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s4523/s013153.html",
-                      "title":  "【選定結果の公表】公募型プロポーザル「令和8年度高齢者デジタルポイント事業実施業務」",
-                      "org":  "静岡市",
-                      "source":  "静岡市HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/kankoportal/index.htm",
-                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/kankoportal/index.htm",
-                      "title":  "「沼津市公式観光ポータルサイト リニューアル業務委託」に係る公募型プロポーザル",
-                      "org":  "沼津市",
-                      "source":  "沼津市HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1083540",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1083540.html",
-                      "title":  "令和8年度静岡県企業立地セミナー等開催業務委託公募型企画提案募集について",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "イベント"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "city:city.shizuoka.lg.jp/s5436/s013055.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s5436/s013055.html",
-                      "title":  "【選定結果の公表】公募型プロポーザル「『静岡市のお茶』ブランド力向上に向けたマーケティング戦略構築等業務」",
+                      "id":  "city:city.shizuoka.lg.jp/s2934/s013104.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s2934/s013104.html",
+                      "title":  "【選定結果の公表】公募型プロポーザル「静岡市移住プロモーション業務」",
                       "org":  "静岡市",
                       "source":  "静岡市HP",
                       "tags":  [
@@ -1256,38 +1441,64 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "pref:1081894",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1081894.html",
-                      "title":  "令和8年度静岡県企業版ふるさと納税マッチング支援業務委託に係る企画提案の募集",
+                      "id":  "pref:1082236",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1082236.html",
+                      "title":  "浜名湖花博2014開催記念庭園の撤去に関する業務委託の入札公告について",
                       "org":  "静岡県",
                       "source":  "静岡県HP",
                       "tags":  [
                                    "イベント"
                                ],
-                      "proposal":  true,
+                      "proposal":  false,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "city:city.shizuoka.lg.jp/s4852/s013878.html",
-                      "url":  "https://www.city.shizuoka.lg.jp/s4852/s013878.html",
-                      "title":  "【質問の回答を掲載しました】インバウンド観光客調査システムの導入に係る情報提供依頼(RFI)の実施",
+                      "id":  "city:city.shizuoka.lg.jp/s2746/s003884.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s2746/s003884.html",
+                      "title":  "【選定結果の公表】公募型プロポーザル「中小企業等DX支援業務(デジタル実装による業務プロセス改善支援)」",
                       "org":  "静岡市",
                       "source":  "静岡市HP",
                       "tags":  [
                                    "Web・IT"
                                ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.shizuoka.lg.jp/s2746/s013101.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s2746/s013101.html",
+                      "title":  "フランスのアンテナショップ「GOEN」への出展者募集",
+                      "org":  "静岡市",
+                      "source":  "静岡市HP",
+                      "tags":  [
+                                   "イベント"
+                               ],
                       "proposal":  false,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/syushokumensetsu/index.htm",
-                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/syushokumensetsu/index.htm",
-                      "title":  "令和8年度 沼津市・清水町合同就職面接会開催事業業務委託に係る公募型プロポーザル",
+                      "id":  "city:city.mishima.shizuoka.jp/page/35603.html",
+                      "url":  "https://www.city.mishima.shizuoka.jp/page/35603.html",
+                      "title":  "【SNS活用プロモーション業務委託】公募型プロポーザル審査結果について",
+                      "org":  "三島市",
+                      "source":  "三島市HP",
+                      "tags":  [
+                                   "デザイン・広報・映像"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2025/shimincollege/index.htm",
+                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/shimincollege/index.htm",
+                      "title":  "令和8年度 沼津市民カレッジ(Proud NUMAZUコース・リベラルアーツコース)開催運営業務委託プロポーザル",
                       "org":  "沼津市",
                       "source":  "沼津市HP",
                       "tags":  [
@@ -1295,33 +1506,7 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1054305",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/1047032/1054305.html",
-                      "title":  "令和5年度ふじのくに国際高校一日体験入学支援業務委託企画提案募集について",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "イベント"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/kaigo_event/index.htm",
-                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/kaigo_event/index.htm",
-                      "title":  "令和8年度沼津市在宅医療・介護連携推進事業普及啓発イベント開催業務委託契約候補者選定に係るプロポーザル",
-                      "org":  "沼津市",
-                      "source":  "沼津市HP",
-                      "tags":  [
-                                   "イベント"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
                       "id":  "city:city.shizuoka.lg.jp/s2746/s003750.html",
@@ -1334,59 +1519,86 @@
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "city:city.fuji.shizuoka.jp/1015200000/p008177.html",
-                      "url":  "https://www.city.fuji.shizuoka.jp/1015200000/p008177.html",
-                      "title":  "富士市ワンストップ総合窓口システム更新事業業務委託公募型プロポーザルの実施結果について",
-                      "org":  "富士市",
-                      "source":  "富士市HP",
+                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2025/jidouunten3/index.htm",
+                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2025/jidouunten3/index.htm",
+                      "title":  "令和7年度 沼津市自動運転路車協調システム試行業務委託に係るプロポーザル",
+                      "org":  "沼津市",
+                      "source":  "沼津市HP",
                       "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1082215",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1082215.html",
-                      "title":  "令和8年度静岡県外部デジタル人材確保に向けた市町伴走支援業務委託に係る企画提案の募集",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
-                                   "Web・IT"
-                               ],
-                      "proposal":  true,
-                      "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
-                  },
-                  {
-                      "id":  "pref:1077990",
-                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/1077988/1077990.html",
-                      "title":  "(募集終了)令和7年度静岡県職員募集総合案内等制作業務委託 企画提案の募集",
-                      "org":  "静岡県",
-                      "source":  "静岡県HP",
-                      "tags":  [
+                                   "Web・IT",
                                    "デザイン・広報・映像"
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
                   },
                   {
-                      "id":  "city:city.numazu.shizuoka.jp/business/proposal/2026/kodomobunka/index.htm",
-                      "url":  "https://www.city.numazu.shizuoka.jp/business/proposal/2026/kodomobunka/index.htm",
-                      "title":  "令和8年度 子供文化芸術体験事業開催業務委託に係る公募型プロポーザル",
-                      "org":  "沼津市",
-                      "source":  "沼津市HP",
+                      "id":  "pref:1082564",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1082564.html",
+                      "title":  "令和8年度行政手続のDX計画策定支援業務委託に係る企画提案の募集",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1081546",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukurashi/1081546.html",
+                      "title":  "令和8年度静岡まるごと移住フェア運営補助業務の企画提案を募集します!",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
                       "tags":  [
                                    "イベント"
                                ],
                       "proposal":  true,
                       "since":  "2026-11-26",
-                      "lastCheck":  "2026-11-26"
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1086565",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsukeizaisangyou/1086565.html",
+                      "title":  "H2\u0026FC EXPOブース設営業務委託公募型企画提案募集について",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "イベント"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "pref:1081894",
+                      "url":  "https://www.pref.shizuoka.jp/kensei/nyusatsukobai/nyusatsuchiji/1081894.html",
+                      "title":  "令和8年度静岡県企業版ふるさと納税マッチング支援業務委託に係る企画提案の募集",
+                      "org":  "静岡県",
+                      "source":  "静岡県HP",
+                      "tags":  [
+                                   "イベント"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
+                  },
+                  {
+                      "id":  "city:city.shizuoka.lg.jp/s4523/s013153.html",
+                      "url":  "https://www.city.shizuoka.lg.jp/s4523/s013153.html",
+                      "title":  "【選定結果の公表】公募型プロポーザル「令和8年度高齢者デジタルポイント事業実施業務」",
+                      "org":  "静岡市",
+                      "source":  "静岡市HP",
+                      "tags":  [
+                                   "Web・IT"
+                               ],
+                      "proposal":  true,
+                      "since":  "2026-11-26",
+                      "lastCheck":  ""
                   }
               ],
     "checked":  {
@@ -1402,6 +1614,20 @@
                     "city:city.fuji.shizuoka.jp/1040050000/p007745.html":  "2026-11-26",
                     "city:city.fujinomiya.lg.jp/1010100000/p004124.html":  "2026-11-26",
                     "city:city.fukuroi.shizuoka.jp/soshiki/29/1/15073.html":  "2026-11-26",
+                    "city:city.mishima.shizuoka.jp/page/32302.html":  "2026-11-26",
+                    "city:city.mishima.shizuoka.jp/page/35603.html":  "2026-11-26",
+                    "city:city.numazu.shizuoka.jp/business/proposal/2025/bpr/index.htm":  "2026-11-26",
+                    "city:city.numazu.shizuoka.jp/business/proposal/2025/bukkakoutou/index.htm":  "2026-11-26",
+                    "city:city.numazu.shizuoka.jp/business/proposal/2025/cio/index.htm":  "2026-11-26",
+                    "city:city.numazu.shizuoka.jp/business/proposal/2025/cyclestation/index.htm":  "2026-11-26",
+                    "city:city.numazu.shizuoka.jp/business/proposal/2025/followup/index.htm":  "2026-11-26",
+                    "city:city.numazu.shizuoka.jp/business/proposal/2025/jidouunten3/index.htm":  "2026-11-26",
+                    "city:city.numazu.shizuoka.jp/business/proposal/2025/kodomonoibasho/index.htm":  "2026-11-26",
+                    "city:city.numazu.shizuoka.jp/business/proposal/2025/madoguchi/index.htm":  "2026-11-26",
+                    "city:city.numazu.shizuoka.jp/business/proposal/2025/naibusystem/index.htm":  "2026-11-26",
+                    "city:city.numazu.shizuoka.jp/business/proposal/2025/roudoufukushi/index.htm":  "2026-11-26",
+                    "city:city.numazu.shizuoka.jp/business/proposal/2025/shimincollege/index.htm":  "2026-11-26",
+                    "city:city.numazu.shizuoka.jp/business/proposal/2025/shushoku/index.htm":  "2026-11-26",
                     "city:city.numazu.shizuoka.jp/business/proposal/2026/business_start/index.htm":  "2026-11-26",
                     "city:city.numazu.shizuoka.jp/business/proposal/2026/deai/index.htm":  "2026-11-26",
                     "city:city.numazu.shizuoka.jp/business/proposal/2026/followup/index.htm":  "2026-11-26",
