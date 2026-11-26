@@ -49,10 +49,13 @@ function Test-Keyword([string]$text, [string]$kw) {
     return $text.Contains($kw)
 }
 
-function Get-Tags([string]$text) {
+function Get-Tags([string]$text, [string]$title = '') {
     $t = ConvertTo-Norm $text
-    # 公告文の定型句(電子入札・ホームページに掲載 など)で分野が誤判定されないよう除去
-    $t = [regex]::Replace($t, '電子(入札|調達|申請|契約|メール|データ|納品|媒体)(システム)?|入札(情報)?(公開)?システム|(ホームページ|ウェブサイト|Webサイト|サイト)(に|で|から|より|上|へ|を|等)|サイト(内検索|マップ|ポリシー|について|の使い方)|このサイト|PDF|(?<![A-Za-z])KB(?![A-Za-z])', ' ')
+    # 案件名に「工事」などを含むものは対象外(本文に出てくるだけなら除外しない)
+    $tt = ConvertTo-Norm $(if ($title) { $title } else { $text })
+    foreach ($ex in $config.excludeTitleKeywords) { if (Test-Keyword $tt $ex) { return @() } }
+    # 公告文の定型句(電子入札・ホームページに掲載 など)やサイトのメニュー文言で分野が誤判定されないよう除去
+    $t = [regex]::Replace($t, '電子入札ポータル(サイト)?|電子(入札|調達|申請|契約|メール|データ|納品|媒体)(システム)?|入札(情報)?(公開)?システム|(ホームページ|ウェブサイト|Webサイト|サイト)(に|で|から|より|上|へ|を|等)|サイト(内検索|マップ|ポリシー|について|の使い方|ナビ)|このサイト|公式SNS|SNS(一覧|アカウント|で共有|でシェア)|PDF|(?<![A-Za-z])KB(?![A-Za-z])', ' ')
     foreach ($ex in $config.excludeKeywords) { if (Test-Keyword $t $ex) { return @() } }
     $tags = @()
     foreach ($tag in $config.tags) {
@@ -349,7 +352,7 @@ try {
             # 既知の案件: 詳細は再取得せず、タイトル(募集終了表示など)と分野だけ更新
             $items[$id].title = $title
             $items[$id].closed = $closed
-            $items[$id].tags = @(Get-Tags ($title + ' ' + $items[$id].summary))
+            $items[$id].tags = @(Get-Tags ($title + ' ' + $items[$id].summary) $title)
             continue
         }
         if ($closed -or $seenIds.ContainsKey($id)) {
@@ -374,7 +377,7 @@ try {
         $org = $(if ($om.Success) { ConvertTo-Norm $om.Groups[1].Value.Trim() } else { '静岡県' })
         $gi = $text.IndexOf('概要')
         $summarySrc = $(if ($gi -ge 0) { $text.Substring($gi + 2) } else { $text })
-        $tags = @(Get-Tags ($title + ' ' + (Get-Summary $summarySrc 300)))
+        $tags = @(Get-Tags ($title + ' ' + (Get-Summary $summarySrc 300)) $title)
         $obj = [pscustomobject][ordered]@{
             id        = $id
             source    = '静岡県HP'
@@ -481,7 +484,7 @@ foreach ($c in $config.cities) {
             if ($items.ContainsKey($id)) {
                 $items[$id].title = $title
                 $items[$id].closed = ($closed -or $items[$id].closed)
-                $items[$id].tags = @(Get-Tags ($title + ' ' + $items[$id].summary))
+                $items[$id].tags = @(Get-Tags ($title + ' ' + $items[$id].summary) $title)
                 continue
             }
             if ($closed -or $seenIds.ContainsKey($id)) {
@@ -504,7 +507,7 @@ foreach ($c in $config.cities) {
                 org       = $c.name
                 city      = $c.name
                 kind      = ''
-                tags      = @(Get-Tags ($title + ' ' + (Get-Summary $text 300)))
+                tags      = @(Get-Tags ($title + ' ' + (Get-Summary $text 300)) $title)
                 proposal  = (Test-Proposal ($title + ' ' + $text))
                 url       = $d.url
                 published = $pg.pub

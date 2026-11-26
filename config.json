@@ -111,6 +111,118 @@
       ],
       "linkPattern": "^https://www\\.shizuoka-pho\\.jp/auction-information/r[0-9-]+/[^/]+/index\\.html$",
       "detailStart": "[印刷ボタン機能]"
+    },
+    {
+      "name": "熱海市",
+      "lists": [
+        "https://www.city.atami.lg.jp/jigyosha/nyusatsu/1001735/index.html",
+        "https://www.city.atami.lg.jp/jigyosha/nyusatsu/index.html"
+      ],
+      "linkPattern": "^https://www\\.city\\.atami\\.lg\\.jp/jigyosha/nyusatsu/(1001735/)?\\d+\\.html$",
+      "titlePattern": "プロポーザル|企画提案|コンペ|公募|委託|事業者募集|情報提供依頼"
+    },
+    {
+      "name": "磐田市",
+      "lists": ["https://www.city.iwata.shizuoka.jp/sangyou_business/nyuusatsu_keiyaku/1006361/index.html"],
+      "linkPattern": "^https://www\\.city\\.iwata\\.shizuoka\\.jp/sangyou_business/nyuusatsu_keiyaku/1006361/\\d+(\\.html|/index\\.html)$"
+    },
+    {
+      "name": "掛川市",
+      "lists": [
+        "https://www.city.kakegawa.shizuoka.jp/gyosei/sangyo/nyusatsu/",
+        "https://www.city.kakegawa.shizuoka.jp/rss-gyosei/"
+      ],
+      "linkPattern": "^https://www\\.city\\.kakegawa\\.shizuoka\\.jp/gyosei/docs/\\d+\\.html$",
+      "titlePattern": "プロポーザル|企画提案|コンペ|公募型|業務委託|受託者|事業者募集|事業者を募集"
+    },
+    {
+      "name": "御殿場市",
+      "lists": ["https://www.city.gotemba.lg.jp/bid/"],
+      "linkPattern": "^https://www\\.city\\.gotemba\\.lg\\.jp/bid/bid-(p-info|1)/[^/]+/\\d+\\.html$",
+      "titlePattern": "プロポーザル|公告|委託|募集"
+    },
+    {
+      "name": "下田市",
+      "lists": [
+        "https://www.city.shimoda.shizuoka.jp/category/koukokutyuunoannken/index.html",
+        "https://www.city.shimoda.shizuoka.jp/contents/newinfo/index.html"
+      ],
+      "linkPattern": "^https://www\\.city\\.shimoda\\.shizuoka\\.jp/category/[^/]+/\\d+\\.html$",
+      "titlePattern": "^(?!.*(規則|入札結果|名簿)).*(プロポーザル|企画提案|コンペ|公募型|業務委託|受託者|事業者募集|事業者を募集|入札公告|競争入札|企画を募集|公告)",
+      "allowEmpty": true
+    },
+    {
+      "name": "裾野市",
+      "lists": ["https://www.city.susono.shizuoka.jp/jigyosha/"],
+      "linkPattern": "^https://www\\.city\\.susono\\.shizuoka\\.jp/jigyosha/\\d+\\.html$",
+      "titlePattern": "^(?!.*(入札結果|名簿|規則|様式|留意点)).*(プロポーザル|企画提案|コンペ|公募|業務委託|受託|事業者募集|事業者を募集|入札公告|競争入札|指定管理者)"
+    },
+    {
+      "name": "伊豆市",
+      "lists": [
+        "https://www.city.izu.shizuoka.jp/shigoto_sangyo/1/3/index.html",
+        "https://www.city.izu.shizuoka.jp/shigoto_sangyo/1/2/index.html"
+      ],
+      "linkPattern": "^https://www\\.city\\.izu\\.shizuoka\\.jp/shigoto_sangyo/1/[23]/\\d+\\.html$",
+      "titlePattern": "^(?!.*予定日)",
+      "allowEmpty": true
+    },
+    {
+      "name": "伊豆の国市",
+      "lists": ["https://www.city.izunokuni.shizuoka.jp/zaimu/shisei/nyusatsu/index.html"],
+      "linkPattern": "^https://www\\.city\\.izunokuni\\.shizuoka\\.jp/(?!.*/documents/)[^#?]+\\.html$",
+      "titlePattern": "公告|プロポーザル|企画提案|コンペ|公募"
+    },
+    {
+      "name": "御前崎市",
+      "lists": [
+        "https://www.city.omaezaki.shizuoka.jp/kurashi/important/index.html",
+        "https://www.city.omaezaki.shizuoka.jp/kurashi/business/oshirase/index.html"
+      ],
+      "linkPattern": "^https://www\\.city\\.omaezaki\\.shizuoka\\.jp/kurashi/(important|business/oshirase)/\\d+\\.html$",
+      "titlePattern": "^(?!.*(入札結果|審査結果|選定結果|結果について|結果の公表)).*(プロポーザル|企画提案|コンペ|公募型|業務委託|受託者|事業者募集|事業者を募集|事業者の募集|入札公告|一般競争入札|情報提供依頼|RFI)",
+      "updateJson": "https://www.city.omaezaki.shizuoka.jp/index.update.json",
+      "updateNamePattern": "プロポーザル|企画提案|コンペ|公募型|業務委託|受託者|事業者募集|事業者を募集|入札公告|一般競争入札",
+      "allowEmpty": true
+    },
+    {
+      "name": "菊川市",
+      "lists": [
+        "https://www.city.kikugawa.shizuoka.jp/soumu/proposal/proposal.html",
+        "https://www.city.kikugawa.shizuoka.jp/bosyuu.html",
+        "https://www.city.kikugawa.shizuoka.jp/shinchaku.html"
+      ],
+      "linkPattern": "^https://www\\.city\\.kikugawa\\.shizuoka\\.jp/(?!about_site/|mobile/|shisei/shiyakushoannai/|faq/)[^?#]+\\.html$",
+      "titlePattern": "^(?!.*(入札結果|審査結果|選定結果|結果について|結果の公表)).*(プロポーザル|企画提案|コンペ|公募型|業務委託|受託者|事業者募集|事業者を募集|事業者の募集|入札公告|一般競争入札|情報提供依頼|RFI)",
+      "allowEmpty": true
+    },
+    {
+      "name": "牧之原市",
+      "lists": [
+        "https://www.city.makinohara.shizuoka.jp/soshiki/list8-1.html",
+        "https://www.city.makinohara.shizuoka.jp/life/4/18/79/"
+      ],
+      "linkPattern": "^https://www\\.city\\.makinohara\\.shizuoka\\.jp/soshiki/\\d+/\\d+\\.html$",
+      "titlePattern": "^(?!.*(入札結果|審査結果|選定結果|結果について|結果の公表)).*(プロポーザル|企画提案|コンペ|公募型|業務委託|受託者|事業者募集|事業者を募集|事業者の募集|入札公告|一般競争入札|情報提供依頼|RFI)",
+      "allowEmpty": true
+    },
+    {
+      "name": "長泉町",
+      "lists": ["https://www.town.nagaizumi.lg.jp/soshiki/kikaku/11/index.html"],
+      "linkPattern": "^https://www\\.town\\.nagaizumi\\.lg\\.jp/soshiki/kikaku/11/\\d+\\.html$",
+      "titlePattern": "^(?!.*(入札結果|公告状況)).*(執行について|プロポーザル|業務委託|入札公告)",
+      "updateJson": "https://www.town.nagaizumi.lg.jp/index.update.json",
+      "updateNamePattern": "プロポーザル|企画提案|コンペ|公募型|業務委託|受託者|事業者募集|事業者を募集|入札公告|一般競争入札",
+      "allowEmpty": true
+    },
+    {
+      "name": "函南町",
+      "lists": [
+        "https://www.town.kannami.shizuoka.jp/gyosei/nyusatsu_keiyaku/4/index.html",
+        "https://www.town.kannami.shizuoka.jp/gyosei/nyusatsu_keiyaku/1/index.html"
+      ],
+      "linkPattern": "^https://www\\.town\\.kannami\\.shizuoka\\.jp/gyosei/nyusatsu_keiyaku/[14]/\\d+\\.html$",
+      "allowEmpty": true
     }
   ],
   "newDays": 7,
@@ -139,5 +251,6 @@
     }
   ],
   "excludeKeywords": ["清掃", "警備", "燃料", "給食", "電力", "電気の調達", "除草", "草刈", "灯油", "重油", "ガソリン", "内視鏡", "手術", "患者", "輸血", "顕微鏡", "放射線", "MRI", "CT装置", "レーザー", "電子ジャーナル", "子宮", "眼科", "検体", "透析", "超音波", "医療情報"],
+  "excludeTitleKeywords": ["工事", "入札結果", "入札参加資格", "発注予定", "発注見通し"],
   "proposalKeywords": ["企画提案", "プロポーザル", "コンペ", "企画競争", "公募型"]
 }
