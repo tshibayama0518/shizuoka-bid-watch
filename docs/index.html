@@ -111,7 +111,7 @@ let DATA = null;
 function isClosed(it){ return it.closed || (it.deadline ? daysFrom(it.deadline) < 0 : daysFrom(it.published) < -45); }
 function isNew(it){ return daysFrom(it.published) >= -DATA.newDays; }
 
-fetch('data.json', {cache:'no-store'}).then(r => r.json()).then(d => {
+fetch('data.json?t=' + Date.now(), {cache:'no-store'}).then(r => r.json()).then(d => {
   DATA = d;
   d.items = d.items.filter(it => (it.tags || []).length > 0);
   $('#nd').textContent = d.newDays;
