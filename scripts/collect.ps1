@@ -119,9 +119,16 @@ if (Test-Path $dataPath) {
 }
 $cutoff = $Now.AddDays(-[int]$config.keepDays).ToString('yyyy-MM-dd')
 $errors = @()
-$oldIds = @{}; foreach ($k in $items.Keys) { $oldIds[$k] = 1 }
+# 一度取得した案件ID(期限切れで削除した案件を再取得・再通知しないために保持)
+$seenIds = @{}
+if ($old -and $old.seen) { foreach ($p in $old.seen.PSObject.Properties) { $seenIds[$p.Name] = $p.Value } }
+foreach ($k in $items.Keys) { if (-not $seenIds.ContainsKey($k)) { $seenIds[$k] = $Today } }
+$oldIds = @{}; foreach ($k in $seenIds.Keys) { $oldIds[$k] = 1 }
+$closedRe = '募集終了|受付終了|終了しました|【終了】|結果|事業者決定|受託者決定|決定しました|決定について|選定しました|中止|締め切りました|締切りました'
 
 function Add-Item($obj) {
+    # 期限切れ等で削除済みの案件は再登録しない
+    if (-not $script:items.ContainsKey($obj.id) -and $script:seenIds.ContainsKey($obj.id)) { return }
     if ($script:items.ContainsKey($obj.id)) {
         $prev = $script:items[$obj.id]
         $obj.firstSeen = $prev.firstSeen
@@ -204,7 +211,7 @@ try {
         if ($seen.ContainsKey($d.url)) { continue }; $seen[$d.url] = 1
         $id = 'pref:' + ([regex]::Match($d.url, '(\d+)\.html$').Groups[1].Value)
         $title = ConvertTo-Norm ([System.Net.WebUtility]::HtmlDecode($d.title))
-        $closed = [bool]($title -match '募集終了|受付終了|終了しました|結果|事業者決定|受託者決定|決定しました|選定しました|中止')
+        $closed = [bool]($title -match $closedRe)
         if ($items.ContainsKey($id)) {
             # 既知の案件: 詳細は再取得せず、タイトル(募集終了表示など)と分野だけ更新
             $items[$id].title = $title
@@ -212,7 +219,7 @@ try {
             $items[$id].tags = @(Get-Tags ($title + ' ' + $items[$id].summary))
             continue
         }
-        if ($closed) { continue }
+        if ($closed -or $seenIds.ContainsKey($id)) { continue }
         try {
             $h = Get-Html $d.url
             Start-Sleep -Milliseconds 400
@@ -256,13 +263,116 @@ try {
     Write-Warning $errors[-1]
 }
 
-# ---------- 整理・重複除去 ----------
-$all = @($items.Values | Where-Object { $_.published -ge $cutoff })
+# ---------- 3. 市のサイト (静岡市・焼津市・藤枝市・富士市 など config.cities) ----------
+function Read-DetailPage([string]$url) {
+    $h = Get-Html $url
+    $dm = [regex]::Match($h, '(?:更新日|掲載日|公開日|公開開始日|作成日|登録日)[^0-9令]{0,40}?(?:(\d{4})年|令和\s*(\d{1,2})\s*年)\s*(\d{1,2})月\s*(\d{1,2})日')
+    $pub = $Today
+    if ($dm.Success) {
+        $y = $(if ($dm.Groups[1].Success) { [int]$dm.Groups[1].Value } else { 2018 + [int]$dm.Groups[2].Value })
+        $pub = '{0}-{1:00}-{2:00}' -f $y, [int]$dm.Groups[3].Value, [int]$dm.Groups[4].Value
+    }
+    $s = $h.IndexOf('<h1'); if ($s -lt 0) { $s = 0 }
+    $e = -1
+    foreach ($mk in 'このページに関するお問い合わせ', 'このページに関するお問合せ', 'お問い合わせ先', 'id="footer"', 'class="footer') {
+        $e = $h.IndexOf($mk, $s); if ($e -gt 0) { break }
+    }
+    if ($e -lt 0) { $e = $h.Length }
+    $text = ConvertFrom-Html $h.Substring($s, $e - $s)
+    $text = [regex]::Replace($text, 'いいね[!！]|ページID\s*[:：]?\s*\d+|(?:最終)?更新日\s*[:：]?\s*\S+日|大きな文字で印刷|印刷する|印刷', ' ').Trim()
+    return [pscustomobject]@{ pub = $pub; text = $text }
+}
+
+foreach ($c in $config.cities) {
+    try {
+        $links = @()
+        foreach ($lu in @($c.lists)) {
+            try {
+                $h = Get-Html $lu
+                $s = $h.IndexOf($(if ($c.bodyStart) { $c.bodyStart } else { '<h1' })); if ($s -lt 0) { $s = 0 }
+                $n = 0
+                foreach ($m in [regex]::Matches($h.Substring($s), '<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>')) {
+                    $href = ([Uri]::new([Uri]$lu, [System.Net.WebUtility]::HtmlDecode($m.Groups[1].Value))).AbsoluteUri
+                    if ($href -notmatch $c.linkPattern) { continue }
+                    $t = ([regex]::Replace($m.Groups[2].Value, '<[^>]+>', '')).Trim()
+                    if ($t.Length -lt 4) { continue }
+                    $links += [pscustomobject]@{ url = $href; title = $t }
+                    $n++; if ($n -ge 100) { break }
+                }
+                Start-Sleep -Milliseconds 400
+            } catch { $errors += "$($c.name)の一覧取得に失敗: $lu"; Write-Warning $errors[-1] }
+        }
+        if ($c.updateJson) {
+            # 最近更新されたページ一覧(JSON)から、案件らしいページ名のものを拾う
+            try {
+                $j = (Get-Html $c.updateJson) | ConvertFrom-Json
+                foreach ($p in @($j)) { if ($p.page_name -match $c.updateNamePattern) { $links += [pscustomobject]@{ url = $p.url; title = $p.page_name } } }
+            } catch { $errors += "$($c.name)の更新情報取得に失敗"; Write-Warning $errors[-1] }
+        }
+        $uniq = @{}
+        $cnt = 0
+        foreach ($d in $links) {
+            if ($uniq.ContainsKey($d.url)) { continue }; $uniq[$d.url] = 1
+            $id = 'city:' + ($d.url -replace '^https?://(www\.)?', '')
+            $title = ConvertTo-Norm ([System.Net.WebUtility]::HtmlDecode($d.title))
+            $title = [regex]::Replace($title, '\s+', ' ').Trim()
+            $closed = [bool]($title -match $closedRe)
+            if ($items.ContainsKey($id)) {
+                $items[$id].title = $title
+                $items[$id].closed = $closed
+                $items[$id].tags = @(Get-Tags ($title + ' ' + $items[$id].summary))
+                continue
+            }
+            if ($closed -or $seenIds.ContainsKey($id)) { continue }
+            try { $pg = Read-DetailPage $d.url; Start-Sleep -Milliseconds 400 }
+            catch { $errors += "$($c.name)の詳細取得に失敗: $($d.url)"; Write-Warning $errors[-1]; continue }
+            if ($pg.pub -lt $cutoff) { continue }
+            $text = $pg.text
+            $ht = ConvertTo-Norm $text
+            if ($ht.StartsWith($title)) { $text = $ht.Substring($title.Length).Trim() }
+            $items[$id] = [pscustomobject][ordered]@{
+                id        = $id
+                source    = "$($c.name)HP"
+                title     = $title
+                org       = $c.name
+                city      = $c.name
+                kind      = ''
+                tags      = @(Get-Tags ($title + ' ' + (Get-Summary $text 300)))
+                proposal  = (Test-Proposal ($title + ' ' + $text))
+                url       = $d.url
+                published = $pg.pub
+                deadline  = Get-Deadline $text $pg.pub
+                summary   = Get-Summary $text
+                closed    = $false
+                firstSeen = $Today
+            }
+            $cnt++
+        }
+        Write-Host "$($c.name): 候補 $($uniq.Count) 件 / 新規取得 $cnt 件"
+    } catch {
+        $errors += "$($c.name)の取得に失敗: $($_.Exception.Message)"
+        Write-Warning $errors[-1]
+    }
+}
+
+# ---------- 整理・期限切れ削除・重複除去 ----------
+foreach ($k in $items.Keys) { if (-not $seenIds.ContainsKey($k)) { $seenIds[$k] = $Today } }
+$staleDate = $Now.AddDays(-[int]$config.noDeadlineDays).ToString('yyyy-MM-dd')
+$all = @($items.Values | Where-Object {
+        $_.published -ge $cutoff -and
+        -not $_.closed -and
+        $(if ($_.deadline) { $_.deadline -ge $Today } else { $_.published -ge $staleDate })
+    })
+Write-Host "期限切れ・終了で削除: $($items.Count - $all.Count) 件"
 # 設定(キーワード)変更を過去分にも反映
 foreach ($it in $all) { if ($it.source -eq '官公需ポータル') { $it.tags = @(Get-Tags $it.title) } }
-$prefTitles = @{}
-foreach ($it in $all) { if ($it.source -eq '静岡県HP') { $prefTitles[(Get-NormTitle $it.title)] = 1 } }
-$all = @($all | Where-Object { $_.source -eq '静岡県HP' -or -not $prefTitles.ContainsKey((Get-NormTitle $_.title)) })
+# 県・市のサイトと官公需ポータルで重複する案件は、県・市のサイト側を残す
+$siteTitles = @{}
+foreach ($it in $all) { if ($it.source -ne '官公需ポータル') { $siteTitles[(Get-NormTitle $it.title)] = 1 } }
+$all = @($all | Where-Object { $_.source -ne '官公需ポータル' -or -not $siteTitles.ContainsKey((Get-NormTitle $_.title)) })
+# 既出IDの記録は keepDays を過ぎたら忘れる
+$seenOut = [ordered]@{}
+foreach ($k in ($seenIds.Keys | Sort-Object)) { if ($seenIds[$k] -ge $cutoff) { $seenOut[$k] = $seenIds[$k] } }
 $all = @($all | Sort-Object -Property @{Expression = 'published'; Descending = $true }, @{Expression = 'id'; Descending = $false })
 
 $out = [ordered]@{
@@ -271,6 +381,7 @@ $out = [ordered]@{
     tags      = @($config.tags | ForEach-Object { $_.name })
     errors    = $errors
     items     = $all
+    seen      = $seenOut
 }
 New-Item -ItemType Directory -Force (Join-Path $Root 'docs') | Out-Null
 [IO.File]::WriteAllText($dataPath, (ConvertTo-Json -InputObject $out -Depth 6), $Utf8NoBom)

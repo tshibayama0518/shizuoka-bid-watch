@@ -1,6 +1,35 @@
 {
   "siteUrl": "https://tshibayama0518.github.io/shizuoka-bid-watch/",
   "keepDays": 400,
+  "noDeadlineDays": 45,
+  "cities": [
+    {
+      "name": "静岡市",
+      "lists": ["https://www.city.shizuoka.lg.jp/p000358.html"],
+      "linkPattern": "^https://www\\.city\\.shizuoka\\.lg\\.jp/s\\d+/(?:[a-z0-9_-]+/)*s\\d+\\.html$"
+    },
+    {
+      "name": "焼津市",
+      "lists": [
+        "https://www.city.yaizu.lg.jp/business/bid-contract/info/proposal/index.html",
+        "https://www.city.yaizu.lg.jp/business/bid-contract/info/ekimu-bid/index.html"
+      ],
+      "linkPattern": "^https://www\\.city\\.yaizu\\.lg\\.jp/business/bid-contract/info/[a-z-]+/(?!index)[^/]+\\.html$"
+    },
+    {
+      "name": "藤枝市",
+      "lists": ["https://www.city.fujieda.shizuoka.jp/soshiki/somu/keiyakukensa/gyomu/2/nyusatukoukoku-itaku/index.html"],
+      "linkPattern": "/nyusatukoukoku-itaku/\\d+\\.html$",
+      "updateJson": "https://www.city.fujieda.shizuoka.jp/index.update.json",
+      "updateNamePattern": "プロポーザル|企画提案|コンペ|公募型|業務委託|受託者|事業者募集|事業者を募集|入札公告|一般競争入札"
+    },
+    {
+      "name": "富士市",
+      "lists": ["https://www.city.fuji.shizuoka.jp/shigoto/nyusatsu/gyomuitaku/boshuchu/index.html"],
+      "linkPattern": "^https://www\\.city\\.fuji\\.shizuoka\\.jp/\\d{10}/p\\d+\\.html$",
+      "bodyStart": "tmp_contents"
+    }
+  ],
   "newDays": 7,
   "kkj": {
     "lgCode": "22",
