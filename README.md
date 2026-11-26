@@ -20,6 +20,13 @@
 | `docs/data.json` / `docs/feed.xml` | 収集結果（自動更新） |
 | `.github/workflows/update.yml` | 毎朝の自動実行設定 |
 
+## 一覧の見方（現在の運用: Private リポジトリ）
+
+収集は GitHub Actions が毎朝 6:30 に自動で行います。見るときは **`open-list.cmd` をダブルクリック** してください。
+GitHub から最新データを取り込み、ブラウザで一覧（http://localhost:8765/）が開きます。黒いウィンドウを閉じると終了します。
+
+> リポジトリを Public にするか有料プランにすれば、GitHub Pages で URL から直接見られるようになります（下記手順 3）。
+
 ## クラウドで動かす手順（GitHub）
 
 1. GitHub で新しいリポジトリを作成（GitHub Pages を無料で使う場合は **Public**）
