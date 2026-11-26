@@ -21,6 +21,8 @@ jobs:
 
       - name: 案件を収集
         shell: pwsh
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: ./scripts/collect.ps1
 
       - name: 変更をコミット

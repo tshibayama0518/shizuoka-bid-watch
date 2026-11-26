@@ -119,6 +119,7 @@ if (Test-Path $dataPath) {
 }
 $cutoff = $Now.AddDays(-[int]$config.keepDays).ToString('yyyy-MM-dd')
 $errors = @()
+$oldIds = @{}; foreach ($k in $items.Keys) { $oldIds[$k] = 1 }
 
 function Add-Item($obj) {
     if ($script:items.ContainsKey($obj.id)) {
@@ -289,6 +290,35 @@ foreach ($it in ($all | Where-Object { @($_.tags).Count -gt 0 -and -not $_.close
 }
 [void]$sb.AppendLine('</channel></rss>')
 [IO.File]::WriteAllText((Join-Path $Root 'docs/feed.xml'), $sb.ToString(), $Utf8NoBom)
+
+# ---------- 新着のプッシュ通知 (ntfy) ----------
+# 環境変数 NTFY_TOPIC が設定されているときだけ送信。初回実行(既存データなし)は送らない
+$newItems = @($all | Where-Object { @($_.tags).Count -gt 0 -and -not $_.closed -and -not $oldIds.ContainsKey($_.id) })
+Write-Host "新着: $($newItems.Count) 件"
+if ($env:NTFY_TOPIC -and $newItems.Count -gt 0 -and $oldIds.Count -gt 0) {
+    $lines = @()
+    foreach ($it in ($newItems | Select-Object -First 8)) {
+        $line = "・$($it.title)（$($it.org)）"
+        if ($it.deadline) { $line += " 締切目安 $($it.deadline.Substring(5).Replace('-', '/'))" }
+        $lines += $line
+    }
+    if ($newItems.Count -gt 8) { $lines += "ほか $($newItems.Count - 8) 件" }
+    $prop = @($newItems | Where-Object { $_.proposal }).Count
+    $title = "静岡 新着案件 $($newItems.Count) 件"
+    if ($prop -gt 0) { $title += "（プロポーザル $prop 件）" }
+    $payload = [ordered]@{
+        topic   = $env:NTFY_TOPIC
+        title   = $title
+        message = ($lines -join "`n")
+        tags    = @('bell')
+        click   = $config.siteUrl
+    }
+    try {
+        $body = [System.Text.Encoding]::UTF8.GetBytes((ConvertTo-Json -InputObject $payload -Depth 3))
+        Invoke-RestMethod -Method Post -Uri 'https://ntfy.sh/' -Body $body -ContentType 'application/json; charset=utf-8' -TimeoutSec 30 | Out-Null
+        Write-Host '通知を送信しました'
+    } catch { Write-Warning "通知の送信に失敗: $($_.Exception.Message)" }
+}
 
 $shown = @($all | Where-Object { @($_.tags).Count -gt 0 }).Count
 Write-Host "完了: 表示対象 $shown 件 / 保持 $($all.Count) 件 / エラー $($errors.Count) 件"
