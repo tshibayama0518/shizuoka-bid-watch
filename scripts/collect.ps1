@@ -499,7 +499,8 @@ foreach ($w in @($watch.Values | Sort-Object lastCheck)) {
         if (-not $dm.Success) { $dm = [regex]::Match($h, '(?:(\d{4})年|令和\s*(\d{1,2})\s*年)\s*(\d{1,2})月\s*(\d{1,2})日\s*(?:更新|掲載|公開)') }
         $rdate = $Today
         if ($dm.Success) { $y = $(if ($dm.Groups[1].Success) { [int]$dm.Groups[1].Value } else { 2018 + [int]$dm.Groups[2].Value }); $rdate = '{0}-{1:00}-{2:00}' -f $y, [int]$dm.Groups[3].Value, [int]$dm.Groups[4].Value }
-        $title = [regex]::Replace($w.title, '^(【[^】]*】|\([^)]*(結果|決定)[^)]*\))\s*', '')
+        # 先頭の【選定結果の公表】(事業者決定) などの状態表示だけを外す(【案件名】形式は残す)
+        $title = [regex]::Replace($w.title, '^(【[^】]*(結果|公表|決定|終了|選定|募集|回答)[^】]*】|\([^)]*(結果|決定|終了)[^)]*\))\s*', '')
         $resultMap[$w.id] = [pscustomobject][ordered]@{
             id = $w.id; title = $title; org = $w.org; source = $w.source; url = $w.url
             tags = @($w.tags); proposal = [bool]$w.proposal
