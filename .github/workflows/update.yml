@@ -1,0 +1,36 @@
+name: 案件データ更新
+
+on:
+  schedule:
+    - cron: '30 21 * * *'   # 毎日 6:30 (日本時間)
+  workflow_dispatch:         # Actions 画面から手動実行も可能
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 案件を収集
+        shell: pwsh
+        run: ./scripts/collect.ps1
+
+      - name: 変更をコミット
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data.json docs/feed.xml
+          if git diff --cached --quiet; then
+            echo "変更なし"
+          else
+            git commit -m "案件データ更新 $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M')"
+            git push
+          fi

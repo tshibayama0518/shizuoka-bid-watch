@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>静岡コンペ・入札ウォッチ</title>
+<link rel="alternate" type="application/rss+xml" title="静岡県 コンペ・入札ウォッチ" href="feed.xml">
+<style>
+:root{
+  --bg:#f6f7f9; --surface:#fff; --text:#1d2330; --muted:#5f6b7c; --line:#e3e6eb;
+  --accent:#0b6bcb; --accent-soft:#e6f0fb; --new:#d9480f; --new-soft:#fff0e6;
+  --warn:#b42318; --ok:#1a7f37; --chip:#eef1f5;
+  --t1:#7a3fc4; --t1s:#f2eafc; --t2:#0b6bcb; --t2s:#e6f0fb; --t3:#b25e00; --t3s:#fdf1e2;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12151b; --surface:#1b2029; --text:#e6e9ef; --muted:#9aa4b2; --line:#2c333f;
+  --accent:#5aa9ff; --accent-soft:#1c2d44; --new:#ff8a4c; --new-soft:#3a2418;
+  --warn:#ff7b72; --ok:#56d364; --chip:#252c37;
+  --t1:#c9a5ff; --t1s:#2e2244; --t2:#7cbcff; --t2s:#1a2c44; --t3:#ffb35c; --t3s:#3a2a14;
+}}
+:root[data-theme="dark"]{
+  --bg:#12151b; --surface:#1b2029; --text:#e6e9ef; --muted:#9aa4b2; --line:#2c333f;
+  --accent:#5aa9ff; --accent-soft:#1c2d44; --new:#ff8a4c; --new-soft:#3a2418;
+  --warn:#ff7b72; --ok:#56d364; --chip:#252c37;
+  --t1:#c9a5ff; --t1s:#2e2244; --t2:#7cbcff; --t2s:#1a2c44; --t3:#ffb35c; --t3s:#3a2a14;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 system-ui,-apple-system,"Hiragino Sans","Yu Gothic UI","Meiryo",sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:24px 16px 64px}
+header h1{font-size:22px;margin:0 0 4px}
+header p{margin:0;color:var(--muted);font-size:13px}
+header a{color:var(--accent)}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:120px}
+.stat b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:12px}
+.filters{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:10px;position:sticky;top:0;z-index:2}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row label.t{color:var(--muted);font-size:12px;min-width:44px}
+input[type=search]{flex:1;min-width:200px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);font:inherit}
+select{padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);font:inherit}
+.chip{border:1px solid var(--line);background:var(--chip);color:var(--text);border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.toggle{display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer}
+.count{color:var(--muted);font-size:13px;margin:16px 2px 8px}
+.list{display:grid;gap:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.card.closed{opacity:.55}
+.meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted)}
+.badge{border-radius:6px;padding:1px 8px;font-size:12px;font-weight:600}
+.b-new{background:var(--new-soft);color:var(--new)}
+.b-prop{background:var(--accent-soft);color:var(--accent)}
+.b-closed{background:var(--chip);color:var(--muted)}
+.tag{border-radius:6px;padding:1px 8px;font-size:12px}
+.tag0{background:var(--t1s);color:var(--t1)} .tag1{background:var(--t2s);color:var(--t2)} .tag2{background:var(--t3s);color:var(--t3)}
+.card h2{font-size:16px;margin:6px 0 4px;line-height:1.45}
+.card h2 a{color:var(--text);text-decoration:none}
+.card h2 a:hover{color:var(--accent);text-decoration:underline}
+.org{font-size:13px;color:var(--muted)}
+.dl{font-size:13px;font-weight:600}
+.dl.soon{color:var(--warn)} .dl.later{color:var(--ok)} .dl.past{color:var(--muted);font-weight:400}
+.sum{font-size:13px;color:var(--muted);margin:6px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.empty{text-align:center;color:var(--muted);padding:40px}
+.err{background:var(--new-soft);color:var(--new);border-radius:8px;padding:8px 12px;font-size:13px;margin-top:12px}
+footer{margin-top:32px;color:var(--muted);font-size:12px}
+@media (max-width:600px){.stat{min-width:0;flex:1}.row label.t{min-width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>静岡コンペ・入札ウォッチ</h1>
+    <p>静岡県・県内市町などの入札／プロポーザル案件（イベント・Web/IT・デザイン/広報/映像）を毎朝自動収集しています。<span id="updated"></span> ・ <a href="feed.xml">RSS</a></p>
+  </header>
+  <div id="errors"></div>
+  <div class="stats">
+    <div class="stat"><b id="sNew">-</b><span>新着（直近<span id="nd">7</span>日）</span></div>
+    <div class="stat"><b id="sOpen">-</b><span>募集中と思われる</span></div>
+    <div class="stat"><b id="sProp">-</b><span>うちプロポーザル</span></div>
+    <div class="stat"><b id="sSoon">-</b><span>締切7日以内</span></div>
+  </div>
+  <div class="filters">
+    <div class="row"><input type="search" id="q" placeholder="キーワードで絞り込み（例: 動画、浜松市、観光）"></div>
+    <div class="row" id="tagRow"><label class="t">分野</label></div>
+    <div class="row">
+      <label class="t">条件</label>
+      <label class="toggle"><input type="checkbox" id="fNew"> 新着のみ</label>
+      <label class="toggle"><input type="checkbox" id="fProp"> プロポーザル・企画提案のみ</label>
+      <label class="toggle"><input type="checkbox" id="fClosed"> 終了・締切済みも表示</label>
+      <select id="src"><option value="">すべての情報源</option></select>
+      <select id="sort"><option value="pub">掲載日が新しい順</option><option value="dl">締切が近い順</option></select>
+    </div>
+  </div>
+  <div class="count" id="count"></div>
+  <div class="list" id="list"></div>
+  <footer>
+    情報源: <a href="https://www.kkj.go.jp/">官公需情報ポータルサイト</a>（中小企業庁）、<a href="https://www.pref.shizuoka.jp/kensei/nyusatsukobai/index.html">静岡県 入札・公募・公売</a>。<br>
+    「締切目安」は公告文から自動推定した日付です。応募前に必ず原文で日程・参加資格をご確認ください。
+  </footer>
+</div>
+<script>
+const $ = s => document.querySelector(s);
+const state = { tags: new Set() };
+const store = { get(k){try{return localStorage.getItem(k)}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,v)}catch(e){}} };
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today = new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Tokyo'})); today.setHours(0,0,0,0);
+const daysFrom = d => Math.round((new Date(d + 'T00:00:00') - today) / 864e5);
+let DATA = null;
+
+// 締切が読み取れない案件は、掲載から45日経過で終了扱い
+function isClosed(it){ return it.closed || (it.deadline ? daysFrom(it.deadline) < 0 : daysFrom(it.published) < -45); }
+function isNew(it){ return daysFrom(it.published) >= -DATA.newDays; }
+
+fetch('data.json', {cache:'no-store'}).then(r => r.json()).then(d => {
+  DATA = d;
+  d.items = d.items.filter(it => (it.tags || []).length > 0);
+  $('#nd').textContent = d.newDays;
+  $('#updated').textContent = '最終更新: ' + d.updatedAt.replace('T',' ').slice(0,16);
+  if (d.errors && d.errors.length) $('#errors').innerHTML = '<div class="err">一部の取得に失敗しました: ' + d.errors.map(esc).join(' / ') + '</div>';
+  d.tags.forEach((t, i) => {
+    const b = document.createElement('button'); b.className = 'chip'; b.textContent = t; b.setAttribute('aria-pressed','false');
+    b.onclick = () => { state.tags.has(t) ? state.tags.delete(t) : state.tags.add(t); b.setAttribute('aria-pressed', state.tags.has(t)); save(); render(); };
+    b.dataset.tag = t; $('#tagRow').appendChild(b);
+  });
+  [...new Set(d.items.map(it => it.source))].forEach(s => $('#src').insertAdjacentHTML('beforeend', `<option>${esc(s)}</option>`));
+  const open = d.items.filter(it => !isClosed(it));
+  $('#sNew').textContent = d.items.filter(isNew).length;
+  $('#sOpen').textContent = open.length;
+  $('#sProp').textContent = open.filter(it => it.proposal).length;
+  $('#sSoon').textContent = open.filter(it => it.deadline && daysFrom(it.deadline) <= 7).length;
+  load(); render();
+}).catch(e => { $('#list').innerHTML = '<div class="empty">データを読み込めませんでした。</div>'; });
+
+function save(){ store.set('sbw', JSON.stringify({ tags:[...state.tags], fNew:$('#fNew').checked, fProp:$('#fProp').checked, fClosed:$('#fClosed').checked, sort:$('#sort').value })); }
+function load(){
+  try { const s = JSON.parse(store.get('sbw') || '{}');
+    (s.tags||[]).forEach(t => { state.tags.add(t); const b = document.querySelector(`.chip[data-tag="${t}"]`); if (b) b.setAttribute('aria-pressed','true'); });
+    $('#fNew').checked = !!s.fNew; $('#fProp').checked = !!s.fProp; $('#fClosed').checked = !!s.fClosed; if (s.sort) $('#sort').value = s.sort;
+  } catch(e){}
+}
+['#q','#fNew','#fProp','#fClosed','#src','#sort'].forEach(id => $(id).addEventListener('input', () => { save(); render(); }));
+
+function render(){
+  const q = $('#q').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  let items = DATA.items.filter(it => {
+    if (!$('#fClosed').checked && isClosed(it)) return false;
+    if ($('#fNew').checked && !isNew(it)) return false;
+    if ($('#fProp').checked && !it.proposal) return false;
+    if ($('#src').value && it.source !== $('#src').value) return false;
+    if (state.tags.size && !it.tags.some(t => state.tags.has(t))) return false;
+    const hay = (it.title + ' ' + it.org + ' ' + it.city + ' ' + it.summary).toLowerCase();
+    return q.every(w => hay.includes(w));
+  });
+  if ($('#sort').value === 'dl') items.sort((a,b) => (a.deadline||'9999') < (b.deadline||'9999') ? -1 : (a.deadline||'9999') > (b.deadline||'9999') ? 1 : (a.published < b.published ? 1 : -1));
+  $('#count').textContent = `${items.length} 件`;
+  $('#list').innerHTML = items.length ? items.map(card).join('') : '<div class="empty">条件に合う案件はありません。</div>';
+}
+
+function card(it){
+  const closed = isClosed(it);
+  let dl = '';
+  if (it.deadline) {
+    const n = daysFrom(it.deadline);
+    const cls = n < 0 ? 'past' : n <= 7 ? 'soon' : 'later';
+    const rest = n < 0 ? '（締切済み）' : n === 0 ? '（本日）' : `（あと${n}日）`;
+    dl = `<span class="dl ${cls}">締切目安 ${it.deadline.replace(/-/g,'/')}${rest}</span>`;
+  }
+  const tags = it.tags.map(t => `<span class="tag tag${DATA.tags.indexOf(t)}">${esc(t)}</span>`).join('');
+  return `<article class="card${closed ? ' closed' : ''}">
+    <div class="meta">
+      ${isNew(it) && !closed ? '<span class="badge b-new">NEW</span>' : ''}
+      ${it.proposal ? '<span class="badge b-prop">プロポーザル</span>' : ''}
+      ${closed ? '<span class="badge b-closed">終了</span>' : ''}
+      ${tags}
+      <span>掲載 ${it.published.replace(/-/g,'/')}</span><span>・${esc(it.source)}</span>${it.kind ? `<span>・${esc(it.kind)}</span>` : ''}
+    </div>
+    <h2><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></h2>
+    <div class="row" style="gap:12px"><span class="org">${esc(it.org)}${it.city && !it.org.includes(it.city) ? '（' + esc(it.city) + '）' : ''}</span>${dl}</div>
+    ${it.summary ? `<p class="sum">${esc(it.summary)}</p>` : ''}
+  </article>`;
+}
+</script>
+</body>
+</html>
