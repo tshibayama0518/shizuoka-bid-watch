@@ -9,6 +9,14 @@
 - 実行: GitHub Actions が毎日 6:30（日本時間）に収集 → `docs/data.json` を更新
 - 表示: GitHub Pages で `docs/index.html` を公開（RSS: `docs/feed.xml`）
 
+## スマホへのプッシュ通知（ntfy）
+
+毎朝の収集で新しい案件（分野に該当・募集中）が見つかった日だけ、[ntfy](https://ntfy.sh/) で1日1回まとめて通知します。
+
+- スマホに ntfy アプリを入れ、リポジトリのシークレット `NTFY_TOPIC` と同じトピック名を購読する
+- 通知をタップすると一覧ページが開く
+- トピック名を変えたい・止めたいときは、Settings → Secrets and variables → Actions の `NTFY_TOPIC` を更新・削除する
+
 ## ファイル構成
 
 | ファイル | 役割 |
