@@ -44,3 +44,14 @@ jobs:
             git commit -m "案件データ更新 $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M')"
             git push
           fi
+
+      - name: 失敗したらスマホに通知
+        if: failure()
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          if [ -n "$NTFY_TOPIC" ]; then
+            curl -s -H "Title: shizuoka-bid-watch: daily update failed" -H "Tags: warning" -H "Priority: 4" \
+              -H "Click: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+              -d "The daily collection job failed. Tap to open the GitHub Actions log." "https://ntfy.sh/$NTFY_TOPIC" > /dev/null
+          fi

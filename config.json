@@ -5,6 +5,8 @@
   "resultWatchDays": 150,
   "resultKeepDays": 1100,
   "forecastDays": 120,
+  "remindDays": [3, 1],
+  "notifyResults": true,
   "cities": [
     {
       "name": "静岡市",

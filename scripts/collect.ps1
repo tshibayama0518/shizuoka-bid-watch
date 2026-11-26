@@ -77,6 +77,9 @@ function Get-Deadline([string]$text, [string]$published) {
     $kwRe = '(提出期限|提出期間|提出締切|締切|締め切り|受付期間|応募期限|応募期間|申込期限|参加申込|参加申し込み|参加表明|(企画)?提案書(等)?の提出|申請書(等)?の提出|応募書類(等)?の提出)'
     $dateRe = '(?:(令和|R)\s*(\d{1,2})\s*年\s*|(20\d{2})\s*年\s*|(20\d{2})[/.])?(\d{1,2})\s*[月/.]\s*(\d{1,2})\s*日?'
     foreach ($m in [regex]::Matches($t, $kwRe)) {
+        # 「成果物の提出期限」「実績報告書の提出」など、契約後の期限は締切ではない
+        $pre = $t.Substring([Math]::Max(0, $m.Index - 20), [Math]::Min(20, $m.Index))
+        if ($pre -match '成果物|報告書|実績|請求|完了|納品|検査|履行|納入|精算|変更') { continue }
         $start = $m.Index + $m.Length
         $win = $t.Substring($start, [Math]::Min(140, $t.Length - $start))
         $cut = $win.IndexOf('。'); if ($cut -gt 0) { $win = $win.Substring(0, $cut) }
@@ -97,7 +100,8 @@ function Get-Deadline([string]$text, [string]$published) {
         elseif ($g[4].Success) { $year = [int]$g[4].Value }
         else { $year = $base.Year; if ($mon -lt $base.Month - 1) { $year++ } }
         try { $dt = New-Object DateTime $year, $mon, $day } catch { continue }
-        if ($dt -lt $base.AddDays(-1) -or $dt -gt $base.AddDays(240)) { continue }
+        # 公募の締切は通常、公告から5か月以内
+        if ($dt -lt $base.AddDays(-1) -or $dt -gt $base.AddDays(150)) { continue }
         return $dt.ToString('yyyy-MM-dd')
     }
     return ''
@@ -520,6 +524,13 @@ foreach ($c in $config.cities) {
 }
 
 # ---------- 既存案件の補完(予算・要件が未読み取り、またはPDF未読の案件) ----------
+# 公告から5か月以上先の「締切」は契約期間などの誤読とみなして読み直す
+foreach ($it in @($items.Values)) {
+    if ($it.deadline -and $it.published -and $it.deadline -gt ([datetime]::ParseExact($it.published, 'yyyy-MM-dd', $null)).AddDays(150).ToString('yyyy-MM-dd')) {
+        $it.deadline = ''
+        if ($it.PSObject.Properties['enriched']) { $it.enriched = $false }
+    }
+}
 $enrichNow = 0
 foreach ($it in @($items.Values)) {
     if ($enrichNow -ge 40) { break }
@@ -724,30 +735,49 @@ foreach ($it in ($all | Where-Object { @($_.tags).Count -gt 0 -and -not $_.close
 # ---------- 新着のプッシュ通知 (ntfy) ----------
 # 環境変数 NTFY_TOPIC が設定されているときだけ送信。初回実行(既存データなし)は送らない
 $newItems = @($all | Where-Object { @($_.tags).Count -gt 0 -and -not $_.closed -and -not $oldIds.ContainsKey($_.id) })
-Write-Host "新着: $($newItems.Count) 件"
-if ($env:NTFY_TOPIC -and $newItems.Count -gt 0 -and $oldIds.Count -gt 0) {
-    $lines = @()
-    foreach ($it in ($newItems | Select-Object -First 8)) {
-        $line = "・$($it.title)（$($it.org)）"
-        if ($it.deadline) { $line += " 締切目安 $($it.deadline.Substring(5).Replace('-', '/'))" }
-        $lines += $line
-    }
-    if ($newItems.Count -gt 8) { $lines += "ほか $($newItems.Count - 8) 件" }
-    $prop = @($newItems | Where-Object { $_.proposal }).Count
-    $title = "静岡 新着案件 $($newItems.Count) 件"
-    if ($prop -gt 0) { $title += "（プロポーザル $prop 件）" }
-    $payload = [ordered]@{
-        topic   = $env:NTFY_TOPIC
-        title   = $title
-        message = ($lines -join "`n")
-        tags    = @('bell')
-        click   = $config.siteUrl
-    }
+# 締切リマインド(締切の remindDays 日前)
+$remindDates = @($config.remindDays | ForEach-Object { $Now.AddDays([int]$_).ToString('yyyy-MM-dd') })
+$remindItems = @($all | Where-Object { @($_.tags).Count -gt 0 -and $_.deadline -and ($remindDates -contains $_.deadline) -and $oldIds.ContainsKey($_.id) } | Sort-Object deadline)
+Write-Host "新着: $($newItems.Count) 件 / 締切リマインド: $($remindItems.Count) 件"
+
+function Send-Ntfy([string]$title, [string[]]$lines, [string]$tag, [int]$priority = 3) {
+    $payload = [ordered]@{ topic = $env:NTFY_TOPIC; title = $title; message = ($lines -join "`n"); tags = @($tag); click = $config.siteUrl; priority = $priority }
     try {
         $body = [System.Text.Encoding]::UTF8.GetBytes((ConvertTo-Json -InputObject $payload -Depth 3))
         Invoke-RestMethod -Method Post -Uri 'https://ntfy.sh/' -Body $body -ContentType 'application/json; charset=utf-8' -TimeoutSec 30 | Out-Null
-        Write-Host '通知を送信しました'
+        Write-Host "通知を送信しました: $title"
     } catch { Write-Warning "通知の送信に失敗: $($_.Exception.Message)" }
+}
+function Format-Line($it) {
+    $line = "・$($it.title)（$($it.org)）"
+    if ($it.PSObject.Properties['budget'] -and $it.budget) { $line += " 上限$([math]::Round($it.budget / 10000))万円" }
+    if ($it.deadline) { $line += " 締切目安 $($it.deadline.Substring(5).Replace('-', '/'))" }
+    return $line
+}
+
+if ($env:NTFY_TOPIC -and $oldIds.Count -gt 0) {
+    if ($newItems.Count -gt 0) {
+        $lines = @($newItems | Select-Object -First 8 | ForEach-Object { Format-Line $_ })
+        if ($newItems.Count -gt 8) { $lines += "ほか $($newItems.Count - 8) 件" }
+        $prop = @($newItems | Where-Object { $_.proposal }).Count
+        $title = "静岡 新着案件 $($newItems.Count) 件"
+        if ($prop -gt 0) { $title += "（プロポーザル $prop 件）" }
+        Send-Ntfy $title $lines 'bell'
+    }
+    if ($remindItems.Count -gt 0) {
+        $lines = @($remindItems | Select-Object -First 8 | ForEach-Object { $n = ([datetime]::ParseExact($_.deadline, 'yyyy-MM-dd', $null) - $Now.Date).Days; "・あと$($n)日 " + (Format-Line $_).Substring(1) })
+        Send-Ntfy "締切が近い案件 $($remindItems.Count) 件" $lines 'alarm_clock' 4
+    }
+    if ($foundNow -gt 0 -and $config.notifyResults) {
+        $newRes = @($resultMap.Values | Where-Object { $_.recordedAt -eq $Today } | Select-Object -First 6)
+        $lines = @($newRes | ForEach-Object { "・$($_.title)（$($_.org)）→ $($_.winner)" })
+        Send-Ntfy "落札・選定結果 $foundNow 件を記録" $lines 'trophy' 2
+    }
+    if ($errors.Count -gt 0) {
+        # 同じエラーが続く場合に毎日鳴らないよう、前回と内容が変わったときだけ通知
+        $prevErr = $(if ($old -and $old.errors) { (@($old.errors) -join '|') } else { '' })
+        if (($errors -join '|') -ne $prevErr) { Send-Ntfy "収集エラー $($errors.Count) 件" @($errors | Select-Object -First 5) 'warning' 3 }
+    }
 }
 
 $shown = @($all | Where-Object { @($_.tags).Count -gt 0 }).Count

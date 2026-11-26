@@ -76,6 +76,10 @@ footer{margin-top:32px;color:var(--muted);font-size:12px}
 .b-region{background:var(--new-soft);color:var(--warn)}
 .b-qual{background:var(--chip);color:var(--muted)}
 .b-fc{background:var(--accent-soft);color:var(--accent)}
+.card{position:relative}
+.fav{position:absolute;top:10px;right:10px;border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;font:inherit;font-size:12px;padding:3px 10px;cursor:pointer}
+.fav[aria-pressed=true]{background:var(--t3s);color:var(--t3);border-color:var(--t3s);font-weight:600}
+.card h2,.card .meta{padding-right:76px}
 .win{font-size:14px;margin:4px 0 0}
 .win b{font-size:15px}
 .win .sc{color:var(--muted);font-size:13px;margin-left:8px}
@@ -119,6 +123,7 @@ footer{margin-top:32px;color:var(--muted);font-size:12px}
       <label class="toggle"><input type="checkbox" id="fNew"> 新着のみ</label>
       <label class="toggle"><input type="checkbox" id="fProp"> プロポーザル・企画提案のみ</label>
       <label class="toggle"><input type="checkbox" id="fRegion"> 地域要件ありを除く</label>
+      <label class="toggle"><input type="checkbox" id="fFav"> ★気になるのみ</label>
       <select id="src"><option value="">すべての情報源</option></select>
       <select id="sort"><option value="pub">掲載日が新しい順</option><option value="dl">締切が近い順</option><option value="budget">予算が大きい順</option></select>
     </div>
@@ -210,7 +215,22 @@ function load(){
     if (s.view === 'res' || s.view === 'fc') state.view = s.view;
   } catch(e){}
 }
-['#q','#fNew','#fProp','#fRegion','#src','#sort'].forEach(id => $(id).addEventListener('input', () => { save(); render(); }));
+['#q','#fNew','#fProp','#fRegion','#fFav','#src','#sort'].forEach(id => $(id).addEventListener('input', () => { save(); render(); }));
+
+// 「気になる」印(このブラウザにだけ保存)
+const FAV = new Set((() => { try { return JSON.parse(store.get('sbw-fav') || '[]'); } catch(e) { return []; } })());
+function favBtn(id){
+  const on = FAV.has(id);
+  return `<button class="fav" data-fav="${esc(id)}" aria-pressed="${on}" title="気になる印（このブラウザに保存）">${on ? '★ 気になる' : '☆ 気になる'}</button>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('.fav'); if (!b) return;
+  const id = b.dataset.fav;
+  FAV.has(id) ? FAV.delete(id) : FAV.add(id);
+  store.set('sbw-fav', JSON.stringify([...FAV]));
+  const on = FAV.has(id); b.setAttribute('aria-pressed', on); b.textContent = on ? '★ 気になる' : '☆ 気になる';
+  if ($('#fFav').checked) render();
+});
 
 function yen(n){
   if (!n) return '';
@@ -241,6 +261,7 @@ function renderForecast(){
     const tags = (f.tags || []).map(t => `<span class="tag tag${DATA.tags.indexOf(t)}">${esc(t)}</span>`).join('');
     const last = [f.lastWinner && `前回の受託: <b>${esc(f.lastWinner)}</b>`, f.lastAmount && `金額 ${esc(f.lastAmount)}`, f.lastBudget && `上限 ${yen(f.lastBudget)}`].filter(Boolean).join(' ／ ');
     return `<article class="card">
+      ${favBtn('fc:' + f.key)}
       <div class="meta"><span class="badge b-fc">例年 ${when}</span>${tags}<span>前回 ${f.lastDate.replace(/-/g,'/')}ごろ公募</span><span>・${esc(f.source)}</span>${f.years > 1 ? `<span>・${f.years}年分の記録</span>` : ''}</div>
       <h2><a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.title)}</a></h2>
       ${last ? `<p class="win">${last}</p>` : ''}
@@ -290,6 +311,7 @@ function render(){
     if ($('#fNew').checked && !isNew(it)) return false;
     if ($('#fProp').checked && !it.proposal) return false;
     if ($('#fRegion').checked && it.region) return false;
+    if ($('#fFav').checked && !FAV.has(it.id)) return false;
     if ($('#src').value && it.source !== $('#src').value) return false;
     if (state.tags.size && !it.tags.some(t => state.tags.has(t))) return false;
     const hay = (it.title + ' ' + it.org + ' ' + it.city + ' ' + it.summary).toLowerCase();
@@ -312,6 +334,7 @@ function card(it){
   }
   const tags = it.tags.map(t => `<span class="tag tag${DATA.tags.indexOf(t)}">${esc(t)}</span>`).join('');
   return `<article class="card${closed ? ' closed' : ''}">
+    ${favBtn(it.id)}
     <div class="meta">
       ${isNew(it) && !closed ? '<span class="badge b-new">NEW</span>' : ''}
       ${it.proposal ? '<span class="badge b-prop">プロポーザル</span>' : ''}

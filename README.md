@@ -27,6 +27,8 @@ PDFの読み取りは GitHub Actions 上（poppler-utils の pdftotext）での�
 
 - スマホに ntfy アプリを入れ、リポジトリのシークレット `NTFY_TOPIC` と同じトピック名を購読する
 - 通知をタップすると一覧ページが開く
+- 通知の種類: 新着案件 ／ 締切が近い案件（締切の `remindDays` = 3日前・1日前）／ 落札・選定結果の記録（`notifyResults`）／ 収集エラー（内容が変わったときだけ）／ 毎朝の実行そのものが失敗したとき
+- 一覧ページの「☆ 気になる」印はブラウザごとに保存されます（PCとスマホでは共有されません）
 - トピック名を変えたい・止めたいときは、Settings → Secrets and variables → Actions の `NTFY_TOPIC` を更新・削除する
 
 ## ファイル構成
