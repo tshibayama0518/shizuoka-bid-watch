@@ -2,6 +2,8 @@
   "siteUrl": "https://tshibayama0518.github.io/shizuoka-bid-watch/",
   "keepDays": 400,
   "noDeadlineDays": 45,
+  "resultWatchDays": 150,
+  "resultKeepDays": 1100,
   "cities": [
     {
       "name": "静岡市",
@@ -25,7 +27,10 @@
     },
     {
       "name": "富士市",
-      "lists": ["https://www.city.fuji.shizuoka.jp/shigoto/nyusatsu/gyomuitaku/boshuchu/index.html"],
+      "lists": [
+        "https://www.city.fuji.shizuoka.jp/shigoto/nyusatsu/gyomuitaku/boshuchu/index.html",
+        "https://www.city.fuji.shizuoka.jp/shigoto/nyusatsu/gyomuitaku/kekka/index.html"
+      ],
       "linkPattern": "^https://www\\.city\\.fuji\\.shizuoka\\.jp/\\d{10}/p\\d+\\.html$",
       "bodyStart": "tmp_contents"
     },

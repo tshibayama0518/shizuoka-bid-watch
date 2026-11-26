@@ -138,6 +138,66 @@ function Add-Item($obj) {
     $script:items[$obj.id] = $obj
 }
 
+# ---------- 結果(落札者・選定事業者)の記録用 ----------
+$resultsPath = Join-Path $Root 'docs/results.json'
+$resultMap = @{}    # id -> 結果レコード
+$watch = @{}        # id -> 結果待ちの案件(ページを定期的に確認)
+$resultChecked = @{} # id -> 監視に入れた日(二重登録防止)
+if (Test-Path $resultsPath) {
+    $ro = Get-Content -Raw -Encoding UTF8 $resultsPath | ConvertFrom-Json
+    foreach ($r in @($ro.results)) { if ($r) { $resultMap[$r.id] = $r } }
+    foreach ($w in @($ro.watch)) { if ($w) { $watch[$w.id] = $w } }
+    if ($ro.checked) { foreach ($p in $ro.checked.PSObject.Properties) { $resultChecked[$p.Name] = $p.Value } }
+}
+
+function Add-Watch([string]$id, [string]$url, [string]$title, [string]$org, [string]$source, $tags, [bool]$proposal) {
+    # 対象分野の案件だけ、結果の公表を見張る
+    if (@($tags).Count -eq 0 -or -not $url -or $url -match '\.pdf$') { return }
+    if ($script:resultMap.ContainsKey($id) -or $script:watch.ContainsKey($id) -or $script:resultChecked.ContainsKey($id)) { return }
+    $script:resultChecked[$id] = $Today
+    $script:watch[$id] = [pscustomobject][ordered]@{
+        id = $id; url = $url; title = $title; org = $org; source = $source
+        tags = @($tags); proposal = $proposal; since = $Today; lastCheck = ''
+    }
+}
+
+$orgNameRe = '(?:(?:株式会社|有限会社|合同会社|合資会社|一般社団法人|公益社団法人|一般財団法人|公益財団法人|特定非営利活動法人|NPO法人|社会福祉法人|学校法人|医療法人|協同組合)\s*[^\s、。,，()（）「」『』:：/|]{1,30}|[^\s、。,，()（）「」『』:：/|]{1,30}?(?:株式会社|有限会社|合同会社|合資会社|共同企業体|\(株\)|\(有\)))'
+$winnerLabels = @('優先交渉権者', '交渉権者', '契約候補者', '受託候補者', '受注候補者', '最優秀提案者', '最優秀者', '特定者', '落札者', '落札業者', '契約者の氏名', '契約者名', '契約の相手方', '契約相手方', '決定事業者', '選定事業者', '選定された事業者', '受注者', '受託者', '事業者名', '選定しました', '決定しました', '特定しました')
+
+function Find-Result([string]$text) {
+    $t = ConvertTo-Norm $text
+    $t = [regex]::Replace($t, '\s+', ' ')
+    $winner = ''
+    foreach ($lb in $winnerLabels) {
+        foreach ($m in [regex]::Matches($t, [regex]::Escape($lb))) {
+            $win = $t.Substring($m.Index + $m.Length, [Math]::Min(80, $t.Length - $m.Index - $m.Length))
+            $om = [regex]::Match($win, $orgNameRe)
+            if ($om.Success) { $winner = $om.Value.Trim(); break }
+        }
+        if ($winner) { break }
+    }
+    if (-not $winner) { return $null }
+    $score = ''
+    $sm = [regex]::Match($t, '(\d{1,4}(?:\.\d+)?)\s*点?\s*[/／]\s*(\d{1,4})\s*点')
+    if ($sm.Success) { $score = "$($sm.Groups[1].Value)/$($sm.Groups[2].Value)点" }
+    $amount = ''
+    $am = [regex]::Match($t, '(?:契約金額|落札金額|契約額|落札額|提案金額|見積金額|契約金)[^0-9]{0,15}([0-9][0-9,]{2,})\s*(千円|円)')
+    if ($am.Success) { $amount = "$($am.Groups[1].Value)$($am.Groups[2].Value)" }
+    return [pscustomobject]@{ winner = $winner; score = $score; amount = $amount }
+}
+
+$pdftotext = Get-Command pdftotext -ErrorAction SilentlyContinue
+function Get-PdfText([string]$url) {
+    if (-not $pdftotext) { return '' }
+    $tmp = [IO.Path]::GetTempFileName()
+    try {
+        Invoke-WebRequest -Uri $url -OutFile $tmp -UseBasicParsing -TimeoutSec 60 -UserAgent 'shizuoka-bid-watch/1.0'
+        if ((Get-Item $tmp).Length -gt 8MB) { return '' }
+        $out = & $pdftotext.Source -enc UTF-8 -q $tmp - 2>$null
+        return ($out -join "`n")
+    } catch { return '' } finally { Remove-Item $tmp -Force -ErrorAction SilentlyContinue }
+}
+
 # ---------- 1. 官公需情報ポータルサイト API (静岡県内の県・市町・国の機関) ----------
 try {
     $url = "https://www.kkj.go.jp/api/?LG_Code=$($config.kkj.lgCode)&Count=$($config.kkj.count)"
@@ -221,7 +281,10 @@ try {
             $items[$id].tags = @(Get-Tags ($title + ' ' + $items[$id].summary))
             continue
         }
-        if ($closed -or $seenIds.ContainsKey($id)) { continue }
+        if ($closed -or $seenIds.ContainsKey($id)) {
+            Add-Watch $id $d.url $title '静岡県' '静岡県HP' @(Get-Tags $title) (Test-Proposal $title)
+            continue
+        }
         try {
             $h = Get-Html $d.url
             Start-Sleep -Milliseconds 400
@@ -349,7 +412,10 @@ foreach ($c in $config.cities) {
                 $items[$id].tags = @(Get-Tags ($title + ' ' + $items[$id].summary))
                 continue
             }
-            if ($closed -or $seenIds.ContainsKey($id)) { continue }
+            if ($closed -or $seenIds.ContainsKey($id)) {
+                Add-Watch $id $d.url $title $c.name "$($c.name)HP" @(Get-Tags $title) (Test-Proposal $title)
+                continue
+            }
             try { $pg = Read-DetailPage $d.url $(if ($c.detailStart) { $c.detailStart } else { '<h1' }); Start-Sleep -Milliseconds 400 }
             catch { $errors += "$($c.name)の詳細取得に失敗: $($d.url)"; Write-Warning $errors[-1]; continue }
             if ($listDate -and $pg.pub -eq $Today) { $pg.pub = $listDate }
@@ -393,6 +459,69 @@ $all = @($items.Values | Where-Object {
         $(if ($_.deadline) { $_.deadline -ge $Today } else { $_.published -ge $staleDate })
     })
 Write-Host "期限切れ・終了で削除: $($items.Count - $all.Count) 件"
+# 削除した案件(県・市・団体のサイト分)は、結果の公表を見張る
+$keptIds = @{}; foreach ($it in $all) { $keptIds[$it.id] = 1 }
+foreach ($it in $items.Values) {
+    if (-not $keptIds.ContainsKey($it.id) -and $it.source -ne '官公需ポータル') {
+        Add-Watch $it.id $it.url $it.title $it.org $it.source @($it.tags) ([bool]$it.proposal)
+    }
+}
+
+# ---------- 結果の確認(見張っている案件のページを開いて、選定事業者・落札者を探す) ----------
+$checkGap = $Now.AddDays(-2).ToString('yyyy-MM-dd')
+$watchLimit = $Now.AddDays(-[int]$config.resultWatchDays).ToString('yyyy-MM-dd')
+$checkedNow = 0; $foundNow = 0
+foreach ($w in @($watch.Values | Sort-Object lastCheck)) {
+    if ($w.since -lt $watchLimit) { $watch.Remove($w.id); continue }   # 長期間結果が出ないものは諦める
+    if ($w.lastCheck -and $w.lastCheck -gt $checkGap) { continue }      # 2日に1回まで
+    if ($checkedNow -ge 80) { break }
+    $checkedNow++
+    $w.lastCheck = $Today
+    try { $h = Get-Html $w.url; Start-Sleep -Milliseconds 400 } catch { continue }
+    $hs = [regex]::Replace($h, '(?is)<(script|style|header|nav|footer)[^>]*>.*?</\1>', ' ')
+    $text = ConvertFrom-Html $hs
+    $res = Find-Result $text
+    $src = 'ページ'
+    if (-not $res -and $pdftotext) {
+        # 結果がPDFで公表されている場合
+        $pdfs = @()
+        foreach ($m in [regex]::Matches($h, '<a[^>]+href="([^"]+\.pdf)"[^>]*>(.*?)</a>')) {
+            $lt = ConvertTo-Norm ([regex]::Replace($m.Groups[2].Value, '<[^>]+>', ''))
+            if ($lt -match '結果|選定|審査|特定|決定|落札|評価') { $pdfs += ([Uri]::new([Uri]$w.url, [System.Net.WebUtility]::HtmlDecode($m.Groups[1].Value))).AbsoluteUri }
+        }
+        foreach ($pu in ($pdfs | Select-Object -Unique -First 2)) {
+            $res = Find-Result (Get-PdfText $pu)
+            if ($res) { $src = 'PDF'; break }
+        }
+    }
+    if ($res) {
+        $dm = [regex]::Match($h, '(?:更新日|掲載日|公開日|公告日)[^0-9令]{0,40}?(?:(\d{4})年|令和\s*(\d{1,2})\s*年)\s*(\d{1,2})月\s*(\d{1,2})日')
+        if (-not $dm.Success) { $dm = [regex]::Match($h, '(?:(\d{4})年|令和\s*(\d{1,2})\s*年)\s*(\d{1,2})月\s*(\d{1,2})日\s*(?:更新|掲載|公開)') }
+        $rdate = $Today
+        if ($dm.Success) { $y = $(if ($dm.Groups[1].Success) { [int]$dm.Groups[1].Value } else { 2018 + [int]$dm.Groups[2].Value }); $rdate = '{0}-{1:00}-{2:00}' -f $y, [int]$dm.Groups[3].Value, [int]$dm.Groups[4].Value }
+        $title = [regex]::Replace($w.title, '^(【[^】]*】|\([^)]*(結果|決定)[^)]*\))\s*', '')
+        $resultMap[$w.id] = [pscustomobject][ordered]@{
+            id = $w.id; title = $title; org = $w.org; source = $w.source; url = $w.url
+            tags = @($w.tags); proposal = [bool]$w.proposal
+            winner = $res.winner; score = $res.score; amount = $res.amount
+            resultDate = $rdate; foundIn = $src; recordedAt = $Today
+        }
+        $watch.Remove($w.id)
+        $foundNow++
+    }
+}
+Write-Host "結果の確認: $checkedNow 件 / 新たに判明 $foundNow 件 / 見張り中 $($watch.Count) 件 / 記録済み $($resultMap.Count) 件$(if (-not $pdftotext) { '（PDF読み取りなし）' })"
+$resKeep = $Now.AddDays(-[int]$config.resultKeepDays).ToString('yyyy-MM-dd')
+$chkOut = [ordered]@{}
+foreach ($k in ($resultChecked.Keys | Sort-Object)) { if ($resultChecked[$k] -ge $resKeep) { $chkOut[$k] = $resultChecked[$k] } }
+$resOut = [ordered]@{
+    updatedAt = $Now.ToString('yyyy-MM-ddTHH:mm:sszzz')
+    results   = @($resultMap.Values | Where-Object { $_.resultDate -ge $resKeep } | Sort-Object -Property @{Expression = 'resultDate'; Descending = $true })
+    watch     = @($watch.Values)
+    checked   = $chkOut
+}
+New-Item -ItemType Directory -Force (Join-Path $Root 'docs') | Out-Null
+[IO.File]::WriteAllText($resultsPath, (ConvertTo-Json -InputObject $resOut -Depth 5), $Utf8NoBom)
 # 設定(キーワード)変更を過去分にも反映
 foreach ($it in $all) { if ($it.source -eq '官公需ポータル') { $it.tags = @(Get-Tags $it.title) } }
 # 県・市のサイトと官公需ポータルで重複する案件は、県・市のサイト側を残す

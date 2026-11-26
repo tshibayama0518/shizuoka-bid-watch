@@ -19,6 +19,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: PDF読み取りツールを準備
+        run: |
+          if ! command -v pdftotext > /dev/null; then
+            sudo apt-get update -q > /dev/null
+            sudo apt-get install -y -q poppler-utils > /dev/null
+          fi
+          pdftotext -v
+
       - name: 案件を収集
         shell: pwsh
         env:
@@ -29,7 +37,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/data.json docs/feed.xml
+          git add docs/data.json docs/feed.xml docs/results.json
           if git diff --cached --quiet; then
             echo "変更なし"
           else

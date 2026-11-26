@@ -63,6 +63,18 @@ select{padding:8px 10px;border:1px solid var(--line);border-radius:8px;backgroun
 .empty{text-align:center;color:var(--muted);padding:40px}
 .err{background:var(--new-soft);color:var(--new);border-radius:8px;padding:8px 12px;font-size:13px;margin-top:12px}
 footer{margin-top:32px;color:var(--muted);font-size:12px}
+.tabs{display:flex;gap:4px;margin:18px 0 0;border-bottom:1px solid var(--line)}
+.tab{background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:inherit;font-weight:600;padding:8px 14px;cursor:pointer}
+.tab[aria-selected=true]{color:var(--accent);border-bottom-color:var(--accent)}
+.hidden{display:none !important}
+.rank{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 14px}
+.rank h3{font-size:13px;margin:0 0 8px;color:var(--muted);font-weight:600}
+.rank ol{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.rank button{border:1px solid var(--line);background:var(--chip);color:var(--text);border-radius:999px;padding:4px 10px;font:inherit;font-size:13px;cursor:pointer}
+.rank button b{color:var(--accent);margin-left:4px}
+.win{font-size:14px;margin:4px 0 0}
+.win b{font-size:15px}
+.win .sc{color:var(--muted);font-size:13px;margin-left:8px}
 @media (max-width:600px){.stat{min-width:0;flex:1}.row label.t{min-width:100%}}
 </style>
 </head>
@@ -73,16 +85,26 @@ footer{margin-top:32px;color:var(--muted);font-size:12px}
     <p>静岡県・県内市町などの入札／プロポーザル案件（イベント・Web/IT・デザイン/広報/映像）を毎朝自動収集しています。<span id="updated"></span> ・ <a href="feed.xml">RSS</a></p>
   </header>
   <div id="errors"></div>
-  <div class="stats">
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tabOpen" role="tab" aria-selected="true">募集中の案件</button>
+    <button class="tab" id="tabRes" role="tab" aria-selected="false">落札・選定結果</button>
+  </div>
+  <div class="stats" id="openStats">
     <div class="stat"><b id="sNew">-</b><span>新着（直近<span id="nd">7</span>日）</span></div>
     <div class="stat"><b id="sOpen">-</b><span>募集中と思われる</span></div>
     <div class="stat"><b id="sProp">-</b><span>うちプロポーザル</span></div>
     <div class="stat"><b id="sSoon">-</b><span>締切7日以内</span></div>
   </div>
+  <div class="stats hidden" id="resStats">
+    <div class="stat"><b id="rAll">-</b><span>記録した結果</span></div>
+    <div class="stat"><b id="rRecent">-</b><span>直近90日</span></div>
+    <div class="stat"><b id="rWin">-</b><span>選ばれた事業者の数</span></div>
+    <div class="stat"><b id="rWatch">-</b><span>結果待ちの案件</span></div>
+  </div>
   <div class="filters">
     <div class="row"><input type="search" id="q" placeholder="キーワードで絞り込み（例: 動画、浜松市、観光）"></div>
     <div class="row" id="tagRow"><label class="t">分野</label></div>
-    <div class="row">
+    <div class="row" id="condRow">
       <label class="t">条件</label>
       <label class="toggle"><input type="checkbox" id="fNew"> 新着のみ</label>
       <label class="toggle"><input type="checkbox" id="fProp"> プロポーザル・企画提案のみ</label>
@@ -91,11 +113,13 @@ footer{margin-top:32px;color:var(--muted);font-size:12px}
     </div>
   </div>
   <div class="count" id="count"></div>
+  <div class="rank hidden" id="rank"><h3>よく選ばれている事業者（絞り込み条件内・クリックで検索）</h3><ol id="rankList"></ol></div>
   <div class="list" id="list"></div>
   <footer>
     情報源: <a href="https://www.kkj.go.jp/">官公需情報ポータルサイト</a>（中小企業庁）、<a href="https://www.pref.shizuoka.jp/kensei/nyusatsukobai/index.html">静岡県 入札・公募・公売</a>、静岡市・浜松市・沼津市・富士市・富士宮市・三島市・島田市・焼津市・藤枝市・袋井市・伊東市・湖西市の公式サイト、静岡県観光協会（ハローナビしずおか 事業者向けお知らせ）、静岡県立病院機構。<br>
     「締切目安」は公告文から自動推定した日付です。応募前に必ず原文で日程・参加資格をご確認ください。<br>
-    締切を過ぎた案件・募集終了の案件は自動で削除されます（締切が読み取れない案件は掲載から45日で削除）。
+    締切を過ぎた案件・募集終了の案件は自動で削除されます（締切が読み取れない案件は掲載から45日で削除）。<br>
+    「落札・選定結果」は、対象分野の案件について各サイトの結果公表ページ・PDFから選定事業者／落札者を自動で読み取ったものです。読み取り誤りがあり得るため、必ずリンク先の原文をご確認ください。
   </footer>
 </div>
 <script>
@@ -122,25 +146,83 @@ fetch('data.json?t=' + Date.now(), {cache:'no-store'}).then(r => r.json()).then(
     b.onclick = () => { state.tags.has(t) ? state.tags.delete(t) : state.tags.add(t); b.setAttribute('aria-pressed', state.tags.has(t)); save(); render(); };
     b.dataset.tag = t; $('#tagRow').appendChild(b);
   });
-  [...new Set(d.items.map(it => it.source))].forEach(s => $('#src').insertAdjacentHTML('beforeend', `<option>${esc(s)}</option>`));
   const open = d.items.filter(it => !isClosed(it));
   $('#sNew').textContent = d.items.filter(isNew).length;
   $('#sOpen').textContent = open.length;
   $('#sProp').textContent = open.filter(it => it.proposal).length;
   $('#sSoon').textContent = open.filter(it => it.deadline && daysFrom(it.deadline) <= 7).length;
-  load(); render();
+  return fetch('results.json?t=' + Date.now(), {cache:'no-store'}).then(r => r.ok ? r.json() : null).catch(() => null);
+}).then(rd => {
+  RES = rd || { results: [], watch: [] };
+  const rs = RES.results || [];
+  $('#rAll').textContent = rs.length;
+  $('#rRecent').textContent = rs.filter(r => daysFrom(r.resultDate) >= -90).length;
+  $('#rWin').textContent = new Set(rs.map(r => r.winner)).size;
+  $('#rWatch').textContent = (RES.watch || []).length;
+  [...new Set([...DATA.items.map(it => it.source), ...rs.map(r => r.source)])].forEach(s => $('#src').insertAdjacentHTML('beforeend', `<option>${esc(s)}</option>`));
+  load(); setView(state.view);
 }).catch(e => { $('#list').innerHTML = '<div class="empty">データを読み込めませんでした。</div>'; });
 
-function save(){ store.set('sbw', JSON.stringify({ tags:[...state.tags], fNew:$('#fNew').checked, fProp:$('#fProp').checked, sort:$('#sort').value })); }
+let RES = null;
+state.view = 'open';
+function setView(v){
+  state.view = v;
+  $('#tabOpen').setAttribute('aria-selected', v === 'open');
+  $('#tabRes').setAttribute('aria-selected', v === 'res');
+  $('#openStats').classList.toggle('hidden', v !== 'open');
+  $('#resStats').classList.toggle('hidden', v !== 'res');
+  $('#condRow').classList.toggle('hidden', v !== 'open');
+  $('#rank').classList.toggle('hidden', v !== 'res');
+  $('#q').placeholder = v === 'open' ? 'キーワードで絞り込み（例: 動画、浜松市、観光）' : '事業者名・案件名で絞り込み（例: 株式会社、動画、焼津市）';
+  save(); render();
+}
+$('#tabOpen').onclick = () => setView('open');
+$('#tabRes').onclick = () => setView('res');
+
+function save(){ store.set('sbw', JSON.stringify({ tags:[...state.tags], fNew:$('#fNew').checked, fProp:$('#fProp').checked, sort:$('#sort').value, view: state.view })); }
 function load(){
   try { const s = JSON.parse(store.get('sbw') || '{}');
     (s.tags||[]).forEach(t => { state.tags.add(t); const b = document.querySelector(`.chip[data-tag="${t}"]`); if (b) b.setAttribute('aria-pressed','true'); });
     $('#fNew').checked = !!s.fNew; $('#fProp').checked = !!s.fProp; if (s.sort) $('#sort').value = s.sort;
+    if (s.view === 'res') state.view = 'res';
   } catch(e){}
 }
 ['#q','#fNew','#fProp','#src','#sort'].forEach(id => $(id).addEventListener('input', () => { save(); render(); }));
 
+function renderResults(){
+  const q = $('#q').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const rs = (RES.results || []).filter(r => {
+    if ($('#src').value && r.source !== $('#src').value) return false;
+    if (state.tags.size && !(r.tags || []).some(t => state.tags.has(t))) return false;
+    const hay = (r.title + ' ' + r.org + ' ' + r.winner + ' ' + r.source).toLowerCase();
+    return q.every(w => hay.includes(w));
+  });
+  const cnt = {};
+  rs.forEach(r => { cnt[r.winner] = (cnt[r.winner] || 0) + 1; });
+  const top = Object.entries(cnt).sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0], 'ja')).slice(0, 12);
+  $('#rankList').innerHTML = top.map(([w, n]) => `<li><button data-w="${esc(w)}">${esc(w)}<b>${n}</b></button></li>`).join('') || '<li style="color:var(--muted);font-size:13px">該当なし</li>';
+  $('#rankList').querySelectorAll('button').forEach(b => b.onclick = () => { $('#q').value = b.dataset.w; render(); });
+  $('#count').textContent = `${rs.length} 件`;
+  $('#list').innerHTML = rs.length ? rs.map(resCard).join('') : '<div class="empty">記録された結果はまだありません。結果が公表されると順次追加されます。</div>';
+}
+
+function resCard(r){
+  const tags = (r.tags || []).map(t => `<span class="tag tag${DATA.tags.indexOf(t)}">${esc(t)}</span>`).join('');
+  const extra = [r.score && `評価点 ${esc(r.score)}`, r.amount && `金額 ${esc(r.amount)}`].filter(Boolean).join(' ／ ');
+  return `<article class="card">
+    <div class="meta">
+      ${r.proposal ? '<span class="badge b-prop">プロポーザル</span>' : ''}
+      ${tags}
+      <span>結果 ${r.resultDate.replace(/-/g,'/')}</span><span>・${esc(r.source)}</span>${r.foundIn === 'PDF' ? '<span>・PDFから読み取り</span>' : ''}
+    </div>
+    <h2><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a></h2>
+    <p class="win">選定・落札: <b>${esc(r.winner)}</b>${extra ? `<span class="sc">${extra}</span>` : ''}</p>
+    <div class="org">発注: ${esc(r.org)}</div>
+  </article>`;
+}
+
 function render(){
+  if (state.view === 'res') return renderResults();
   const q = $('#q').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
   let items = DATA.items.filter(it => {
     if (isClosed(it)) return false;
