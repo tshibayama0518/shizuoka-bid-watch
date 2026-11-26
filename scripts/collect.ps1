@@ -74,7 +74,7 @@ function Get-Deadline([string]$text, [string]$published) {
     $t = ConvertTo-Norm $text
     if (-not $t) { return '' }
     $base = [datetime]::ParseExact($(if ($published) { $published } else { $Today }), 'yyyy-MM-dd', $null)
-    $kwRe = '(提出期限|提出期間|提出締切|締切|締め切り|受付期間|応募期限|応募期間|申込期限|参加申込|参加表明書の提出|企画提案書の提出|企画提案書等の提出)'
+    $kwRe = '(提出期限|提出期間|提出締切|締切|締め切り|受付期間|応募期限|応募期間|申込期限|参加申込|参加申し込み|参加表明|(企画)?提案書(等)?の提出|申請書(等)?の提出|応募書類(等)?の提出)'
     $dateRe = '(?:(令和|R)\s*(\d{1,2})\s*年\s*|(20\d{2})\s*年\s*|(20\d{2})[/.])?(\d{1,2})\s*[月/.]\s*(\d{1,2})\s*日?'
     foreach ($m in [regex]::Matches($t, $kwRe)) {
         $start = $m.Index + $m.Length
@@ -85,7 +85,7 @@ function Get-Deadline([string]$text, [string]$published) {
         $pick = $null
         foreach ($d in $dates) {
             $after = $win.Substring($d.Index + $d.Length, [Math]::Min(25, $win.Length - $d.Index - $d.Length))
-            if ($after -match '^[^月]{0,22}まで') { $pick = $d; break }
+            if ($after -match '^[^月]{0,22}(まで|必着|締切|厳守)') { $pick = $d; break }
         }
         if (-not $pick -and $dates.Count -eq 1) { $pick = $dates[0] }
         if (-not $pick) { continue }
@@ -269,6 +269,10 @@ try {
 function Read-DetailPage([string]$url) {
     $h = Get-Html $url
     $dm = [regex]::Match($h, '(?:更新日|掲載日|公開日|公開開始日|作成日|登録日)[^0-9令]{0,40}?(?:(\d{4})年|令和\s*(\d{1,2})\s*年)\s*(\d{1,2})月\s*(\d{1,2})日')
+    if (-not $dm.Success) {
+        # 「2026年6月16日更新」「(令和8年6月17日掲載)」のように日付の後ろに書く形式
+        $dm = [regex]::Match($h, '(?:(\d{4})年|令和\s*(\d{1,2})\s*年)\s*(\d{1,2})月\s*(\d{1,2})日\s*(?:更新|掲載|公開)')
+    }
     $pub = $Today
     if ($dm.Success) {
         $y = $(if ($dm.Groups[1].Success) { [int]$dm.Groups[1].Value } else { 2018 + [int]$dm.Groups[2].Value })
@@ -288,7 +292,9 @@ function Read-DetailPage([string]$url) {
 foreach ($c in $config.cities) {
     try {
         $links = @()
+        $jsonPages = 0
         foreach ($lu in @($c.lists)) {
+            if (-not $lu) { continue }
             try {
                 $h = Get-Html $lu
                 $s = $h.IndexOf($(if ($c.bodyStart) { $c.bodyStart } else { '<h1' })); if ($s -lt 0) { $s = 0 }
@@ -309,8 +315,18 @@ foreach ($c in $config.cities) {
             # 最近更新されたページ一覧(JSON)から、案件らしいページ名のものを拾う
             try {
                 $j = (Get-Html $c.updateJson) | ConvertFrom-Json
+                $jsonPages = @($j).Count
                 foreach ($p in @($j)) { if ($p.page_name -match $c.updateNamePattern) { $links += [pscustomobject]@{ url = $p.url; title = $p.page_name } } }
             } catch { $errors += "$($c.name)の更新情報取得に失敗"; Write-Warning $errors[-1] }
+        }
+        # サイトの作り変えなどで1件も拾えなくなったら、一覧ページに警告を出す
+        if (@($c.lists | Where-Object { $_ }).Count -gt 0 -and -not $c.allowEmpty -and -not $c.updateJson -and @($links).Count -eq 0) {
+            $errors += "$($c.name)の一覧ページから案件を1件も取得できませんでした（サイト構成が変わった可能性があります）"
+            Write-Warning $errors[-1]
+        }
+        if ($c.updateJson -and $jsonPages -eq 0) {
+            $errors += "$($c.name)の更新情報を取得できませんでした（サイト構成が変わった可能性があります）"
+            Write-Warning $errors[-1]
         }
         $uniq = @{}
         $cnt = 0
@@ -322,7 +338,7 @@ foreach ($c in $config.cities) {
             $closed = [bool]($title -match $closedRe)
             if ($items.ContainsKey($id)) {
                 $items[$id].title = $title
-                $items[$id].closed = $closed
+                $items[$id].closed = ($closed -or $items[$id].closed)
                 $items[$id].tags = @(Get-Tags ($title + ' ' + $items[$id].summary))
                 continue
             }
@@ -333,6 +349,8 @@ foreach ($c in $config.cities) {
             $text = $pg.text
             $ht = ConvertTo-Norm $text
             if ($ht.StartsWith($title)) { $text = $ht.Substring($title.Length).Trim() }
+            # ページ内に選定結果が掲載済みなら終了扱い
+            $pageClosed = [bool]((ConvertTo-Norm $text) -match '優先交渉権者|契約候補者は|結果表|選定しました|特定しました|決定しました|受託候補者を(選定|決定)')
             $items[$id] = [pscustomobject][ordered]@{
                 id        = $id
                 source    = "$($c.name)HP"
@@ -346,7 +364,7 @@ foreach ($c in $config.cities) {
                 published = $pg.pub
                 deadline  = Get-Deadline $text $pg.pub
                 summary   = Get-Summary $text
-                closed    = $false
+                closed    = $pageClosed
                 firstSeen = $Today
             }
             $cnt++

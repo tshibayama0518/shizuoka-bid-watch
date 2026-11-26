@@ -38,7 +38,53 @@
       "name": "浜松市",
       "lists": ["https://www.city.hamamatsu.shizuoka.jp/jigyosha/index.html"],
       "linkPattern": "^https://www\\.city\\.hamamatsu\\.shizuoka\\.jp/(?!maps/|policy/|tsukaikata/|privacy/|accessibility/|faq/|tyotatu/|sangyo/)[a-z0-9_-]+/[^?#]+\\.html$",
-      "titlePattern": "プロポーザル|企画提案|コンペ|公募|事業者募集|事業者を募集|受託者"
+      "titlePattern": "プロポーザル|企画提案|コンペ|公募|事業者募集|事業者を募集|受託者",
+      "allowEmpty": true
+    },
+    {
+      "name": "沼津市",
+      "lists": ["https://www.city.numazu.shizuoka.jp/business/proposal/index.htm"],
+      "linkPattern": "^https://www\\.city\\.numazu\\.shizuoka\\.jp/business/proposal/\\d{4}/[^/]+/index\\.htm$"
+    },
+    {
+      "name": "富士宮市",
+      "lists": ["https://www.city.fujinomiya.lg.jp/sangyo/joho/nyusatsu/proposal/index.html"],
+      "linkPattern": "^https://www\\.city\\.fujinomiya\\.lg\\.jp/\\d{10}/p\\d+\\.html$",
+      "titlePattern": "プロポーザル|企画提案|公募",
+      "bodyStart": "tmp_contents"
+    },
+    {
+      "name": "三島市",
+      "lists": ["https://www.city.mishima.shizuoka.jp/life/3/20/104/"],
+      "linkPattern": "^https://www\\.city\\.mishima\\.shizuoka\\.jp/page/\\d+\\.html$"
+    },
+    {
+      "name": "島田市",
+      "lists": [
+        "https://www.city.shimada.shizuoka.jp/gyosei/s-business/nyusatu/",
+        "https://www.city.shimada.shizuoka.jp/gyosei/s-business/nyusatu/hatyu/"
+      ],
+      "linkPattern": "^https://www\\.city\\.shimada\\.shizuoka\\.jp/[a-z]+-docs/[^/]+\\.html$",
+      "titlePattern": "プロポーザル|提案|公募|委託|募集|入札の|競争入札"
+    },
+    {
+      "name": "袋井市",
+      "lists": [],
+      "updateJson": "https://www.city.fukuroi.shizuoka.jp/index.update.json",
+      "updateNamePattern": "プロポーザル|企画提案|コンペ|公募型|業務委託|受託者|事業者募集|事業者を募集|入札公告|一般競争入札"
+    },
+    {
+      "name": "伊東市",
+      "lists": ["https://www.city.ito.shizuoka.jp/gyosei/shiseijoho/nyusatsukanrenjoho/index.html"],
+      "linkPattern": "^https://www\\.city\\.ito\\.shizuoka\\.jp/gyosei/shiseijoho/nyusatsukanrenjoho/\\d+\\.html$",
+      "titlePattern": "プロポーザル|企画提案|公募|入札の実施|入札の公告|公告について|事業者募集"
+    },
+    {
+      "name": "湖西市",
+      "lists": ["https://www.city.kosai.shizuoka.jp/soshikiichiran/keiyakukensashitsu/gyomuannai/2/1/2/index.html"],
+      "linkPattern": "/gyomuannai/2/1/2/\\d+\\.html$",
+      "updateJson": "https://www.city.kosai.shizuoka.jp/index.update.json",
+      "updateNamePattern": "プロポーザル|企画提案|コンペ|公募型|業務委託|受託者|事業者募集|事業者を募集|入札公告|一般競争入札"
     }
   ],
   "newDays": 7,
