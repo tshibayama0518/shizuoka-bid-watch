@@ -52,7 +52,7 @@ function Test-Keyword([string]$text, [string]$kw) {
 function Get-Tags([string]$text) {
     $t = ConvertTo-Norm $text
     # 公告文の定型句(電子入札・ホームページに掲載 など)で分野が誤判定されないよう除去
-    $t = [regex]::Replace($t, '電子(入札|調達|申請|契約|メール|データ|納品|媒体)(システム)?|入札(情報)?(公開)?システム|(ホームページ|ウェブサイト|Webサイト|サイト)(に|で|から|より|上|へ|を|等)|PDF|(?<![A-Za-z])KB(?![A-Za-z])', ' ')
+    $t = [regex]::Replace($t, '電子(入札|調達|申請|契約|メール|データ|納品|媒体)(システム)?|入札(情報)?(公開)?システム|(ホームページ|ウェブサイト|Webサイト|サイト)(に|で|から|より|上|へ|を|等)|サイト(内検索|マップ|ポリシー|について|の使い方)|このサイト|PDF|(?<![A-Za-z])KB(?![A-Za-z])', ' ')
     foreach ($ex in $config.excludeKeywords) { if (Test-Keyword $t $ex) { return @() } }
     $tags = @()
     foreach ($tag in $config.tags) {
@@ -266,9 +266,9 @@ try {
 }
 
 # ---------- 3. 市のサイト (静岡市・焼津市・藤枝市・富士市 など config.cities) ----------
-function Read-DetailPage([string]$url) {
+function Read-DetailPage([string]$url, [string]$start = '<h1') {
     $h = Get-Html $url
-    $dm = [regex]::Match($h, '(?:更新日|掲載日|公開日|公開開始日|作成日|登録日)[^0-9令]{0,40}?(?:(\d{4})年|令和\s*(\d{1,2})\s*年)\s*(\d{1,2})月\s*(\d{1,2})日')
+    $dm = [regex]::Match($h, '(?:更新日|掲載日|公開日|公開開始日|作成日|登録日|公告日)[^0-9令]{0,40}?(?:(\d{4})年|令和\s*(\d{1,2})\s*年)\s*(\d{1,2})月\s*(\d{1,2})日')
     if (-not $dm.Success) {
         # 「2026年6月16日更新」「(令和8年6月17日掲載)」のように日付の後ろに書く形式
         $dm = [regex]::Match($h, '(?:(\d{4})年|令和\s*(\d{1,2})\s*年)\s*(\d{1,2})月\s*(\d{1,2})日\s*(?:更新|掲載|公開)')
@@ -278,7 +278,7 @@ function Read-DetailPage([string]$url) {
         $y = $(if ($dm.Groups[1].Success) { [int]$dm.Groups[1].Value } else { 2018 + [int]$dm.Groups[2].Value })
         $pub = '{0}-{1:00}-{2:00}' -f $y, [int]$dm.Groups[3].Value, [int]$dm.Groups[4].Value
     }
-    $s = $h.IndexOf('<h1'); if ($s -lt 0) { $s = 0 }
+    $s = $h.IndexOf($start); if ($s -lt 0) { $s = $h.IndexOf('<h1') }; if ($s -lt 0) { $s = 0 }
     $e = -1
     foreach ($mk in 'このページに関するお問い合わせ', 'このページに関するお問合せ', 'お問い合わせ先', 'id="footer"', 'class="footer') {
         $e = $h.IndexOf($mk, $s); if ($e -gt 0) { break }
@@ -335,6 +335,13 @@ foreach ($c in $config.cities) {
             $id = 'city:' + ($d.url -replace '^https?://(www\.)?', '')
             $title = ConvertTo-Norm ([System.Net.WebUtility]::HtmlDecode($d.title))
             $title = [regex]::Replace($title, '\s+', ' ').Trim()
+            # 一覧のタイトル先頭に「2026-11-25NEW」のような日付がある場合は掲載日として使い、タイトルからは外す
+            $listDate = ''
+            $ldm = [regex]::Match($title, '^(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})\s*(NEW|CHECK|New|new)?\s*')
+            if ($ldm.Success) {
+                $listDate = '{0}-{1:00}-{2:00}' -f [int]$ldm.Groups[1].Value, [int]$ldm.Groups[2].Value, [int]$ldm.Groups[3].Value
+                $title = $title.Substring($ldm.Length).Trim()
+            }
             $closed = [bool]($title -match $closedRe)
             if ($items.ContainsKey($id)) {
                 $items[$id].title = $title
@@ -343,14 +350,15 @@ foreach ($c in $config.cities) {
                 continue
             }
             if ($closed -or $seenIds.ContainsKey($id)) { continue }
-            try { $pg = Read-DetailPage $d.url; Start-Sleep -Milliseconds 400 }
+            try { $pg = Read-DetailPage $d.url $(if ($c.detailStart) { $c.detailStart } else { '<h1' }); Start-Sleep -Milliseconds 400 }
             catch { $errors += "$($c.name)の詳細取得に失敗: $($d.url)"; Write-Warning $errors[-1]; continue }
+            if ($listDate -and $pg.pub -eq $Today) { $pg.pub = $listDate }
             if ($pg.pub -lt $cutoff) { continue }
             $text = $pg.text
             $ht = ConvertTo-Norm $text
             if ($ht.StartsWith($title)) { $text = $ht.Substring($title.Length).Trim() }
             # ページ内に選定結果が掲載済みなら終了扱い
-            $pageClosed = [bool]((ConvertTo-Norm $text) -match '優先交渉権者|契約候補者は|結果表|選定しました|特定しました|決定しました|受託候補者を(選定|決定)')
+            $pageClosed = [bool]((ConvertTo-Norm $text) -match '優先交渉権者|契約候補者は|結果表|選定しました|特定しました|決定しました|受託候補者を(選定|決定)|契約者の氏名|契約決定日|落札者(名|は)')
             $items[$id] = [pscustomobject][ordered]@{
                 id        = $id
                 source    = "$($c.name)HP"

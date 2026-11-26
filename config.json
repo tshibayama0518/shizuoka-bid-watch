@@ -85,6 +85,21 @@
       "linkPattern": "/gyomuannai/2/1/2/\\d+\\.html$",
       "updateJson": "https://www.city.kosai.shizuoka.jp/index.update.json",
       "updateNamePattern": "プロポーザル|企画提案|コンペ|公募型|業務委託|受託者|事業者募集|事業者を募集|入札公告|一般競争入札"
+    },
+    {
+      "name": "静岡県観光協会",
+      "lists": ["https://hellonavi.jp/association/info_business/"],
+      "linkPattern": "^https://hellonavi\\.jp/business/news/\\d+$",
+      "titlePattern": "プロポーザル|企画提案|公募|事業者募集|事業者を募集|業務委託|委託事業者|入札"
+    },
+    {
+      "name": "静岡県立病院機構",
+      "lists": [
+        "https://www.shizuoka-pho.jp/auction-information/index.html",
+        "https://www.shizuoka-pho.jp/auction-information/r7-70972/index.html"
+      ],
+      "linkPattern": "^https://www\\.shizuoka-pho\\.jp/auction-information/r[0-9-]+/[^/]+/index\\.html$",
+      "detailStart": "[印刷ボタン機能]"
     }
   ],
   "newDays": 7,
