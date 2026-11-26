@@ -28,6 +28,17 @@
       "lists": ["https://www.city.fuji.shizuoka.jp/shigoto/nyusatsu/gyomuitaku/boshuchu/index.html"],
       "linkPattern": "^https://www\\.city\\.fuji\\.shizuoka\\.jp/\\d{10}/p\\d+\\.html$",
       "bodyStart": "tmp_contents"
+    },
+    {
+      "name": "浜松市",
+      "lists": ["https://www.city.hamamatsu.shizuoka.jp/tyotatu/bid/consignment/ippan/index.html"],
+      "linkPattern": "^https://www\\.city\\.hamamatsu\\.shizuoka\\.jp/(?!maps/|policy/|tsukaikata/|privacy/|accessibility/|faq/|tyotatu/|sangyo/)[a-z0-9_-]+/[^?#]+\\.html$"
+    },
+    {
+      "name": "浜松市",
+      "lists": ["https://www.city.hamamatsu.shizuoka.jp/jigyosha/index.html"],
+      "linkPattern": "^https://www\\.city\\.hamamatsu\\.shizuoka\\.jp/(?!maps/|policy/|tsukaikata/|privacy/|accessibility/|faq/|tyotatu/|sangyo/)[a-z0-9_-]+/[^?#]+\\.html$",
+      "titlePattern": "プロポーザル|企画提案|コンペ|公募|事業者募集|事業者を募集|受託者"
     }
   ],
   "newDays": 7,
@@ -48,7 +59,7 @@
     },
     {
       "name": "Web・IT",
-      "keywords": ["ホームページ", "ウェブ", "Web", "WEB", "サイト", "ポータル", "システム", "アプリ", "DX", "デジタル", "AI", "ICT", "IT", "クラウド", "データベース", "オンライン", "EC", "LINE", "メタバース", "VR", "AR", "電子", "プラットフォーム", "トークン", "サブスクリプション"]
+      "keywords": ["ホームページ", "ウェブ", "Web", "WEB", "サイト", "ポータル", "システム", "アプリ", "DX", "デジタル", "AI", "ICT", "IT", "クラウド", "データベース", "オンライン", "EC", "LINE", "メタバース", "VR", "AR", "電子", "プラットフォーム", "トークン", "サブスクリプション", "タブレット"]
     },
     {
       "name": "デザイン・広報・映像",

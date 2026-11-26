@@ -51,6 +51,8 @@ function Test-Keyword([string]$text, [string]$kw) {
 
 function Get-Tags([string]$text) {
     $t = ConvertTo-Norm $text
+    # 公告文の定型句(電子入札・ホームページに掲載 など)で分野が誤判定されないよう除去
+    $t = [regex]::Replace($t, '電子(入札|調達|申請|契約|メール|データ|納品|媒体)(システム)?|入札(情報)?(公開)?システム|(ホームページ|ウェブサイト|Webサイト|サイト)(に|で|から|より|上|へ|を|等)|PDF|(?<![A-Za-z])KB(?![A-Za-z])', ' ')
     foreach ($ex in $config.excludeKeywords) { if (Test-Keyword $t $ex) { return @() } }
     $tags = @()
     foreach ($tag in $config.tags) {
@@ -296,6 +298,7 @@ foreach ($c in $config.cities) {
                     if ($href -notmatch $c.linkPattern) { continue }
                     $t = ([regex]::Replace($m.Groups[2].Value, '<[^>]+>', '')).Trim()
                     if ($t.Length -lt 4) { continue }
+                    if ($c.titlePattern -and $t -notmatch $c.titlePattern) { continue }
                     $links += [pscustomobject]@{ url = $href; title = $t }
                     $n++; if ($n -ge 100) { break }
                 }
