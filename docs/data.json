@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T15:27:36+09:00",
+  "updatedAt": "2026-11-27T15:50:54+09:00",
   "newDays": 7,
   "tags": [
     "イベント",
@@ -8,6 +8,47 @@
   ],
   "errors": [],
   "items": [
+    {
+      "id": "city:city.numazu.shizuoka.jp/business/proposal/2026/kyuyo/index.htm",
+      "source": "沼津市HP",
+      "title": "「令和9年度 沼津市職員給与支給業務委託」に係る公募型プロポーザル",
+      "org": "沼津市",
+      "city": "沼津市",
+      "kind": "",
+      "tags": [],
+      "proposal": true,
+      "url": "https://www.city.numazu.shizuoka.jp/business/proposal/2026/kyuyo/index.htm",
+      "published": "2026-11-27",
+      "deadline": "2026-12-11",
+      "summary": "の実施について 2026年11月27日更新 本業務は、職員給与支給事務等を外部化し、業務の効率化および人員削減を図ることを目的としています。 当該業務の遂行には、正確かつ円滑に処理するための十分な経験と専門性が求められます。そこで、個人情報保護に関する厳格なセキュリティ対策、安全かつ効率的な業務体制の構築、および委託開始に向けた円滑な移行等について質の高い提案を求め、それらを総合的に評価・検討した上で、プロポーザル方式により契約候補者を…",
+      "closed": false,
+      "firstSeen": "2026-11-27"
+    },
+    {
+      "id": "city:pref.shizuoka.jp/kensei/senkyo/1086869.html",
+      "source": "静岡県選挙管理委員会HP",
+      "title": "選挙啓発業務委託プロポーザル",
+      "org": "静岡県選挙管理委員会",
+      "city": "静岡県選挙管理委員会",
+      "kind": "",
+      "tags": [
+        "イベント",
+        "Web・IT",
+        "デザイン・広報・映像"
+      ],
+      "proposal": true,
+      "url": "https://www.pref.shizuoka.jp/kensei/senkyo/1086869.html",
+      "published": "2026-11-27",
+      "deadline": "",
+      "summary": "第32回静岡県議会議員選挙 第32回静岡県議会議員選挙有権者臨時啓発業務に係る委託業者を選定するため、プロポーザルを実施します。 詳細は、以下の資料をご覧ください。 説明会資料(令和8年12月1日開催) (PDF 865.8KB) (様式1)参加表明書 (Word 9.1KB) (様式2)企画提案書 (Word 12.0KB) (様式3・4)誓約書 (Word 16.5KB) PDFファイルをご覧いただくには、「Adobe(R) Rea…",
+      "closed": false,
+      "firstSeen": "2026-11-27",
+      "budget": 0,
+      "budgetLabel": "",
+      "region": "",
+      "qual": false,
+      "enriched": true
+    },
     {
       "id": "city:city.atami.lg.jp/jigyosha/nyusatsu/1001735/1019212.html",
       "source": "熱海市HP",
@@ -1132,6 +1173,7 @@
     "city:city.numazu.shizuoka.jp/business/proposal/2026/koseki_system/index.htm": "2026-11-26",
     "city:city.numazu.shizuoka.jp/business/proposal/2026/koukokuji/index.htm": "2026-11-26",
     "city:city.numazu.shizuoka.jp/business/proposal/2026/koukyokukan/index.htm": "2026-11-26",
+    "city:city.numazu.shizuoka.jp/business/proposal/2026/kyuyo/index.htm": "2026-11-27",
     "city:city.numazu.shizuoka.jp/business/proposal/2026/okuyamibook/index.htm": "2026-11-26",
     "city:city.numazu.shizuoka.jp/business/proposal/2026/rebranding/index.htm": "2026-11-26",
     "city:city.numazu.shizuoka.jp/business/proposal/2026/shieijyutaku/index.htm": "2026-11-26",
@@ -1223,6 +1265,7 @@
     "city:city.yaizu.lg.jp/business/bid-contract/info/proposal/toshiseibi_naiko.html": "2026-11-26",
     "city:city.yaizu.lg.jp/business/bid-contract/info/proposal/toshiseibi-ekimachi.html": "2026-11-26",
     "city:hellonavi.jp/business/news/402": "2026-11-26",
+    "city:pref.shizuoka.jp/kensei/senkyo/1086869.html": "2026-11-27",
     "city:shizuoka-pho.jp/auction-information/r7-70972/bid-1-74876/index.html": "2026-11-26",
     "city:shizuoka-pho.jp/auction-information/r7-70972/bid-2/index.html": "2026-11-26",
     "city:shizuoka-pho.jp/auction-information/r7/network/index.html": "2026-11-26",
