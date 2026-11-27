@@ -1,12 +1,14 @@
 {
-  "updatedAt": "2026-11-28T07:19:54+09:00",
+  "updatedAt": "2026-11-28T08:00:18+09:00",
   "newDays": 7,
   "tags": [
     "イベント",
     "Web・IT",
     "デザイン・広報・映像"
   ],
-  "errors": [],
+  "errors": [
+    "官公需ポータルの取得に失敗: The request was canceled due to the configured HttpClient.Timeout of 60 seconds elapsing."
+  ],
   "items": [
     {
       "id": "city:city.fujinomiya.lg.jp/1035300000/p002587.html",
