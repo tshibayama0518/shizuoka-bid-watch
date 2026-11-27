@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T15:50:54+09:00",
+  "updatedAt": "2026-11-28T07:19:54+09:00",
   "forecast": [
     {
       "key": "富士市|ICT活用乗降調査",
@@ -1371,6 +1371,24 @@
         "source": "官公需ポータル",
         "url": "https://www.town.kannami.shizuoka.jp/material/files/group/4/081120164.pdf",
         "tags": [
+          "デザイン・広報・映像"
+        ],
+        "winner": "",
+        "amount": "",
+        "budget": 0
+      }
+    ],
+    "静岡県熱海市|市制施行90周年記念事業広報物記念品等作成": [
+      {
+        "date": "2026-11-27",
+        "est": "2026-11-27",
+        "kind": "notice",
+        "title": "市制施行90周年記念事業広報物・記念品等作成業務委託",
+        "org": "静岡県熱海市",
+        "source": "官公需ポータル",
+        "url": "https://www.city.atami.lg.jp/_res/projects/default_project/_page_/001/019/365/3-1kou.pdf",
+        "tags": [
+          "イベント",
           "デザイン・広報・映像"
         ],
         "winner": "",
