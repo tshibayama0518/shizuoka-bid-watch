@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: update-data
@@ -43,6 +44,24 @@ jobs:
           else
             git commit -m "案件データ更新 $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M')"
             git push
+          fi
+
+      - name: 新着案件をメールで知らせる（GitHub Issue を作ると持ち主にメールが届く）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          n=$(python3 scripts/daily_mail.py docs/data.json)
+          echo "新着: $n 件"
+          if [ "$n" -gt 0 ]; then
+            title=$(cat mail_title.txt)
+            today=$(TZ=Asia/Tokyo date +%F)
+            if gh issue list --state all --limit 20 --json title --jq '.[].title' | grep -F "【入札ラボ】新着案件" | grep -qF "（$today）"; then
+              echo "今日の通知は送信済み"
+            else
+              url=$(gh issue create --title "$title" --body-file mail_body.md --assignee "${{ github.repository_owner }}")
+              gh issue close "$url" > /dev/null
+              echo "通知を作成: $url"
+            fi
           fi
 
       - name: 失敗したらスマホに通知
