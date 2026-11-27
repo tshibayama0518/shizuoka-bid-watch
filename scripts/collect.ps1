@@ -724,7 +724,7 @@ function ConvertTo-XmlText([string]$s) { return [System.Security.SecurityElement
 $sb = New-Object System.Text.StringBuilder
 [void]$sb.AppendLine('<?xml version="1.0" encoding="UTF-8"?>')
 [void]$sb.AppendLine('<rss version="2.0"><channel>')
-[void]$sb.AppendLine('<title>静岡県 コンペ・入札ウォッチ</title><link>https://www.kkj.go.jp/</link><description>静岡県内のイベント・Web/IT・デザイン/広報/映像分野の入札・プロポーザル新着</description>')
+[void]$sb.AppendLine('<title>入札ラボ</title><link>https://www.kkj.go.jp/</link><description>静岡県内のイベント・Web/IT・デザイン/広報/映像分野の入札・プロポーザル新着</description>')
 foreach ($it in ($all | Where-Object { @($_.tags).Count -gt 0 -and -not $_.closed } | Select-Object -First 100)) {
     $pubDate = ([datetime]::ParseExact($it.published, 'yyyy-MM-dd', $null)).ToString('ddd, dd MMM yyyy 00:00:00 +0900', [Globalization.CultureInfo]::InvariantCulture)
     $desc = "[$((@($it.tags)) -join ' / ')] $($it.org)"
