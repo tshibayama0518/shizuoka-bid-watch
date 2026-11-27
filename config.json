@@ -9,6 +9,16 @@
   "notifyResults": true,
   "cities": [
     {
+      "name": "静岡県選挙管理委員会",
+      "lists": [
+        "https://www.pref.shizuoka.jp/1066349/1066998/index.html",
+        "https://www.pref.shizuoka.jp/kensei/senkyo/index.html"
+      ],
+      "linkPattern": "^https://www\\.pref\\.shizuoka\\.jp/(?!kensei/nyusatsukobai/)[^?#]+/\\d+\\.html$",
+      "titlePattern": "プロポーザル|企画提案|コンペ|公募|事業者募集|事業者を募集|受託者|業務委託|委託業務|入札",
+      "allowEmpty": true
+    },
+    {
       "name": "静岡市",
       "lists": ["https://www.city.shizuoka.lg.jp/p000358.html"],
       "linkPattern": "^https://www\\.city\\.shizuoka\\.lg\\.jp/s\\d+/(?:[a-z0-9_-]+/)*s\\d+\\.html$"
